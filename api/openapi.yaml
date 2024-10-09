@@ -13,8 +13,8 @@ info:
   title: Treasury Management API
   version: "1.0"
 servers:
-- url: http://localhost:8080/v1
 - url: https://dev.cept.in:8080/v1
+- url: http://localhost:8080/v1
 paths:
   /cash-bags:
     post:

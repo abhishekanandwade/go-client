@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CashTransferLineLimitsGet
 
-> ResponseListCashTransferLineLimitsAPIResponse CashTransferLineLimitsGet(ctx).Skip(skip).Limit(limit).Execute()
+> ResponseListCashTransferLineLimitsAPIResponse CashTransferLineLimitsGet(ctx).Skip(skip).Limit(limit).OrderBy(orderBy).SortType(sortType).Execute()
 
 Get All Cash Transfer Line Limits Handled
 
@@ -33,11 +33,13 @@ import (
 
 func main() {
 	skip := int32(56) // int32 | Number of records to skip for pagination (optional) (default to 0)
-	limit := int32(56) // int32 | Number of records to limit for pagination (optional) (default to 10)
+	limit := int32(56) // int32 | Number of records to limit for pagination (optional) (default to 5000)
+	orderBy := "orderBy_example" // string | Order by field (optional)
+	sortType := "sortType_example" // string | Sort type (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConfigureCashConveyanceLimitAPI.CashTransferLineLimitsGet(context.Background()).Skip(skip).Limit(limit).Execute()
+	resp, r, err := apiClient.ConfigureCashConveyanceLimitAPI.CashTransferLineLimitsGet(context.Background()).Skip(skip).Limit(limit).OrderBy(orderBy).SortType(sortType).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigureCashConveyanceLimitAPI.CashTransferLineLimitsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +61,9 @@ Other parameters are passed through a pointer to a apiCashTransferLineLimitsGetR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **skip** | **int32** | Number of records to skip for pagination | [default to 0]
- **limit** | **int32** | Number of records to limit for pagination | [default to 10]
+ **limit** | **int32** | Number of records to limit for pagination | [default to 5000]
+ **orderBy** | **string** | Order by field | 
+ **sortType** | **string** | Sort type | 
 
 ### Return type
 

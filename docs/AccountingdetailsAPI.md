@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## OfficesOfficeIdAccountingDetailsGet
 
-> ResponseListDetailsByAccountCodeApiResponse OfficesOfficeIdAccountingDetailsGet(ctx, officeId).AccountCode(accountCode).FromDate(fromDate).ToDate(toDate).ReportDate(reportDate).Type_(type_).Execute()
+> ResponseListDetailsByAccountCodeApiResponse OfficesOfficeIdAccountingDetailsGet(ctx, officeId).Type_(type_).AccountCode(accountCode).FromDate(fromDate).ToDate(toDate).ReportDate(reportDate).Skip(skip).Limit(limit).Execute()
 
 List Accounting Details by account code
 
@@ -32,15 +32,17 @@ import (
 
 func main() {
 	officeId := "officeId_example" // string | Office Id (example: 90000003)
-	accountCode := "accountCode_example" // string | Account-code (example: 8671000500)
-	fromDate := "fromDate_example" // string | From-date  (example: 2024-01-01)
-	toDate := "toDate_example" // string | To-date  (example: 2024-01-31)
-	reportDate := "reportDate_example" // string | Report-date (example: 2024-01-31)
 	type_ := "type__example" // string | Type (example: list)
+	accountCode := "accountCode_example" // string | Account-code (example: 8671000500) (optional)
+	fromDate := "fromDate_example" // string | From-date  (example: 2024-01-01) (optional)
+	toDate := "toDate_example" // string | To-date  (example: 2024-01-31) (optional)
+	reportDate := "reportDate_example" // string | Report-date (example: 2024-01-31) (optional)
+	skip := int32(56) // int32 | skip (example: 1) (optional)
+	limit := int32(56) // int32 | Limit (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.AccountingdetailsAPI.OfficesOfficeIdAccountingDetailsGet(context.Background(), officeId).AccountCode(accountCode).FromDate(fromDate).ToDate(toDate).ReportDate(reportDate).Type_(type_).Execute()
+	resp, r, err := apiClient.AccountingdetailsAPI.OfficesOfficeIdAccountingDetailsGet(context.Background(), officeId).Type_(type_).AccountCode(accountCode).FromDate(fromDate).ToDate(toDate).ReportDate(reportDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AccountingdetailsAPI.OfficesOfficeIdAccountingDetailsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,11 +68,13 @@ Other parameters are passed through a pointer to a apiOfficesOfficeIdAccountingD
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **type_** | **string** | Type (example: list) | 
  **accountCode** | **string** | Account-code (example: 8671000500) | 
  **fromDate** | **string** | From-date  (example: 2024-01-01) | 
  **toDate** | **string** | To-date  (example: 2024-01-31) | 
  **reportDate** | **string** | Report-date (example: 2024-01-31) | 
- **type_** | **string** | Type (example: list) | 
+ **skip** | **int32** | skip (example: 1) | 
+ **limit** | **int32** | Limit (example: 10) | 
 
 ### Return type
 
@@ -112,7 +116,7 @@ import (
 
 func main() {
 	officeId := int32(56) // int32 | Office ID (example: 9000003)
-	body := *openapiclient.NewHandlerCreateOfficesAccountingDetailsRequest("R/P", "4867100010, 4867100011", "Treasury/PoS/DARPAN", "POS78967", "2024-01-11") // HandlerCreateOfficesAccountingDetailsRequest | Information about adding new accounting transaction details
+	body := *openapiclient.NewHandlerCreateOfficesAccountingDetailsRequest("Treasury/PoS/DARPAN", "POS78967", "2024-01-11") // HandlerCreateOfficesAccountingDetailsRequest | Information about adding new accounting transaction details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

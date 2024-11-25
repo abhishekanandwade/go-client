@@ -91,11 +91,11 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://dev.cept.in:8080/v1",
+				URL: "http://localhost:8080/v1",
 				Description: "No description provided",
 			},
 			{
-				URL: "http://localhost:8080/v1",
+				URL: "https://localhost:8080/v1",
 				Description: "No description provided",
 			},
 		},

@@ -31,7 +31,7 @@ type ResponseAccountingDetails struct {
 	OfficeId *int32 `json:"office_id,omitempty"`
 	Part *string `json:"part,omitempty"`
 	PositiveOrNegative *string `json:"positive_or_negative,omitempty"`
-	ReceiptOrPmt *string `json:"receipt_or_pmt,omitempty"`
+	ReceiptOrPayment *string `json:"receipt_or_payment,omitempty"`
 	ReceiptSource *string `json:"receipt_source,omitempty"`
 	Remarks *string `json:"remarks,omitempty"`
 	SrcTranId *string `json:"src_tran_id,omitempty"`
@@ -411,36 +411,36 @@ func (o *ResponseAccountingDetails) SetPositiveOrNegative(v string) {
 	o.PositiveOrNegative = &v
 }
 
-// GetReceiptOrPmt returns the ReceiptOrPmt field value if set, zero value otherwise.
-func (o *ResponseAccountingDetails) GetReceiptOrPmt() string {
-	if o == nil || IsNil(o.ReceiptOrPmt) {
+// GetReceiptOrPayment returns the ReceiptOrPayment field value if set, zero value otherwise.
+func (o *ResponseAccountingDetails) GetReceiptOrPayment() string {
+	if o == nil || IsNil(o.ReceiptOrPayment) {
 		var ret string
 		return ret
 	}
-	return *o.ReceiptOrPmt
+	return *o.ReceiptOrPayment
 }
 
-// GetReceiptOrPmtOk returns a tuple with the ReceiptOrPmt field value if set, nil otherwise
+// GetReceiptOrPaymentOk returns a tuple with the ReceiptOrPayment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseAccountingDetails) GetReceiptOrPmtOk() (*string, bool) {
-	if o == nil || IsNil(o.ReceiptOrPmt) {
+func (o *ResponseAccountingDetails) GetReceiptOrPaymentOk() (*string, bool) {
+	if o == nil || IsNil(o.ReceiptOrPayment) {
 		return nil, false
 	}
-	return o.ReceiptOrPmt, true
+	return o.ReceiptOrPayment, true
 }
 
-// HasReceiptOrPmt returns a boolean if a field has been set.
-func (o *ResponseAccountingDetails) HasReceiptOrPmt() bool {
-	if o != nil && !IsNil(o.ReceiptOrPmt) {
+// HasReceiptOrPayment returns a boolean if a field has been set.
+func (o *ResponseAccountingDetails) HasReceiptOrPayment() bool {
+	if o != nil && !IsNil(o.ReceiptOrPayment) {
 		return true
 	}
 
 	return false
 }
 
-// SetReceiptOrPmt gets a reference to the given string and assigns it to the ReceiptOrPmt field.
-func (o *ResponseAccountingDetails) SetReceiptOrPmt(v string) {
-	o.ReceiptOrPmt = &v
+// SetReceiptOrPayment gets a reference to the given string and assigns it to the ReceiptOrPayment field.
+func (o *ResponseAccountingDetails) SetReceiptOrPayment(v string) {
+	o.ReceiptOrPayment = &v
 }
 
 // GetReceiptSource returns the ReceiptSource field value if set, zero value otherwise.
@@ -742,8 +742,8 @@ func (o ResponseAccountingDetails) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PositiveOrNegative) {
 		toSerialize["positive_or_negative"] = o.PositiveOrNegative
 	}
-	if !IsNil(o.ReceiptOrPmt) {
-		toSerialize["receipt_or_pmt"] = o.ReceiptOrPmt
+	if !IsNil(o.ReceiptOrPayment) {
+		toSerialize["receipt_or_payment"] = o.ReceiptOrPayment
 	}
 	if !IsNil(o.ReceiptSource) {
 		toSerialize["receipt_source"] = o.ReceiptSource

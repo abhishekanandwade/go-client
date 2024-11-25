@@ -24,6 +24,212 @@ import (
 // CashChequeTransactionsAPIService CashChequeTransactionsAPI service
 type CashChequeTransactionsAPIService service
 
+type ApiCashBagsGetRequest struct {
+	ctx context.Context
+	ApiService *CashChequeTransactionsAPIService
+	fromOfficeId *string
+	toOfficeId *string
+	skip *int32
+	limit *int32
+}
+
+// From Office ID
+func (r ApiCashBagsGetRequest) FromOfficeId(fromOfficeId string) ApiCashBagsGetRequest {
+	r.fromOfficeId = &fromOfficeId
+	return r
+}
+
+// To Office ID
+func (r ApiCashBagsGetRequest) ToOfficeId(toOfficeId string) ApiCashBagsGetRequest {
+	r.toOfficeId = &toOfficeId
+	return r
+}
+
+// Skip
+func (r ApiCashBagsGetRequest) Skip(skip int32) ApiCashBagsGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiCashBagsGetRequest) Limit(limit int32) ApiCashBagsGetRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiCashBagsGetRequest) Execute() (*ResponseListCashBagsApiResponse, *http.Response, error) {
+	return r.ApiService.CashBagsGetExecute(r)
+}
+
+/*
+CashBagsGet List Pending Cash Bag Transaction
+
+List pending Cash Bag Transactions of an office
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCashBagsGetRequest
+*/
+func (a *CashChequeTransactionsAPIService) CashBagsGet(ctx context.Context) ApiCashBagsGetRequest {
+	return ApiCashBagsGetRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ResponseListCashBagsApiResponse
+func (a *CashChequeTransactionsAPIService) CashBagsGetExecute(r ApiCashBagsGetRequest) (*ResponseListCashBagsApiResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseListCashBagsApiResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CashChequeTransactionsAPIService.CashBagsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/cash-bags"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.fromOfficeId == nil {
+		return localVarReturnValue, nil, reportError("fromOfficeId is required and must be specified")
+	}
+	if r.toOfficeId == nil {
+		return localVarReturnValue, nil, reportError("toOfficeId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from-office-id", r.fromOfficeId, "", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "to-office-id", r.toOfficeId, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiCashBagsPostRequest struct {
 	ctx context.Context
 	ApiService *CashChequeTransactionsAPIService
@@ -121,7 +327,7 @@ func (a *CashChequeTransactionsAPIService) CashBagsPostExecute(r ApiCashBagsPost
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -132,7 +338,7 @@ func (a *CashChequeTransactionsAPIService) CashBagsPostExecute(r ApiCashBagsPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -143,7 +349,7 @@ func (a *CashChequeTransactionsAPIService) CashBagsPostExecute(r ApiCashBagsPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -154,7 +360,7 @@ func (a *CashChequeTransactionsAPIService) CashBagsPostExecute(r ApiCashBagsPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -165,7 +371,7 @@ func (a *CashChequeTransactionsAPIService) CashBagsPostExecute(r ApiCashBagsPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -176,193 +382,7 @@ func (a *CashChequeTransactionsAPIService) CashBagsPostExecute(r ApiCashBagsPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCashBagsPutRequest struct {
-	ctx context.Context
-	ApiService *CashChequeTransactionsAPIService
-	fromOfficeId *string
-	toOfficeId *string
-}
-
-// From Office ID
-func (r ApiCashBagsPutRequest) FromOfficeId(fromOfficeId string) ApiCashBagsPutRequest {
-	r.fromOfficeId = &fromOfficeId
-	return r
-}
-
-// To Office ID
-func (r ApiCashBagsPutRequest) ToOfficeId(toOfficeId string) ApiCashBagsPutRequest {
-	r.toOfficeId = &toOfficeId
-	return r
-}
-
-func (r ApiCashBagsPutRequest) Execute() (*ResponseListCashBagsApiResponse, *http.Response, error) {
-	return r.ApiService.CashBagsPutExecute(r)
-}
-
-/*
-CashBagsPut List Pending Cash Bag Transaction
-
-List pending Cash Bag Transactions of an office
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCashBagsPutRequest
-*/
-func (a *CashChequeTransactionsAPIService) CashBagsPut(ctx context.Context) ApiCashBagsPutRequest {
-	return ApiCashBagsPutRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return ResponseListCashBagsApiResponse
-func (a *CashChequeTransactionsAPIService) CashBagsPutExecute(r ApiCashBagsPutRequest) (*ResponseListCashBagsApiResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ResponseListCashBagsApiResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CashChequeTransactionsAPIService.CashBagsPut")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/cash-bags"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.fromOfficeId == nil {
-		return localVarReturnValue, nil, reportError("fromOfficeId is required and must be specified")
-	}
-	if r.toOfficeId == nil {
-		return localVarReturnValue, nil, reportError("toOfficeId is required and must be specified")
-	}
-
-	parameterAddToHeaderOrQuery(localVarQueryParams, "from-office-id", r.fromOfficeId, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "to-office-id", r.toOfficeId, "form", "")
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -392,6 +412,8 @@ type ApiTransactionsBankRemittancesGetRequest struct {
 	officeId *string
 	fromDate *string
 	toDate *string
+	skip *int32
+	limit *int32
 }
 
 // List bank remittances
@@ -409,6 +431,18 @@ func (r ApiTransactionsBankRemittancesGetRequest) FromDate(fromDate string) ApiT
 // To Date
 func (r ApiTransactionsBankRemittancesGetRequest) ToDate(toDate string) ApiTransactionsBankRemittancesGetRequest {
 	r.toDate = &toDate
+	return r
+}
+
+// Skip
+func (r ApiTransactionsBankRemittancesGetRequest) Skip(skip int32) ApiTransactionsBankRemittancesGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiTransactionsBankRemittancesGetRequest) Limit(limit int32) ApiTransactionsBankRemittancesGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -461,9 +495,15 @@ func (a *CashChequeTransactionsAPIService) TransactionsBankRemittancesGetExecute
 		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -504,7 +544,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsBankRemittancesGetExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -515,7 +555,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsBankRemittancesGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -526,7 +566,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsBankRemittancesGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -537,7 +577,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsBankRemittancesGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -548,7 +588,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsBankRemittancesGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -559,7 +599,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsBankRemittancesGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -589,6 +629,8 @@ type ApiTransactionsGetRequest struct {
 	officeId *string
 	fromDate *string
 	toDate *string
+	skip *int32
+	limit *int32
 }
 
 // Office ID
@@ -606,6 +648,18 @@ func (r ApiTransactionsGetRequest) FromDate(fromDate string) ApiTransactionsGetR
 // To Date
 func (r ApiTransactionsGetRequest) ToDate(toDate string) ApiTransactionsGetRequest {
 	r.toDate = &toDate
+	return r
+}
+
+// Skip
+func (r ApiTransactionsGetRequest) Skip(skip int32) ApiTransactionsGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiTransactionsGetRequest) Limit(limit int32) ApiTransactionsGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -658,9 +712,15 @@ func (a *CashChequeTransactionsAPIService) TransactionsGetExecute(r ApiTransacti
 		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -701,7 +761,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsGetExecute(r ApiTransacti
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -712,7 +772,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsGetExecute(r ApiTransacti
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -723,7 +783,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsGetExecute(r ApiTransacti
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -734,7 +794,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsGetExecute(r ApiTransacti
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -745,7 +805,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsGetExecute(r ApiTransacti
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -756,7 +816,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsGetExecute(r ApiTransacti
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -784,11 +844,25 @@ type ApiTransactionsPdgProcessOrAckGetRequest struct {
 	ctx context.Context
 	ApiService *CashChequeTransactionsAPIService
 	officeId *string
+	skip *int32
+	limit *int32
 }
 
 // Office ID
 func (r ApiTransactionsPdgProcessOrAckGetRequest) OfficeId(officeId string) ApiTransactionsPdgProcessOrAckGetRequest {
 	r.officeId = &officeId
+	return r
+}
+
+// Skip
+func (r ApiTransactionsPdgProcessOrAckGetRequest) Skip(skip int32) ApiTransactionsPdgProcessOrAckGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiTransactionsPdgProcessOrAckGetRequest) Limit(limit int32) ApiTransactionsPdgProcessOrAckGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -835,7 +909,13 @@ func (a *CashChequeTransactionsAPIService) TransactionsPdgProcessOrAckGetExecute
 		return localVarReturnValue, nil, reportError("officeId is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -876,7 +956,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPdgProcessOrAckGetExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -887,7 +967,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPdgProcessOrAckGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -898,7 +978,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPdgProcessOrAckGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -909,7 +989,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPdgProcessOrAckGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -920,7 +1000,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPdgProcessOrAckGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -931,7 +1011,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPdgProcessOrAckGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -961,6 +1041,8 @@ type ApiTransactionsPendingProcessGetRequest struct {
 	officeId *string
 	txnStatus *string
 	isPostman *bool
+	skip *int32
+	limit *int32
 }
 
 // Office ID
@@ -978,6 +1060,18 @@ func (r ApiTransactionsPendingProcessGetRequest) TxnStatus(txnStatus string) Api
 // Is Postman
 func (r ApiTransactionsPendingProcessGetRequest) IsPostman(isPostman bool) ApiTransactionsPendingProcessGetRequest {
 	r.isPostman = &isPostman
+	return r
+}
+
+// Skip
+func (r ApiTransactionsPendingProcessGetRequest) Skip(skip int32) ApiTransactionsPendingProcessGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiTransactionsPendingProcessGetRequest) Limit(limit int32) ApiTransactionsPendingProcessGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -1027,10 +1121,16 @@ func (a *CashChequeTransactionsAPIService) TransactionsPendingProcessGetExecute(
 		return localVarReturnValue, nil, reportError("txnStatus is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "txn-status", r.txnStatus, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "txn-status", r.txnStatus, "", "")
 	if r.isPostman != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is-postman", r.isPostman, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is-postman", r.isPostman, "", "")
+	}
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1072,7 +1172,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPendingProcessGetExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1083,7 +1183,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPendingProcessGetExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1094,7 +1194,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPendingProcessGetExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1105,7 +1205,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPendingProcessGetExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1116,7 +1216,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPendingProcessGetExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1127,7 +1227,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPendingProcessGetExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1248,7 +1348,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPostExecute(r ApiTransact
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1259,7 +1359,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPostExecute(r ApiTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1270,7 +1370,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPostExecute(r ApiTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1281,7 +1381,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPostExecute(r ApiTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1292,7 +1392,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPostExecute(r ApiTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1303,7 +1403,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsPostExecute(r ApiTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1327,34 +1427,41 @@ func (a *CashChequeTransactionsAPIService) TransactionsPostExecute(r ApiTransact
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiTransactionsTransactionIdStatusPutRequest struct {
+type ApiTransactionsTransactionIdChangeStatusPutRequest struct {
 	ctx context.Context
 	ApiService *CashChequeTransactionsAPIService
 	transactionId string
+	type_ *string
 	body *HandlerUpdateTransactionsStatusRequest
 }
 
+// Type of transaction
+func (r ApiTransactionsTransactionIdChangeStatusPutRequest) Type_(type_ string) ApiTransactionsTransactionIdChangeStatusPutRequest {
+	r.type_ = &type_
+	return r
+}
+
 // Information about processing issue request treasury Transaction
-func (r ApiTransactionsTransactionIdStatusPutRequest) Body(body HandlerUpdateTransactionsStatusRequest) ApiTransactionsTransactionIdStatusPutRequest {
+func (r ApiTransactionsTransactionIdChangeStatusPutRequest) Body(body HandlerUpdateTransactionsStatusRequest) ApiTransactionsTransactionIdChangeStatusPutRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiTransactionsTransactionIdStatusPutRequest) Execute() (*ResponseTransactionsBankRemittancesApiResponse, *http.Response, error) {
-	return r.ApiService.TransactionsTransactionIdStatusPutExecute(r)
+func (r ApiTransactionsTransactionIdChangeStatusPutRequest) Execute() (*ResponseTransactionsBankRemittancesApiResponse, *http.Response, error) {
+	return r.ApiService.TransactionsTransactionIdChangeStatusPutExecute(r)
 }
 
 /*
-TransactionsTransactionIdStatusPut Process Treasury Transaction Issue Request
+TransactionsTransactionIdChangeStatusPut Process Treasury Transaction Issue Request
 
 Process Issue request Tresury Transaction
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param transactionId Transaction ID
- @return ApiTransactionsTransactionIdStatusPutRequest
+ @return ApiTransactionsTransactionIdChangeStatusPutRequest
 */
-func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPut(ctx context.Context, transactionId string) ApiTransactionsTransactionIdStatusPutRequest {
-	return ApiTransactionsTransactionIdStatusPutRequest{
+func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdChangeStatusPut(ctx context.Context, transactionId string) ApiTransactionsTransactionIdChangeStatusPutRequest {
+	return ApiTransactionsTransactionIdChangeStatusPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		transactionId: transactionId,
@@ -1363,7 +1470,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPut(ct
 
 // Execute executes the request
 //  @return ResponseTransactionsBankRemittancesApiResponse
-func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPutExecute(r ApiTransactionsTransactionIdStatusPutRequest) (*ResponseTransactionsBankRemittancesApiResponse, *http.Response, error) {
+func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdChangeStatusPutExecute(r ApiTransactionsTransactionIdChangeStatusPutRequest) (*ResponseTransactionsBankRemittancesApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -1371,21 +1478,25 @@ func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPutExe
 		localVarReturnValue  *ResponseTransactionsBankRemittancesApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CashChequeTransactionsAPIService.TransactionsTransactionIdStatusPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CashChequeTransactionsAPIService.TransactionsTransactionIdChangeStatusPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/transactions/{transaction-id}/status"
+	localVarPath := localBasePath + "/transactions/{transaction-id}/change-status"
 	localVarPath = strings.Replace(localVarPath, "{"+"transaction-id"+"}", url.PathEscape(parameterValueToString(r.transactionId, "transactionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.type_ == nil {
+		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
+	}
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1428,7 +1539,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPutExe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1439,7 +1550,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPutExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1450,7 +1561,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPutExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1461,7 +1572,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPutExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1472,7 +1583,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPutExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1483,7 +1594,7 @@ func (a *CashChequeTransactionsAPIService) TransactionsTransactionIdStatusPutExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

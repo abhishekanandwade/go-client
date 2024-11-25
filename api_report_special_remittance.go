@@ -30,6 +30,8 @@ type ApiTransactionsSpecialRemittanceSlipGetRequest struct {
 	fromDate *string
 	toDate *string
 	type_ *string
+	skip *int32
+	limit *int32
 }
 
 // Office ID
@@ -53,6 +55,18 @@ func (r ApiTransactionsSpecialRemittanceSlipGetRequest) ToDate(toDate string) Ap
 // Type
 func (r ApiTransactionsSpecialRemittanceSlipGetRequest) Type_(type_ string) ApiTransactionsSpecialRemittanceSlipGetRequest {
 	r.type_ = &type_
+	return r
+}
+
+// Skip
+func (r ApiTransactionsSpecialRemittanceSlipGetRequest) Skip(skip int32) ApiTransactionsSpecialRemittanceSlipGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiTransactionsSpecialRemittanceSlipGetRequest) Limit(limit int32) ApiTransactionsSpecialRemittanceSlipGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -97,16 +111,22 @@ func (a *ReportSpecialRemittanceAPIService) TransactionsSpecialRemittanceSlipGet
 	localVarFormParams := url.Values{}
 
 	if r.officeId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
 	}
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
 	}
 	if r.type_ != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
+	}
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -148,7 +168,7 @@ func (a *ReportSpecialRemittanceAPIService) TransactionsSpecialRemittanceSlipGet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +179,7 @@ func (a *ReportSpecialRemittanceAPIService) TransactionsSpecialRemittanceSlipGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -170,7 +190,7 @@ func (a *ReportSpecialRemittanceAPIService) TransactionsSpecialRemittanceSlipGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -181,7 +201,7 @@ func (a *ReportSpecialRemittanceAPIService) TransactionsSpecialRemittanceSlipGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -192,7 +212,7 @@ func (a *ReportSpecialRemittanceAPIService) TransactionsSpecialRemittanceSlipGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -203,7 +223,7 @@ func (a *ReportSpecialRemittanceAPIService) TransactionsSpecialRemittanceSlipGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

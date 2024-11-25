@@ -6,13 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**IposTransactionsGet**](IPOTransactionsAPI.md#IposTransactionsGet) | **Get** /ipos-transactions | IPO Transaction requests
 [**IposTransactionsPost**](IPOTransactionsAPI.md#IposTransactionsPost) | **Post** /ipos-transactions | Create a New IPO Transaction Requests
-[**IposTransactionsTransactionIdStatusPut**](IPOTransactionsAPI.md#IposTransactionsTransactionIdStatusPut) | **Put** /ipos-transactions/{transaction-id}/status | Process IPO  Transaction Issue Request
+[**IposTransactionsTransactionIdChangeStatusPut**](IPOTransactionsAPI.md#IposTransactionsTransactionIdChangeStatusPut) | **Put** /ipos-transactions/{transaction-id}/change-status | Process IPO  Transaction Issue Request
 
 
 
 ## IposTransactionsGet
 
-> ResponseListIPOTransactionsApiResponse IposTransactionsGet(ctx).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).TxnStatus(txnStatus).Execute()
+> ResponseListIPOTransactionsApiResponse IposTransactionsGet(ctx).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).TxnStatus(txnStatus).Skip(skip).Limit(limit).Execute()
 
 IPO Transaction requests
 
@@ -36,10 +36,12 @@ func main() {
 	fromDate := "fromDate_example" // string | From date of IPO transactions (optional)
 	toDate := "toDate_example" // string | To date of IPO transactions (optional)
 	txnStatus := "txnStatus_example" // string | Status of IPO transactions (optional)
+	skip := int32(56) // int32 | Skip records (optional)
+	limit := int32(56) // int32 | Limit records (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IPOTransactionsAPI.IposTransactionsGet(context.Background()).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).TxnStatus(txnStatus).Execute()
+	resp, r, err := apiClient.IPOTransactionsAPI.IposTransactionsGet(context.Background()).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).TxnStatus(txnStatus).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IPOTransactionsAPI.IposTransactionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,6 +67,8 @@ Name | Type | Description  | Notes
  **fromDate** | **string** | From date of IPO transactions | 
  **toDate** | **string** | To date of IPO transactions | 
  **txnStatus** | **string** | Status of IPO transactions | 
+ **skip** | **int32** | Skip records | 
+ **limit** | **int32** | Limit records | 
 
 ### Return type
 
@@ -150,9 +154,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## IposTransactionsTransactionIdStatusPut
+## IposTransactionsTransactionIdChangeStatusPut
 
-> ResponseUpdateIPOsTransactionsApiResonse IposTransactionsTransactionIdStatusPut(ctx, transactionId).UpdateIPOsTransactionsStatusRequest(updateIPOsTransactionsStatusRequest).Execute()
+> ResponseUpdateIPOsTransactionsApiResonse IposTransactionsTransactionIdChangeStatusPut(ctx, transactionId).Type_(type_).UpdateIPOsTransactionsStatusRequest(updateIPOsTransactionsStatusRequest).Execute()
 
 Process IPO  Transaction Issue Request
 
@@ -172,17 +176,18 @@ import (
 
 func main() {
 	transactionId := "transactionId_example" // string | Process IPO txn at Dest Office
-	updateIPOsTransactionsStatusRequest := *openapiclient.NewHandlerUpdateIPOsTransactionsStatusRequest(int32(10130000), openapiclient.handler.transactionType("approve-pdg-source")) // HandlerUpdateIPOsTransactionsStatusRequest | Process IPO txn at Dest Office
+	type_ := "type__example" // string | Type of transaction to be processed
+	updateIPOsTransactionsStatusRequest := *openapiclient.NewHandlerUpdateIPOsTransactionsStatusRequest(int32(10130000)) // HandlerUpdateIPOsTransactionsStatusRequest | Process IPO txn at Dest Office
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IPOTransactionsAPI.IposTransactionsTransactionIdStatusPut(context.Background(), transactionId).UpdateIPOsTransactionsStatusRequest(updateIPOsTransactionsStatusRequest).Execute()
+	resp, r, err := apiClient.IPOTransactionsAPI.IposTransactionsTransactionIdChangeStatusPut(context.Background(), transactionId).Type_(type_).UpdateIPOsTransactionsStatusRequest(updateIPOsTransactionsStatusRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `IPOTransactionsAPI.IposTransactionsTransactionIdStatusPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `IPOTransactionsAPI.IposTransactionsTransactionIdChangeStatusPut``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `IposTransactionsTransactionIdStatusPut`: ResponseUpdateIPOsTransactionsApiResonse
-	fmt.Fprintf(os.Stdout, "Response from `IPOTransactionsAPI.IposTransactionsTransactionIdStatusPut`: %v\n", resp)
+	// response from `IposTransactionsTransactionIdChangeStatusPut`: ResponseUpdateIPOsTransactionsApiResonse
+	fmt.Fprintf(os.Stdout, "Response from `IPOTransactionsAPI.IposTransactionsTransactionIdChangeStatusPut`: %v\n", resp)
 }
 ```
 
@@ -196,12 +201,13 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiIposTransactionsTransactionIdStatusPutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiIposTransactionsTransactionIdChangeStatusPutRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **type_** | **string** | Type of transaction to be processed | 
  **updateIPOsTransactionsStatusRequest** | [**HandlerUpdateIPOsTransactionsStatusRequest**](HandlerUpdateIPOsTransactionsStatusRequest.md) | Process IPO txn at Dest Office | 
 
 ### Return type

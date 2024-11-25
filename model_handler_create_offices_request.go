@@ -22,6 +22,7 @@ var _ MappedNullable = &HandlerCreateOfficesRequest{}
 
 // HandlerCreateOfficesRequest struct for HandlerCreateOfficesRequest
 type HandlerCreateOfficesRequest struct {
+	BankCreditLimit *float32 `json:"bank_credit_limit,omitempty"`
 	BankId *string `json:"bank_id,omitempty"`
 	CashOfficeId *int32 `json:"cash_office_id,omitempty"`
 	CashofficeName *string `json:"cashoffice_name,omitempty"`
@@ -60,6 +61,38 @@ func NewHandlerCreateOfficesRequest(enteredBy string, maxAmt float32, minAmt flo
 func NewHandlerCreateOfficesRequestWithDefaults() *HandlerCreateOfficesRequest {
 	this := HandlerCreateOfficesRequest{}
 	return &this
+}
+
+// GetBankCreditLimit returns the BankCreditLimit field value if set, zero value otherwise.
+func (o *HandlerCreateOfficesRequest) GetBankCreditLimit() float32 {
+	if o == nil || IsNil(o.BankCreditLimit) {
+		var ret float32
+		return ret
+	}
+	return *o.BankCreditLimit
+}
+
+// GetBankCreditLimitOk returns a tuple with the BankCreditLimit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HandlerCreateOfficesRequest) GetBankCreditLimitOk() (*float32, bool) {
+	if o == nil || IsNil(o.BankCreditLimit) {
+		return nil, false
+	}
+	return o.BankCreditLimit, true
+}
+
+// HasBankCreditLimit returns a boolean if a field has been set.
+func (o *HandlerCreateOfficesRequest) HasBankCreditLimit() bool {
+	if o != nil && !IsNil(o.BankCreditLimit) {
+		return true
+	}
+
+	return false
+}
+
+// SetBankCreditLimit gets a reference to the given float32 and assigns it to the BankCreditLimit field.
+func (o *HandlerCreateOfficesRequest) SetBankCreditLimit(v float32) {
+	o.BankCreditLimit = &v
 }
 
 // GetBankId returns the BankId field value if set, zero value otherwise.
@@ -440,6 +473,9 @@ func (o HandlerCreateOfficesRequest) MarshalJSON() ([]byte, error) {
 
 func (o HandlerCreateOfficesRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BankCreditLimit) {
+		toSerialize["bank_credit_limit"] = o.BankCreditLimit
+	}
 	if !IsNil(o.BankId) {
 		toSerialize["bank_id"] = o.BankId
 	}

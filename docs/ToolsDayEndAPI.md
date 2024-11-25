@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost:8080/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**OfficesOfficeIdDayBeginEndStatusGet**](ToolsDayEndAPI.md#OfficesOfficeIdDayBeginEndStatusGet) | **Get** /offices/{office-id}/day-begin-end-status | Check Office Day End Status
-[**OfficesOfficeIdDayBeginEndStatusPut**](ToolsDayEndAPI.md#OfficesOfficeIdDayBeginEndStatusPut) | **Put** /offices/{office-id}/day-begin-end-status | Perform Day End
+[**OfficesOfficeIdPerformDayEndPut**](ToolsDayEndAPI.md#OfficesOfficeIdPerformDayEndPut) | **Put** /offices/{office-id}/perform-day-end | Perform Day End
 
 
 
@@ -83,9 +83,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## OfficesOfficeIdDayBeginEndStatusPut
+## OfficesOfficeIdPerformDayEndPut
 
-> ResponseDayBeginEndAPIResponse OfficesOfficeIdDayBeginEndStatusPut(ctx, officeId).Body(body).Execute()
+> ResponseDayBeginEndAPIResponse OfficesOfficeIdPerformDayEndPut(ctx, officeId).Body(body).Execute()
 
 Perform Day End
 
@@ -109,13 +109,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsDayEndAPI.OfficesOfficeIdDayBeginEndStatusPut(context.Background(), officeId).Body(body).Execute()
+	resp, r, err := apiClient.ToolsDayEndAPI.OfficesOfficeIdPerformDayEndPut(context.Background(), officeId).Body(body).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ToolsDayEndAPI.OfficesOfficeIdDayBeginEndStatusPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ToolsDayEndAPI.OfficesOfficeIdPerformDayEndPut``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `OfficesOfficeIdDayBeginEndStatusPut`: ResponseDayBeginEndAPIResponse
-	fmt.Fprintf(os.Stdout, "Response from `ToolsDayEndAPI.OfficesOfficeIdDayBeginEndStatusPut`: %v\n", resp)
+	// response from `OfficesOfficeIdPerformDayEndPut`: ResponseDayBeginEndAPIResponse
+	fmt.Fprintf(os.Stdout, "Response from `ToolsDayEndAPI.OfficesOfficeIdPerformDayEndPut`: %v\n", resp)
 }
 ```
 
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiOfficesOfficeIdDayBeginEndStatusPutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiOfficesOfficeIdPerformDayEndPutRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

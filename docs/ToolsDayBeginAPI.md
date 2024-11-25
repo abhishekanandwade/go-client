@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## OfficesOfficeIdPerformDayBeginPost
 
-> DomainDayBeginEnd OfficesOfficeIdPerformDayBeginPost(ctx, officeId).Body(body).Execute()
+> ResponseCreateDayBeginEndAPIResponse OfficesOfficeIdPerformDayBeginPost(ctx, officeId).Body(body).Execute()
 
 Perform Day Begin
 
@@ -39,7 +39,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsDayBeginAPI.OfficesOfficeIdPerformDayBeginPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `OfficesOfficeIdPerformDayBeginPost`: DomainDayBeginEnd
+	// response from `OfficesOfficeIdPerformDayBeginPost`: ResponseCreateDayBeginEndAPIResponse
 	fmt.Fprintf(os.Stdout, "Response from `ToolsDayBeginAPI.OfficesOfficeIdPerformDayBeginPost`: %v\n", resp)
 }
 ```
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DomainDayBeginEnd**](DomainDayBeginEnd.md)
+[**ResponseCreateDayBeginEndAPIResponse**](ResponseCreateDayBeginEndAPIResponse.md)
 
 ### Authorization
 

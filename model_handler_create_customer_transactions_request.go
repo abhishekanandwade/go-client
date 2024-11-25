@@ -33,7 +33,7 @@ type HandlerCreateCustomerTransactionsRequest struct {
 	CustomerTypeId *string `json:"customer_type_id,omitempty"`
 	CustomerTypeName string `json:"customer_type_name"`
 	IsAdvanceCustomer *bool `json:"is_advance_customer,omitempty"`
-	IsReceiptPayment string `json:"is_receipt_payment"`
+	IsReceiptPayment *string `json:"is_receipt_payment,omitempty"`
 	IssOfficeId *int32 `json:"iss_office_id,omitempty"`
 	OfficeId int32 `json:"office_id"`
 	Remarks string `json:"remarks"`
@@ -48,7 +48,7 @@ type _HandlerCreateCustomerTransactionsRequest HandlerCreateCustomerTransactions
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHandlerCreateCustomerTransactionsRequest(billAmount float32, billDate string, billId string, billRemarks string, customerId string, customerName string, customerTypeName string, isReceiptPayment string, officeId int32, remarks string, txAmount float32, txMode string, userId string) *HandlerCreateCustomerTransactionsRequest {
+func NewHandlerCreateCustomerTransactionsRequest(billAmount float32, billDate string, billId string, billRemarks string, customerId string, customerName string, customerTypeName string, officeId int32, remarks string, txAmount float32, txMode string, userId string) *HandlerCreateCustomerTransactionsRequest {
 	this := HandlerCreateCustomerTransactionsRequest{}
 	this.BillAmount = billAmount
 	this.BillDate = billDate
@@ -57,7 +57,6 @@ func NewHandlerCreateCustomerTransactionsRequest(billAmount float32, billDate st
 	this.CustomerId = customerId
 	this.CustomerName = customerName
 	this.CustomerTypeName = customerTypeName
-	this.IsReceiptPayment = isReceiptPayment
 	this.OfficeId = officeId
 	this.Remarks = remarks
 	this.TxAmount = txAmount
@@ -370,28 +369,36 @@ func (o *HandlerCreateCustomerTransactionsRequest) SetIsAdvanceCustomer(v bool) 
 	o.IsAdvanceCustomer = &v
 }
 
-// GetIsReceiptPayment returns the IsReceiptPayment field value
+// GetIsReceiptPayment returns the IsReceiptPayment field value if set, zero value otherwise.
 func (o *HandlerCreateCustomerTransactionsRequest) GetIsReceiptPayment() string {
-	if o == nil {
+	if o == nil || IsNil(o.IsReceiptPayment) {
 		var ret string
 		return ret
 	}
-
-	return o.IsReceiptPayment
+	return *o.IsReceiptPayment
 }
 
-// GetIsReceiptPaymentOk returns a tuple with the IsReceiptPayment field value
+// GetIsReceiptPaymentOk returns a tuple with the IsReceiptPayment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HandlerCreateCustomerTransactionsRequest) GetIsReceiptPaymentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsReceiptPayment) {
 		return nil, false
 	}
-	return &o.IsReceiptPayment, true
+	return o.IsReceiptPayment, true
 }
 
-// SetIsReceiptPayment sets field value
+// HasIsReceiptPayment returns a boolean if a field has been set.
+func (o *HandlerCreateCustomerTransactionsRequest) HasIsReceiptPayment() bool {
+	if o != nil && !IsNil(o.IsReceiptPayment) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsReceiptPayment gets a reference to the given string and assigns it to the IsReceiptPayment field.
 func (o *HandlerCreateCustomerTransactionsRequest) SetIsReceiptPayment(v string) {
-	o.IsReceiptPayment = v
+	o.IsReceiptPayment = &v
 }
 
 // GetIssOfficeId returns the IssOfficeId field value if set, zero value otherwise.
@@ -575,7 +582,9 @@ func (o HandlerCreateCustomerTransactionsRequest) ToMap() (map[string]interface{
 	if !IsNil(o.IsAdvanceCustomer) {
 		toSerialize["is_advance_customer"] = o.IsAdvanceCustomer
 	}
-	toSerialize["is_receipt_payment"] = o.IsReceiptPayment
+	if !IsNil(o.IsReceiptPayment) {
+		toSerialize["is_receipt_payment"] = o.IsReceiptPayment
+	}
 	if !IsNil(o.IssOfficeId) {
 		toSerialize["iss_office_id"] = o.IssOfficeId
 	}
@@ -599,7 +608,6 @@ func (o *HandlerCreateCustomerTransactionsRequest) UnmarshalJSON(data []byte) (e
 		"customer_id",
 		"customer_name",
 		"customer_type_name",
-		"is_receipt_payment",
 		"office_id",
 		"remarks",
 		"tx_amount",

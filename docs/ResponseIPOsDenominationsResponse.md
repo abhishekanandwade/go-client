@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Commission** | Pointer to **string** |  | [optional] 
 **DenominationDesc** | Pointer to **string** |  | [optional] 
 **DenominationId** | Pointer to **string** |  | [optional] 
-**DenominationValue** | Pointer to **int32** |  | [optional] 
+**DenominationValue** | Pointer to **float32** |  | [optional] 
 **EnteredByUser** | Pointer to **string** |  | [optional] 
 **EntryDate** | Pointer to **string** |  | [optional] 
 **IpoTariffId** | Pointer to **string** |  | [optional] 
@@ -115,20 +115,20 @@ HasDenominationId returns a boolean if a field has been set.
 
 ### GetDenominationValue
 
-`func (o *ResponseIPOsDenominationsResponse) GetDenominationValue() int32`
+`func (o *ResponseIPOsDenominationsResponse) GetDenominationValue() float32`
 
 GetDenominationValue returns the DenominationValue field if non-nil, zero value otherwise.
 
 ### GetDenominationValueOk
 
-`func (o *ResponseIPOsDenominationsResponse) GetDenominationValueOk() (*int32, bool)`
+`func (o *ResponseIPOsDenominationsResponse) GetDenominationValueOk() (*float32, bool)`
 
 GetDenominationValueOk returns a tuple with the DenominationValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDenominationValue
 
-`func (o *ResponseIPOsDenominationsResponse) SetDenominationValue(v int32)`
+`func (o *ResponseIPOsDenominationsResponse) SetDenominationValue(v float32)`
 
 SetDenominationValue sets DenominationValue field to given value.
 

@@ -28,11 +28,19 @@ type ApiOfficesOfficeIdAccountingDetailsGetRequest struct {
 	ctx context.Context
 	ApiService *AccountingdetailsAPIService
 	officeId string
+	type_ *string
 	accountCode *string
 	fromDate *string
 	toDate *string
 	reportDate *string
-	type_ *string
+	skip *int32
+	limit *int32
+}
+
+// Type (example: list)
+func (r ApiOfficesOfficeIdAccountingDetailsGetRequest) Type_(type_ string) ApiOfficesOfficeIdAccountingDetailsGetRequest {
+	r.type_ = &type_
+	return r
 }
 
 // Account-code (example: 8671000500)
@@ -59,9 +67,15 @@ func (r ApiOfficesOfficeIdAccountingDetailsGetRequest) ReportDate(reportDate str
 	return r
 }
 
-// Type (example: list)
-func (r ApiOfficesOfficeIdAccountingDetailsGetRequest) Type_(type_ string) ApiOfficesOfficeIdAccountingDetailsGetRequest {
-	r.type_ = &type_
+// skip (example: 1)
+func (r ApiOfficesOfficeIdAccountingDetailsGetRequest) Skip(skip int32) ApiOfficesOfficeIdAccountingDetailsGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit (example: 10)
+func (r ApiOfficesOfficeIdAccountingDetailsGetRequest) Limit(limit int32) ApiOfficesOfficeIdAccountingDetailsGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -107,27 +121,29 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsGetExecute
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.accountCode == nil {
-		return localVarReturnValue, nil, reportError("accountCode is required and must be specified")
-	}
-	if r.fromDate == nil {
-		return localVarReturnValue, nil, reportError("fromDate is required and must be specified")
-	}
-	if r.toDate == nil {
-		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
-	}
-	if r.reportDate == nil {
-		return localVarReturnValue, nil, reportError("reportDate is required and must be specified")
-	}
 	if r.type_ == nil {
 		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "account-code", r.accountCode, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "report-date", r.reportDate, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	if r.accountCode != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "account-code", r.accountCode, "", "")
+	}
+	if r.fromDate != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
+	}
+	if r.toDate != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
+	}
+	if r.reportDate != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "report-date", r.reportDate, "", "")
+	}
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -168,7 +184,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsGetExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -179,7 +195,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -190,7 +206,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -201,7 +217,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -212,7 +228,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -223,7 +239,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsGetExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +364,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsPostExecut
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +375,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsPostExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +386,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsPostExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -381,7 +397,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsPostExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -392,7 +408,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsPostExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -403,7 +419,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsPostExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -486,7 +502,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsSummaryGet
 		return localVarReturnValue, nil, reportError("reportDate is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "report-date", r.reportDate, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "report-date", r.reportDate, "", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -527,7 +543,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsSummaryGet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -538,7 +554,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsSummaryGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -549,7 +565,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsSummaryGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -560,7 +576,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsSummaryGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -571,7 +587,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsSummaryGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -582,7 +598,7 @@ func (a *AccountingdetailsAPIService) OfficesOfficeIdAccountingDetailsSummaryGet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -4,15 +4,87 @@ All URIs are relative to *http://localhost:8080/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CashBagsGet**](CashChequeTransactionsAPI.md#CashBagsGet) | **Get** /cash-bags | List Pending Cash Bag Transaction
 [**CashBagsPost**](CashChequeTransactionsAPI.md#CashBagsPost) | **Post** /cash-bags | Create a New Cash Bag
-[**CashBagsPut**](CashChequeTransactionsAPI.md#CashBagsPut) | **Put** /cash-bags | List Pending Cash Bag Transaction
 [**TransactionsBankRemittancesGet**](CashChequeTransactionsAPI.md#TransactionsBankRemittancesGet) | **Get** /transactions/bank-remittances | List Bank Remittances
 [**TransactionsGet**](CashChequeTransactionsAPI.md#TransactionsGet) | **Get** /transactions | Get Treasury Transactions List
 [**TransactionsPdgProcessOrAckGet**](CashChequeTransactionsAPI.md#TransactionsPdgProcessOrAckGet) | **Get** /transactions/pdg-process-or-ack | Get Pending receipt ack Transactions List
 [**TransactionsPendingProcessGet**](CashChequeTransactionsAPI.md#TransactionsPendingProcessGet) | **Get** /transactions/pending-process | Get Pending Treasury Transactions List
 [**TransactionsPost**](CashChequeTransactionsAPI.md#TransactionsPost) | **Post** /transactions | Create a New Treasury Transaction
-[**TransactionsTransactionIdStatusPut**](CashChequeTransactionsAPI.md#TransactionsTransactionIdStatusPut) | **Put** /transactions/{transaction-id}/status | Process Treasury Transaction Issue Request
+[**TransactionsTransactionIdChangeStatusPut**](CashChequeTransactionsAPI.md#TransactionsTransactionIdChangeStatusPut) | **Put** /transactions/{transaction-id}/change-status | Process Treasury Transaction Issue Request
 
+
+
+## CashBagsGet
+
+> ResponseListCashBagsApiResponse CashBagsGet(ctx).FromOfficeId(fromOfficeId).ToOfficeId(toOfficeId).Skip(skip).Limit(limit).Execute()
+
+List Pending Cash Bag Transaction
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	fromOfficeId := "fromOfficeId_example" // string | From Office ID
+	toOfficeId := "toOfficeId_example" // string | To Office ID
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CashChequeTransactionsAPI.CashBagsGet(context.Background()).FromOfficeId(fromOfficeId).ToOfficeId(toOfficeId).Skip(skip).Limit(limit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CashChequeTransactionsAPI.CashBagsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CashBagsGet`: ResponseListCashBagsApiResponse
+	fmt.Fprintf(os.Stdout, "Response from `CashChequeTransactionsAPI.CashBagsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCashBagsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fromOfficeId** | **string** | From Office ID | 
+ **toOfficeId** | **string** | To Office ID | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
+
+### Return type
+
+[**ResponseListCashBagsApiResponse**](ResponseListCashBagsApiResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CashBagsPost
@@ -81,77 +153,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## CashBagsPut
-
-> ResponseListCashBagsApiResponse CashBagsPut(ctx).FromOfficeId(fromOfficeId).ToOfficeId(toOfficeId).Execute()
-
-List Pending Cash Bag Transaction
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
-)
-
-func main() {
-	fromOfficeId := "fromOfficeId_example" // string | From Office ID
-	toOfficeId := "toOfficeId_example" // string | To Office ID
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CashChequeTransactionsAPI.CashBagsPut(context.Background()).FromOfficeId(fromOfficeId).ToOfficeId(toOfficeId).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CashChequeTransactionsAPI.CashBagsPut``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CashBagsPut`: ResponseListCashBagsApiResponse
-	fmt.Fprintf(os.Stdout, "Response from `CashChequeTransactionsAPI.CashBagsPut`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCashBagsPutRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **fromOfficeId** | **string** | From Office ID | 
- **toOfficeId** | **string** | To Office ID | 
-
-### Return type
-
-[**ResponseListCashBagsApiResponse**](ResponseListCashBagsApiResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## TransactionsBankRemittancesGet
 
-> ResponseListBankRemittancesApiResponse TransactionsBankRemittancesGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseListBankRemittancesApiResponse TransactionsBankRemittancesGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 List Bank Remittances
 
@@ -173,10 +177,12 @@ func main() {
 	officeId := "officeId_example" // string | List bank remittances
 	fromDate := "fromDate_example" // string | From Date
 	toDate := "toDate_example" // string | To Date
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsBankRemittancesGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsBankRemittancesGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CashChequeTransactionsAPI.TransactionsBankRemittancesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -200,6 +206,8 @@ Name | Type | Description  | Notes
  **officeId** | **string** | List bank remittances | 
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -221,7 +229,7 @@ No authorization required
 
 ## TransactionsGet
 
-> ResponseListTransactionsApiResponse TransactionsGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseListTransactionsApiResponse TransactionsGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Get Treasury Transactions List
 
@@ -243,10 +251,12 @@ func main() {
 	officeId := "officeId_example" // string | Office ID
 	fromDate := "fromDate_example" // string | From Date
 	toDate := "toDate_example" // string | To Date
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CashChequeTransactionsAPI.TransactionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -270,6 +280,8 @@ Name | Type | Description  | Notes
  **officeId** | **string** | Office ID | 
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -291,7 +303,7 @@ No authorization required
 
 ## TransactionsPdgProcessOrAckGet
 
-> ResponseListTransactionsPdgProcessOrAckApiResponse TransactionsPdgProcessOrAckGet(ctx).OfficeId(officeId).Execute()
+> ResponseListTransactionsPdgProcessOrAckApiResponse TransactionsPdgProcessOrAckGet(ctx).OfficeId(officeId).Skip(skip).Limit(limit).Execute()
 
 Get Pending receipt ack Transactions List
 
@@ -311,10 +323,12 @@ import (
 
 func main() {
 	officeId := "officeId_example" // string | Office ID
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsPdgProcessOrAckGet(context.Background()).OfficeId(officeId).Execute()
+	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsPdgProcessOrAckGet(context.Background()).OfficeId(officeId).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CashChequeTransactionsAPI.TransactionsPdgProcessOrAckGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -336,6 +350,8 @@ Other parameters are passed through a pointer to a apiTransactionsPdgProcessOrAc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **officeId** | **string** | Office ID | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -357,7 +373,7 @@ No authorization required
 
 ## TransactionsPendingProcessGet
 
-> ResponseListTransactionsPendingProcessApiResponse TransactionsPendingProcessGet(ctx).OfficeId(officeId).TxnStatus(txnStatus).IsPostman(isPostman).Execute()
+> ResponseListTransactionsPendingProcessApiResponse TransactionsPendingProcessGet(ctx).OfficeId(officeId).TxnStatus(txnStatus).IsPostman(isPostman).Skip(skip).Limit(limit).Execute()
 
 Get Pending Treasury Transactions List
 
@@ -379,10 +395,12 @@ func main() {
 	officeId := "officeId_example" // string | Office ID
 	txnStatus := "txnStatus_example" // string | Transaction Status
 	isPostman := true // bool | Is Postman (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsPendingProcessGet(context.Background()).OfficeId(officeId).TxnStatus(txnStatus).IsPostman(isPostman).Execute()
+	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsPendingProcessGet(context.Background()).OfficeId(officeId).TxnStatus(txnStatus).IsPostman(isPostman).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CashChequeTransactionsAPI.TransactionsPendingProcessGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -406,6 +424,8 @@ Name | Type | Description  | Notes
  **officeId** | **string** | Office ID | 
  **txnStatus** | **string** | Transaction Status | 
  **isPostman** | **bool** | Is Postman | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -491,9 +511,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## TransactionsTransactionIdStatusPut
+## TransactionsTransactionIdChangeStatusPut
 
-> ResponseTransactionsBankRemittancesApiResponse TransactionsTransactionIdStatusPut(ctx, transactionId).Body(body).Execute()
+> ResponseTransactionsBankRemittancesApiResponse TransactionsTransactionIdChangeStatusPut(ctx, transactionId).Type_(type_).Body(body).Execute()
 
 Process Treasury Transaction Issue Request
 
@@ -513,17 +533,18 @@ import (
 
 func main() {
 	transactionId := "transactionId_example" // string | Transaction ID
-	body := *openapiclient.NewHandlerUpdateTransactionsStatusRequest("Request/ Remittance", openapiclient.handler.transactionType("approve-pdg-source"), int32(10130000)) // HandlerUpdateTransactionsStatusRequest | Information about processing issue request treasury Transaction
+	type_ := "type__example" // string | Type of transaction
+	body := *openapiclient.NewHandlerUpdateTransactionsStatusRequest("Request/ Remittance", int32(10130000)) // HandlerUpdateTransactionsStatusRequest | Information about processing issue request treasury Transaction
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsTransactionIdStatusPut(context.Background(), transactionId).Body(body).Execute()
+	resp, r, err := apiClient.CashChequeTransactionsAPI.TransactionsTransactionIdChangeStatusPut(context.Background(), transactionId).Type_(type_).Body(body).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CashChequeTransactionsAPI.TransactionsTransactionIdStatusPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CashChequeTransactionsAPI.TransactionsTransactionIdChangeStatusPut``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TransactionsTransactionIdStatusPut`: ResponseTransactionsBankRemittancesApiResponse
-	fmt.Fprintf(os.Stdout, "Response from `CashChequeTransactionsAPI.TransactionsTransactionIdStatusPut`: %v\n", resp)
+	// response from `TransactionsTransactionIdChangeStatusPut`: ResponseTransactionsBankRemittancesApiResponse
+	fmt.Fprintf(os.Stdout, "Response from `CashChequeTransactionsAPI.TransactionsTransactionIdChangeStatusPut`: %v\n", resp)
 }
 ```
 
@@ -537,12 +558,13 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTransactionsTransactionIdStatusPutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiTransactionsTransactionIdChangeStatusPutRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **type_** | **string** | Type of transaction | 
  **body** | [**HandlerUpdateTransactionsStatusRequest**](HandlerUpdateTransactionsStatusRequest.md) | Information about processing issue request treasury Transaction | 
 
 ### Return type

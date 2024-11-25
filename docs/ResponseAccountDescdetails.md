@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Hoa** | Pointer to **string** |  | [optional] 
 **Part** | Pointer to **string** |  | [optional] 
 **PositiveOrNegative** | Pointer to **string** |  | [optional] 
-**ReceiptOrPmt** | Pointer to **string** |  | [optional] 
+**ReceiptOrPayment** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -181,30 +181,30 @@ SetPositiveOrNegative sets PositiveOrNegative field to given value.
 
 HasPositiveOrNegative returns a boolean if a field has been set.
 
-### GetReceiptOrPmt
+### GetReceiptOrPayment
 
-`func (o *ResponseAccountDescdetails) GetReceiptOrPmt() string`
+`func (o *ResponseAccountDescdetails) GetReceiptOrPayment() string`
 
-GetReceiptOrPmt returns the ReceiptOrPmt field if non-nil, zero value otherwise.
+GetReceiptOrPayment returns the ReceiptOrPayment field if non-nil, zero value otherwise.
 
-### GetReceiptOrPmtOk
+### GetReceiptOrPaymentOk
 
-`func (o *ResponseAccountDescdetails) GetReceiptOrPmtOk() (*string, bool)`
+`func (o *ResponseAccountDescdetails) GetReceiptOrPaymentOk() (*string, bool)`
 
-GetReceiptOrPmtOk returns a tuple with the ReceiptOrPmt field if it's non-nil, zero value otherwise
+GetReceiptOrPaymentOk returns a tuple with the ReceiptOrPayment field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReceiptOrPmt
+### SetReceiptOrPayment
 
-`func (o *ResponseAccountDescdetails) SetReceiptOrPmt(v string)`
+`func (o *ResponseAccountDescdetails) SetReceiptOrPayment(v string)`
 
-SetReceiptOrPmt sets ReceiptOrPmt field to given value.
+SetReceiptOrPayment sets ReceiptOrPayment field to given value.
 
-### HasReceiptOrPmt
+### HasReceiptOrPayment
 
-`func (o *ResponseAccountDescdetails) HasReceiptOrPmt() bool`
+`func (o *ResponseAccountDescdetails) HasReceiptOrPayment() bool`
 
-HasReceiptOrPmt returns a boolean if a field has been set.
+HasReceiptOrPayment returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

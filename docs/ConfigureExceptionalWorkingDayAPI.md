@@ -84,7 +84,7 @@ No authorization required
 
 ## OfficesOfficeIdExceptionalWorkingDaysGet
 
-> ResponseListExceptionalWkgDayResponseAPIResponse OfficesOfficeIdExceptionalWorkingDaysGet(ctx, officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseListExceptionalWkgDayResponseAPIResponse OfficesOfficeIdExceptionalWorkingDaysGet(ctx, officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Get All Exceptional Working Days
 
@@ -107,10 +107,12 @@ func main() {
 	type_ := "type__example" // string | Information about adding new exceptional working day details (example:office)
 	fromDate := "fromDate_example" // string | Information about adding new exceptional working day details (example:2024-01-01) (optional)
 	toDate := "toDate_example" // string | Information about adding new exceptional working day details (example:2024-01-31) (optional)
+	skip := int32(56) // int32 | Information about adding new exceptional working day details (example:0) (optional)
+	limit := int32(56) // int32 | Information about adding new exceptional working day details (example:10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConfigureExceptionalWorkingDayAPI.OfficesOfficeIdExceptionalWorkingDaysGet(context.Background(), officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.ConfigureExceptionalWorkingDayAPI.OfficesOfficeIdExceptionalWorkingDaysGet(context.Background(), officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigureExceptionalWorkingDayAPI.OfficesOfficeIdExceptionalWorkingDaysGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -139,6 +141,8 @@ Name | Type | Description  | Notes
  **type_** | **string** | Information about adding new exceptional working day details (example:office) | 
  **fromDate** | **string** | Information about adding new exceptional working day details (example:2024-01-01) | 
  **toDate** | **string** | Information about adding new exceptional working day details (example:2024-01-31) | 
+ **skip** | **int32** | Information about adding new exceptional working day details (example:0) | 
+ **limit** | **int32** | Information about adding new exceptional working day details (example:10) | 
 
 ### Return type
 

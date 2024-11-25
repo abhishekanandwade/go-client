@@ -157,7 +157,7 @@ No authorization required
 
 ## CurrenciesGet
 
-> ResponseListCurrenciesAPIResponse CurrenciesGet(ctx).Skip(skip).Limit(limit).Execute()
+> ResponseListCurrenciesAPIResponse CurrenciesGet(ctx).Skip(skip).Limit(limit).OrderBy(orderBy).SortType(sortType).Execute()
 
 Get All Currency Denominations
 
@@ -178,10 +178,12 @@ import (
 func main() {
 	skip := int32(56) // int32 | Number of records to skip for pagination (optional) (default to 0)
 	limit := int32(56) // int32 | Number of records to limit for pagination (optional) (default to 10)
+	orderBy := "orderBy_example" // string | Order by field (optional) (default to "\"currency_id\"")
+	sortType := "sortType_example" // string | Sort type (optional) (default to "\"asc\"")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConfigureCurrencyDenominationAPI.CurrenciesGet(context.Background()).Skip(skip).Limit(limit).Execute()
+	resp, r, err := apiClient.ConfigureCurrencyDenominationAPI.CurrenciesGet(context.Background()).Skip(skip).Limit(limit).OrderBy(orderBy).SortType(sortType).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigureCurrencyDenominationAPI.CurrenciesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,6 +206,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **skip** | **int32** | Number of records to skip for pagination | [default to 0]
  **limit** | **int32** | Number of records to limit for pagination | [default to 10]
+ **orderBy** | **string** | Order by field | [default to &quot;\&quot;currency_id\&quot;&quot;]
+ **sortType** | **string** | Sort type | [default to &quot;\&quot;asc\&quot;&quot;]
 
 ### Return type
 

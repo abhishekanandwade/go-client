@@ -83,7 +83,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 		return localVarReturnValue, nil, reportError("exceptionalWkgDayDate is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "exceptional-wkg-day-date", r.exceptionalWkgDayDate, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "exceptional-wkg-day-date", r.exceptionalWkgDayDate, "", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -124,7 +124,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -135,7 +135,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -146,7 +146,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -157,7 +157,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -168,7 +168,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -179,7 +179,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -210,6 +210,8 @@ type ApiOfficesOfficeIdExceptionalWorkingDaysGetRequest struct {
 	type_ *string
 	fromDate *string
 	toDate *string
+	skip *int32
+	limit *int32
 }
 
 // Information about adding new exceptional working day details (example:office)
@@ -227,6 +229,18 @@ func (r ApiOfficesOfficeIdExceptionalWorkingDaysGetRequest) FromDate(fromDate st
 // Information about adding new exceptional working day details (example:2024-01-31)
 func (r ApiOfficesOfficeIdExceptionalWorkingDaysGetRequest) ToDate(toDate string) ApiOfficesOfficeIdExceptionalWorkingDaysGetRequest {
 	r.toDate = &toDate
+	return r
+}
+
+// Information about adding new exceptional working day details (example:0)
+func (r ApiOfficesOfficeIdExceptionalWorkingDaysGetRequest) Skip(skip int32) ApiOfficesOfficeIdExceptionalWorkingDaysGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Information about adding new exceptional working day details (example:10)
+func (r ApiOfficesOfficeIdExceptionalWorkingDaysGetRequest) Limit(limit int32) ApiOfficesOfficeIdExceptionalWorkingDaysGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -277,12 +291,18 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 	}
 
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -323,7 +343,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -334,7 +354,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -345,7 +365,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -356,7 +376,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -367,7 +387,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -378,7 +398,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -503,7 +523,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -514,7 +534,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -525,7 +545,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -536,7 +556,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -547,7 +567,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -558,7 +578,7 @@ func (a *ConfigureExceptionalWorkingDayAPIService) OfficesOfficeIdExceptionalWor
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

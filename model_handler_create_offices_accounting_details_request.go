@@ -22,10 +22,10 @@ var _ MappedNullable = &HandlerCreateOfficesAccountingDetailsRequest{}
 
 // HandlerCreateOfficesAccountingDetailsRequest struct for HandlerCreateOfficesAccountingDetailsRequest
 type HandlerCreateOfficesAccountingDetailsRequest struct {
-	CreditOrDebit string `json:"credit_or_debit"`
+	CreditOrDebit *string `json:"credit_or_debit,omitempty"`
 	DigitalTxnsAmount *float32 `json:"digital_txns_amount,omitempty"`
 	DigitalTxnsCount *int32 `json:"digital_txns_count,omitempty"`
-	GlCode string `json:"gl_code"`
+	GlCode *string `json:"gl_code,omitempty"`
 	NonDigitalTxnsAmount *float32 `json:"non_digital_txns_amount,omitempty"`
 	NonDigitalTxnsCount *int32 `json:"non_digital_txns_count,omitempty"`
 	ReceiptSource string `json:"receipt_source"`
@@ -40,10 +40,8 @@ type _HandlerCreateOfficesAccountingDetailsRequest HandlerCreateOfficesAccountin
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHandlerCreateOfficesAccountingDetailsRequest(creditOrDebit string, glCode string, receiptSource string, srcTranId string, srcTransDate string) *HandlerCreateOfficesAccountingDetailsRequest {
+func NewHandlerCreateOfficesAccountingDetailsRequest(receiptSource string, srcTranId string, srcTransDate string) *HandlerCreateOfficesAccountingDetailsRequest {
 	this := HandlerCreateOfficesAccountingDetailsRequest{}
-	this.CreditOrDebit = creditOrDebit
-	this.GlCode = glCode
 	this.ReceiptSource = receiptSource
 	this.SrcTranId = srcTranId
 	this.SrcTransDate = srcTransDate
@@ -58,28 +56,36 @@ func NewHandlerCreateOfficesAccountingDetailsRequestWithDefaults() *HandlerCreat
 	return &this
 }
 
-// GetCreditOrDebit returns the CreditOrDebit field value
+// GetCreditOrDebit returns the CreditOrDebit field value if set, zero value otherwise.
 func (o *HandlerCreateOfficesAccountingDetailsRequest) GetCreditOrDebit() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreditOrDebit) {
 		var ret string
 		return ret
 	}
-
-	return o.CreditOrDebit
+	return *o.CreditOrDebit
 }
 
-// GetCreditOrDebitOk returns a tuple with the CreditOrDebit field value
+// GetCreditOrDebitOk returns a tuple with the CreditOrDebit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HandlerCreateOfficesAccountingDetailsRequest) GetCreditOrDebitOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreditOrDebit) {
 		return nil, false
 	}
-	return &o.CreditOrDebit, true
+	return o.CreditOrDebit, true
 }
 
-// SetCreditOrDebit sets field value
+// HasCreditOrDebit returns a boolean if a field has been set.
+func (o *HandlerCreateOfficesAccountingDetailsRequest) HasCreditOrDebit() bool {
+	if o != nil && !IsNil(o.CreditOrDebit) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditOrDebit gets a reference to the given string and assigns it to the CreditOrDebit field.
 func (o *HandlerCreateOfficesAccountingDetailsRequest) SetCreditOrDebit(v string) {
-	o.CreditOrDebit = v
+	o.CreditOrDebit = &v
 }
 
 // GetDigitalTxnsAmount returns the DigitalTxnsAmount field value if set, zero value otherwise.
@@ -146,28 +152,36 @@ func (o *HandlerCreateOfficesAccountingDetailsRequest) SetDigitalTxnsCount(v int
 	o.DigitalTxnsCount = &v
 }
 
-// GetGlCode returns the GlCode field value
+// GetGlCode returns the GlCode field value if set, zero value otherwise.
 func (o *HandlerCreateOfficesAccountingDetailsRequest) GetGlCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.GlCode) {
 		var ret string
 		return ret
 	}
-
-	return o.GlCode
+	return *o.GlCode
 }
 
-// GetGlCodeOk returns a tuple with the GlCode field value
+// GetGlCodeOk returns a tuple with the GlCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HandlerCreateOfficesAccountingDetailsRequest) GetGlCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GlCode) {
 		return nil, false
 	}
-	return &o.GlCode, true
+	return o.GlCode, true
 }
 
-// SetGlCode sets field value
+// HasGlCode returns a boolean if a field has been set.
+func (o *HandlerCreateOfficesAccountingDetailsRequest) HasGlCode() bool {
+	if o != nil && !IsNil(o.GlCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetGlCode gets a reference to the given string and assigns it to the GlCode field.
 func (o *HandlerCreateOfficesAccountingDetailsRequest) SetGlCode(v string) {
-	o.GlCode = v
+	o.GlCode = &v
 }
 
 // GetNonDigitalTxnsAmount returns the NonDigitalTxnsAmount field value if set, zero value otherwise.
@@ -348,14 +362,18 @@ func (o HandlerCreateOfficesAccountingDetailsRequest) MarshalJSON() ([]byte, err
 
 func (o HandlerCreateOfficesAccountingDetailsRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["credit_or_debit"] = o.CreditOrDebit
+	if !IsNil(o.CreditOrDebit) {
+		toSerialize["credit_or_debit"] = o.CreditOrDebit
+	}
 	if !IsNil(o.DigitalTxnsAmount) {
 		toSerialize["digital_txns_amount"] = o.DigitalTxnsAmount
 	}
 	if !IsNil(o.DigitalTxnsCount) {
 		toSerialize["digital_txns_count"] = o.DigitalTxnsCount
 	}
-	toSerialize["gl_code"] = o.GlCode
+	if !IsNil(o.GlCode) {
+		toSerialize["gl_code"] = o.GlCode
+	}
 	if !IsNil(o.NonDigitalTxnsAmount) {
 		toSerialize["non_digital_txns_amount"] = o.NonDigitalTxnsAmount
 	}
@@ -376,8 +394,6 @@ func (o *HandlerCreateOfficesAccountingDetailsRequest) UnmarshalJSON(data []byte
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"credit_or_debit",
-		"gl_code",
 		"receipt_source",
 		"src_tran_id",
 		"src_trans_date",

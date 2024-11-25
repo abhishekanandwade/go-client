@@ -163,7 +163,7 @@ No authorization required
 
 ## OfficesGet
 
-> ResponseListOfficesResponseAPIResponse OfficesGet(ctx).Skip(skip).Limit(limit).Execute()
+> ResponseListOfficesResponseAPIResponse OfficesGet(ctx).Skip(skip).Limit(limit).Orderby(orderby).Sort(sort).Execute()
 
 Get All Offices List
 
@@ -184,10 +184,12 @@ import (
 func main() {
 	skip := int32(56) // int32 | Number of records to skip for pagination (optional) (default to 0)
 	limit := int32(56) // int32 | Number of records to limit for pagination (optional) (default to 10)
+	orderby := "orderby_example" // string | Order by field (optional) (default to "\"office_id\"")
+	sort := "sort_example" // string | Sort order (optional) (default to "\"asc\"")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConfigureOfficesAPI.OfficesGet(context.Background()).Skip(skip).Limit(limit).Execute()
+	resp, r, err := apiClient.ConfigureOfficesAPI.OfficesGet(context.Background()).Skip(skip).Limit(limit).Orderby(orderby).Sort(sort).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigureOfficesAPI.OfficesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -210,6 +212,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **skip** | **int32** | Number of records to skip for pagination | [default to 0]
  **limit** | **int32** | Number of records to limit for pagination | [default to 10]
+ **orderby** | **string** | Order by field | [default to &quot;\&quot;office_id\&quot;&quot;]
+ **sort** | **string** | Sort order | [default to &quot;\&quot;asc\&quot;&quot;]
 
 ### Return type
 
@@ -231,7 +235,7 @@ No authorization required
 
 ## OfficesOfficeIdBankCreditLmitsGet
 
-> ResponseListBankCreditLimitAPIResponse OfficesOfficeIdBankCreditLmitsGet(ctx, officeId).Execute()
+> ResponseListBankCreditLimitAPIResponse OfficesOfficeIdBankCreditLmitsGet(ctx, officeId).Skip(skip).Limit(limit).Orderby(orderby).Sort(sort).Execute()
 
 Get Offices for bank credit limit configuration by Division ID
 
@@ -251,10 +255,14 @@ import (
 
 func main() {
 	officeId := int32(56) // int32 | Office ID
+	skip := int32(56) // int32 | Number of records to skip for pagination (optional) (default to 0)
+	limit := int32(56) // int32 | Number of records to limit for pagination (optional) (default to 10)
+	orderby := "orderby_example" // string | Order by field (optional) (default to "\"office_id\"")
+	sort := "sort_example" // string | Sort order (optional) (default to "\"asc\"")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConfigureOfficesAPI.OfficesOfficeIdBankCreditLmitsGet(context.Background(), officeId).Execute()
+	resp, r, err := apiClient.ConfigureOfficesAPI.OfficesOfficeIdBankCreditLmitsGet(context.Background(), officeId).Skip(skip).Limit(limit).Orderby(orderby).Sort(sort).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigureOfficesAPI.OfficesOfficeIdBankCreditLmitsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -280,6 +288,10 @@ Other parameters are passed through a pointer to a apiOfficesOfficeIdBankCreditL
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **skip** | **int32** | Number of records to skip for pagination | [default to 0]
+ **limit** | **int32** | Number of records to limit for pagination | [default to 10]
+ **orderby** | **string** | Order by field | [default to &quot;\&quot;office_id\&quot;&quot;]
+ **sort** | **string** | Sort order | [default to &quot;\&quot;asc\&quot;&quot;]
 
 ### Return type
 
@@ -301,7 +313,7 @@ No authorization required
 
 ## OfficesOfficeIdConfigsGet
 
-> ResponseListOfficesConfigAPIResponse OfficesOfficeIdConfigsGet(ctx, officeId).Type_(type_).Execute()
+> ResponseListOfficesConfigAPIResponse OfficesOfficeIdConfigsGet(ctx, officeId).Type_(type_).Skip(skip).Limit(limit).Orderby(orderby).Sort(sort).Execute()
 
 List Offices for Config by Division ID
 
@@ -322,10 +334,14 @@ import (
 func main() {
 	officeId := int32(56) // int32 | Get config details of specific office
 	type_ := "type__example" // string | Get linked or configured offices
+	skip := int32(56) // int32 | Number of records to skip for pagination (optional) (default to 0)
+	limit := int32(56) // int32 | Number of records to limit for pagination (optional) (default to 10)
+	orderby := "orderby_example" // string | Order by field (optional) (default to "\"office_id\"")
+	sort := "sort_example" // string | Sort order (optional) (default to "\"asc\"")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConfigureOfficesAPI.OfficesOfficeIdConfigsGet(context.Background(), officeId).Type_(type_).Execute()
+	resp, r, err := apiClient.ConfigureOfficesAPI.OfficesOfficeIdConfigsGet(context.Background(), officeId).Type_(type_).Skip(skip).Limit(limit).Orderby(orderby).Sort(sort).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigureOfficesAPI.OfficesOfficeIdConfigsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -352,6 +368,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **type_** | **string** | Get linked or configured offices | 
+ **skip** | **int32** | Number of records to skip for pagination | [default to 0]
+ **limit** | **int32** | Number of records to limit for pagination | [default to 10]
+ **orderby** | **string** | Order by field | [default to &quot;\&quot;office_id\&quot;&quot;]
+ **sort** | **string** | Sort order | [default to &quot;\&quot;asc\&quot;&quot;]
 
 ### Return type
 
@@ -443,7 +463,7 @@ No authorization required
 
 ## OfficesOfficeIdLinkedConfiguredGet
 
-> ResponseListOfficesResponseAPIResponse OfficesOfficeIdLinkedConfiguredGet(ctx, officeId).Type_(type_).Execute()
+> ResponseListOfficesResponseAPIResponse OfficesOfficeIdLinkedConfiguredGet(ctx, officeId).Type_(type_).Skip(skip).Limit(limit).Orderby(orderby).Sort(sort).Execute()
 
 Get Offices linked to Cash Office
 
@@ -464,10 +484,14 @@ import (
 func main() {
 	officeId := int32(56) // int32 | Get config details of specific office
 	type_ := "type__example" // string | Get linked or configured offices
+	skip := int32(56) // int32 | Number of records to skip for pagination (optional) (default to 0)
+	limit := int32(56) // int32 | Number of records to limit for pagination (optional) (default to 10)
+	orderby := "orderby_example" // string | Order by field (optional) (default to "\"office_id\"")
+	sort := "sort_example" // string | Sort order (optional) (default to "\"asc\"")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConfigureOfficesAPI.OfficesOfficeIdLinkedConfiguredGet(context.Background(), officeId).Type_(type_).Execute()
+	resp, r, err := apiClient.ConfigureOfficesAPI.OfficesOfficeIdLinkedConfiguredGet(context.Background(), officeId).Type_(type_).Skip(skip).Limit(limit).Orderby(orderby).Sort(sort).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigureOfficesAPI.OfficesOfficeIdLinkedConfiguredGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -494,6 +518,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **type_** | **string** | Get linked or configured offices | 
+ **skip** | **int32** | Number of records to skip for pagination | [default to 0]
+ **limit** | **int32** | Number of records to limit for pagination | [default to 10]
+ **orderby** | **string** | Order by field | [default to &quot;\&quot;office_id\&quot;&quot;]
+ **sort** | **string** | Sort order | [default to &quot;\&quot;asc\&quot;&quot;]
 
 ### Return type
 

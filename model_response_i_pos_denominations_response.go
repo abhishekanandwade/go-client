@@ -23,7 +23,7 @@ type ResponseIPOsDenominationsResponse struct {
 	Commission *string `json:"commission,omitempty"`
 	DenominationDesc *string `json:"denomination_desc,omitempty"`
 	DenominationId *string `json:"denomination_id,omitempty"`
-	DenominationValue *int32 `json:"denomination_value,omitempty"`
+	DenominationValue *float32 `json:"denomination_value,omitempty"`
 	EnteredByUser *string `json:"entered_by_user,omitempty"`
 	EntryDate *string `json:"entry_date,omitempty"`
 	IpoTariffId *string `json:"ipo_tariff_id,omitempty"`
@@ -150,9 +150,9 @@ func (o *ResponseIPOsDenominationsResponse) SetDenominationId(v string) {
 }
 
 // GetDenominationValue returns the DenominationValue field value if set, zero value otherwise.
-func (o *ResponseIPOsDenominationsResponse) GetDenominationValue() int32 {
+func (o *ResponseIPOsDenominationsResponse) GetDenominationValue() float32 {
 	if o == nil || IsNil(o.DenominationValue) {
-		var ret int32
+		var ret float32
 		return ret
 	}
 	return *o.DenominationValue
@@ -160,7 +160,7 @@ func (o *ResponseIPOsDenominationsResponse) GetDenominationValue() int32 {
 
 // GetDenominationValueOk returns a tuple with the DenominationValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseIPOsDenominationsResponse) GetDenominationValueOk() (*int32, bool) {
+func (o *ResponseIPOsDenominationsResponse) GetDenominationValueOk() (*float32, bool) {
 	if o == nil || IsNil(o.DenominationValue) {
 		return nil, false
 	}
@@ -176,8 +176,8 @@ func (o *ResponseIPOsDenominationsResponse) HasDenominationValue() bool {
 	return false
 }
 
-// SetDenominationValue gets a reference to the given int32 and assigns it to the DenominationValue field.
-func (o *ResponseIPOsDenominationsResponse) SetDenominationValue(v int32) {
+// SetDenominationValue gets a reference to the given float32 and assigns it to the DenominationValue field.
+func (o *ResponseIPOsDenominationsResponse) SetDenominationValue(v float32) {
 	o.DenominationValue = &v
 }
 

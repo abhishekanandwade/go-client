@@ -28,11 +28,25 @@ type ApiStampsInventoryGetRequest struct {
 	ctx context.Context
 	ApiService *ToolsStampsInventoryAPIService
 	officeId *int32
+	skip *int32
+	limit *int32
 }
 
 // Office ID (example: 9000003)
 func (r ApiStampsInventoryGetRequest) OfficeId(officeId int32) ApiStampsInventoryGetRequest {
 	r.officeId = &officeId
+	return r
+}
+
+// Skip records (example: 0)
+func (r ApiStampsInventoryGetRequest) Skip(skip int32) ApiStampsInventoryGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit records (example: 10)
+func (r ApiStampsInventoryGetRequest) Limit(limit int32) ApiStampsInventoryGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -79,7 +93,13 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryGetExecute(r ApiStampsIn
 		return localVarReturnValue, nil, reportError("officeId is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -120,7 +140,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryGetExecute(r ApiStampsIn
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -131,7 +151,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryGetExecute(r ApiStampsIn
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -142,7 +162,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryGetExecute(r ApiStampsIn
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -153,7 +173,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryGetExecute(r ApiStampsIn
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -164,7 +184,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryGetExecute(r ApiStampsIn
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -175,7 +195,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryGetExecute(r ApiStampsIn
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -300,7 +320,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryRequestsRequestIdPutExec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -311,7 +331,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryRequestsRequestIdPutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -322,7 +342,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryRequestsRequestIdPutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -333,7 +353,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryRequestsRequestIdPutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -344,7 +364,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryRequestsRequestIdPutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -355,7 +375,7 @@ func (a *ToolsStampsInventoryAPIService) StampsInventoryRequestsRequestIdPutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

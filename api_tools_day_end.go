@@ -88,10 +88,10 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusGetExecute(r Api
 	localVarFormParams := url.Values{}
 
 	if r.transDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "trans-date", r.transDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "trans-date", r.transDate, "", "")
 	}
 	if r.status != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -133,7 +133,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusGetExecute(r Api
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +144,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +155,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -166,7 +166,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -177,7 +177,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -188,7 +188,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -212,7 +212,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusGetExecute(r Api
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiOfficesOfficeIdDayBeginEndStatusPutRequest struct {
+type ApiOfficesOfficeIdPerformDayEndPutRequest struct {
 	ctx context.Context
 	ApiService *ToolsDayEndAPIService
 	officeId int32
@@ -220,26 +220,26 @@ type ApiOfficesOfficeIdDayBeginEndStatusPutRequest struct {
 }
 
 // Information about update day end details
-func (r ApiOfficesOfficeIdDayBeginEndStatusPutRequest) Body(body HandlerUpdateOfficesPerformDayEndRequest) ApiOfficesOfficeIdDayBeginEndStatusPutRequest {
+func (r ApiOfficesOfficeIdPerformDayEndPutRequest) Body(body HandlerUpdateOfficesPerformDayEndRequest) ApiOfficesOfficeIdPerformDayEndPutRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiOfficesOfficeIdDayBeginEndStatusPutRequest) Execute() (*ResponseDayBeginEndAPIResponse, *http.Response, error) {
-	return r.ApiService.OfficesOfficeIdDayBeginEndStatusPutExecute(r)
+func (r ApiOfficesOfficeIdPerformDayEndPutRequest) Execute() (*ResponseDayBeginEndAPIResponse, *http.Response, error) {
+	return r.ApiService.OfficesOfficeIdPerformDayEndPutExecute(r)
 }
 
 /*
-OfficesOfficeIdDayBeginEndStatusPut Perform Day End
+OfficesOfficeIdPerformDayEndPut Perform Day End
 
 Perform day End in an Office
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param officeId Information about update day end details
- @return ApiOfficesOfficeIdDayBeginEndStatusPutRequest
+ @return ApiOfficesOfficeIdPerformDayEndPutRequest
 */
-func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPut(ctx context.Context, officeId int32) ApiOfficesOfficeIdDayBeginEndStatusPutRequest {
-	return ApiOfficesOfficeIdDayBeginEndStatusPutRequest{
+func (a *ToolsDayEndAPIService) OfficesOfficeIdPerformDayEndPut(ctx context.Context, officeId int32) ApiOfficesOfficeIdPerformDayEndPutRequest {
+	return ApiOfficesOfficeIdPerformDayEndPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		officeId: officeId,
@@ -248,7 +248,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPut(ctx context.
 
 // Execute executes the request
 //  @return ResponseDayBeginEndAPIResponse
-func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPutExecute(r ApiOfficesOfficeIdDayBeginEndStatusPutRequest) (*ResponseDayBeginEndAPIResponse, *http.Response, error) {
+func (a *ToolsDayEndAPIService) OfficesOfficeIdPerformDayEndPutExecute(r ApiOfficesOfficeIdPerformDayEndPutRequest) (*ResponseDayBeginEndAPIResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -256,12 +256,12 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPutExecute(r Api
 		localVarReturnValue  *ResponseDayBeginEndAPIResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ToolsDayEndAPIService.OfficesOfficeIdDayBeginEndStatusPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ToolsDayEndAPIService.OfficesOfficeIdPerformDayEndPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/offices/{office-id}/day-begin-end-status"
+	localVarPath := localBasePath + "/offices/{office-id}/perform-day-end"
 	localVarPath = strings.Replace(localVarPath, "{"+"office-id"+"}", url.PathEscape(parameterValueToString(r.officeId, "officeId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -313,7 +313,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPutExecute(r Api
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -324,7 +324,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPutExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -335,7 +335,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPutExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -346,7 +346,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPutExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -357,7 +357,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPutExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -368,7 +368,7 @@ func (a *ToolsDayEndAPIService) OfficesOfficeIdDayBeginEndStatusPutExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

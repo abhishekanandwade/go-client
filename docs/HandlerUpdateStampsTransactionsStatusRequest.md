@@ -11,14 +11,13 @@ Name | Type | Description | Notes
 **IsSingleHand** | Pointer to **bool** |  | [optional] 
 **IssApproverRemarks** | Pointer to **string** |  | [optional] 
 **ReqType** | Pointer to **string** |  | [optional] 
-**Type** | [**HandlerTransactionType**](HandlerTransactionType.md) |  | 
 **UserId** | **int32** |  | 
 
 ## Methods
 
 ### NewHandlerUpdateStampsTransactionsStatusRequest
 
-`func NewHandlerUpdateStampsTransactionsStatusRequest(type_ HandlerTransactionType, userId int32, ) *HandlerUpdateStampsTransactionsStatusRequest`
+`func NewHandlerUpdateStampsTransactionsStatusRequest(userId int32, ) *HandlerUpdateStampsTransactionsStatusRequest`
 
 NewHandlerUpdateStampsTransactionsStatusRequest instantiates a new HandlerUpdateStampsTransactionsStatusRequest object
 This constructor will assign default values to properties that have it defined,
@@ -207,26 +206,6 @@ SetReqType sets ReqType field to given value.
 `func (o *HandlerUpdateStampsTransactionsStatusRequest) HasReqType() bool`
 
 HasReqType returns a boolean if a field has been set.
-
-### GetType
-
-`func (o *HandlerUpdateStampsTransactionsStatusRequest) GetType() HandlerTransactionType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *HandlerUpdateStampsTransactionsStatusRequest) GetTypeOk() (*HandlerTransactionType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *HandlerUpdateStampsTransactionsStatusRequest) SetType(v HandlerTransactionType)`
-
-SetType sets Type field to given value.
-
 
 ### GetUserId
 

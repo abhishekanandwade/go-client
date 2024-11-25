@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## TransactionsCashRemittanceReportGet
 
-> ResponseListTransactionsApiResponse TransactionsCashRemittanceReportGet(ctx).RemittanceId(remittanceId).Execute()
+> ResponseListTransactionsApiResponse TransactionsCashRemittanceReportGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Fetch treasury transactions
 
@@ -29,11 +29,15 @@ import (
 )
 
 func main() {
-	remittanceId := "remittanceId_example" // string | Report about list of Treasury Transactions
+	officeId := "officeId_example" // string | Report about list of Treasury Transactions
+	fromDate := "fromDate_example" // string | Report about list of Treasury Transactions
+	toDate := "toDate_example" // string | Report about list of Treasury Transactions
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportTreasuryAPI.TransactionsCashRemittanceReportGet(context.Background()).RemittanceId(remittanceId).Execute()
+	resp, r, err := apiClient.ReportTreasuryAPI.TransactionsCashRemittanceReportGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportTreasuryAPI.TransactionsCashRemittanceReportGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -54,7 +58,11 @@ Other parameters are passed through a pointer to a apiTransactionsCashRemittance
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **remittanceId** | **string** | Report about list of Treasury Transactions | 
+ **officeId** | **string** | Report about list of Treasury Transactions | 
+ **fromDate** | **string** | Report about list of Treasury Transactions | 
+ **toDate** | **string** | Report about list of Treasury Transactions | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 

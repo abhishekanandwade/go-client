@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## OfficesOfficeIdClosingBalancesTransferPut
 
-> ResponseUpdateClosingBalancesTransferApiResponse OfficesOfficeIdClosingBalancesTransferPut(ctx, officeId).Type_(type_).Execute()
+> ResponseUpdateClosingBalancesTransferApiResponse OfficesOfficeIdClosingBalancesTransferPut(ctx, officeId).Body(body).Execute()
 
 Transfer closing balances from one employee to another
 
@@ -30,11 +30,11 @@ import (
 
 func main() {
 	officeId := int32(56) // int32 | Transfer closing balances
-	type_ := "type__example" // string | Transfer closing balances from one employee to another
+	body := *openapiclient.NewHandlerUpdateClosingBalancesTransferRequest(int32(1001234), int32(1001232), "Proceeding on leave", int32(10012323), openapiclient.handler.stampStatus("all")) // HandlerUpdateClosingBalancesTransferRequest | Transfer closing balances from one employee to another
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ClosingBalancesTransferAPI.OfficesOfficeIdClosingBalancesTransferPut(context.Background(), officeId).Type_(type_).Execute()
+	resp, r, err := apiClient.ClosingBalancesTransferAPI.OfficesOfficeIdClosingBalancesTransferPut(context.Background(), officeId).Body(body).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ClosingBalancesTransferAPI.OfficesOfficeIdClosingBalancesTransferPut``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,7 +60,7 @@ Other parameters are passed through a pointer to a apiOfficesOfficeIdClosingBala
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **type_** | **string** | Transfer closing balances from one employee to another | 
+ **body** | [**HandlerUpdateClosingBalancesTransferRequest**](HandlerUpdateClosingBalancesTransferRequest.md) | Transfer closing balances from one employee to another | 
 
 ### Return type
 

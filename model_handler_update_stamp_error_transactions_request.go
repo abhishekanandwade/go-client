@@ -22,11 +22,11 @@ var _ MappedNullable = &HandlerUpdateStampErrorTransactionsRequest{}
 
 // HandlerUpdateStampErrorTransactionsRequest struct for HandlerUpdateStampErrorTransactionsRequest
 type HandlerUpdateStampErrorTransactionsRequest struct {
-	DiffDetails *map[string]int32 `json:"diff-details,omitempty"`
-	OfficeId int32 `json:"office-id"`
+	DiffDetails *map[string]int32 `json:"diff_details,omitempty"`
+	OfficeId int32 `json:"office_id"`
 	Remarks string `json:"remarks"`
 	Status *string `json:"status,omitempty"`
-	UserId int32 `json:"user-id"`
+	UserId int32 `json:"user_id"`
 }
 
 type _HandlerUpdateStampErrorTransactionsRequest HandlerUpdateStampErrorTransactionsRequest
@@ -198,14 +198,14 @@ func (o HandlerUpdateStampErrorTransactionsRequest) MarshalJSON() ([]byte, error
 func (o HandlerUpdateStampErrorTransactionsRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DiffDetails) {
-		toSerialize["diff-details"] = o.DiffDetails
+		toSerialize["diff_details"] = o.DiffDetails
 	}
-	toSerialize["office-id"] = o.OfficeId
+	toSerialize["office_id"] = o.OfficeId
 	toSerialize["remarks"] = o.Remarks
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	toSerialize["user-id"] = o.UserId
+	toSerialize["user_id"] = o.UserId
 	return toSerialize, nil
 }
 
@@ -214,9 +214,9 @@ func (o *HandlerUpdateStampErrorTransactionsRequest) UnmarshalJSON(data []byte) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"office-id",
+		"office_id",
 		"remarks",
-		"user-id",
+		"user_id",
 	}
 
 	allProperties := make(map[string]interface{})

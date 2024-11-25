@@ -30,7 +30,6 @@ type HandlerUpdateIPOsTransactionsStatusRequest struct {
 	IssApproverRemarks *string `json:"iss_approver_remarks,omitempty"`
 	IssUserId int32 `json:"iss_user_id"`
 	RequestType *string `json:"request_type,omitempty"`
-	Type HandlerTransactionType `json:"type"`
 }
 
 type _HandlerUpdateIPOsTransactionsStatusRequest HandlerUpdateIPOsTransactionsStatusRequest
@@ -39,10 +38,9 @@ type _HandlerUpdateIPOsTransactionsStatusRequest HandlerUpdateIPOsTransactionsSt
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHandlerUpdateIPOsTransactionsStatusRequest(issUserId int32, type_ HandlerTransactionType) *HandlerUpdateIPOsTransactionsStatusRequest {
+func NewHandlerUpdateIPOsTransactionsStatusRequest(issUserId int32) *HandlerUpdateIPOsTransactionsStatusRequest {
 	this := HandlerUpdateIPOsTransactionsStatusRequest{}
 	this.IssUserId = issUserId
-	this.Type = type_
 	return &this
 }
 
@@ -302,30 +300,6 @@ func (o *HandlerUpdateIPOsTransactionsStatusRequest) SetRequestType(v string) {
 	o.RequestType = &v
 }
 
-// GetType returns the Type field value
-func (o *HandlerUpdateIPOsTransactionsStatusRequest) GetType() HandlerTransactionType {
-	if o == nil {
-		var ret HandlerTransactionType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *HandlerUpdateIPOsTransactionsStatusRequest) GetTypeOk() (*HandlerTransactionType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *HandlerUpdateIPOsTransactionsStatusRequest) SetType(v HandlerTransactionType) {
-	o.Type = v
-}
-
 func (o HandlerUpdateIPOsTransactionsStatusRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -358,7 +332,6 @@ func (o HandlerUpdateIPOsTransactionsStatusRequest) ToMap() (map[string]interfac
 	if !IsNil(o.RequestType) {
 		toSerialize["request_type"] = o.RequestType
 	}
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -368,7 +341,6 @@ func (o *HandlerUpdateIPOsTransactionsStatusRequest) UnmarshalJSON(data []byte) 
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"iss_user_id",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})

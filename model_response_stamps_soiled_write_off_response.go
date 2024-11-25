@@ -23,8 +23,8 @@ type ResponseStampsSoiledWriteOffResponse struct {
 	EnteredByUserid *string `json:"entered_by_userid,omitempty"`
 	EntryDate *string `json:"entry_date,omitempty"`
 	LimitId *string `json:"limit_id,omitempty"`
-	LimitPerAnnum *int32 `json:"limit_per_annum,omitempty"`
-	LimitPerTime *int32 `json:"limit_per_time,omitempty"`
+	LimitPerAnnum *string `json:"limit_per_annum,omitempty"`
+	LimitPerTime *string `json:"limit_per_time,omitempty"`
 	UpdateDate *string `json:"update_date,omitempty"`
 	UpdatedByUserid *string `json:"updated_by_userid,omitempty"`
 	ValidFrom *string `json:"valid_from,omitempty"`
@@ -145,9 +145,9 @@ func (o *ResponseStampsSoiledWriteOffResponse) SetLimitId(v string) {
 }
 
 // GetLimitPerAnnum returns the LimitPerAnnum field value if set, zero value otherwise.
-func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerAnnum() int32 {
+func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerAnnum() string {
 	if o == nil || IsNil(o.LimitPerAnnum) {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.LimitPerAnnum
@@ -155,7 +155,7 @@ func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerAnnum() int32 {
 
 // GetLimitPerAnnumOk returns a tuple with the LimitPerAnnum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerAnnumOk() (*int32, bool) {
+func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerAnnumOk() (*string, bool) {
 	if o == nil || IsNil(o.LimitPerAnnum) {
 		return nil, false
 	}
@@ -171,15 +171,15 @@ func (o *ResponseStampsSoiledWriteOffResponse) HasLimitPerAnnum() bool {
 	return false
 }
 
-// SetLimitPerAnnum gets a reference to the given int32 and assigns it to the LimitPerAnnum field.
-func (o *ResponseStampsSoiledWriteOffResponse) SetLimitPerAnnum(v int32) {
+// SetLimitPerAnnum gets a reference to the given string and assigns it to the LimitPerAnnum field.
+func (o *ResponseStampsSoiledWriteOffResponse) SetLimitPerAnnum(v string) {
 	o.LimitPerAnnum = &v
 }
 
 // GetLimitPerTime returns the LimitPerTime field value if set, zero value otherwise.
-func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerTime() int32 {
+func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerTime() string {
 	if o == nil || IsNil(o.LimitPerTime) {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.LimitPerTime
@@ -187,7 +187,7 @@ func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerTime() int32 {
 
 // GetLimitPerTimeOk returns a tuple with the LimitPerTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerTimeOk() (*int32, bool) {
+func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerTimeOk() (*string, bool) {
 	if o == nil || IsNil(o.LimitPerTime) {
 		return nil, false
 	}
@@ -203,8 +203,8 @@ func (o *ResponseStampsSoiledWriteOffResponse) HasLimitPerTime() bool {
 	return false
 }
 
-// SetLimitPerTime gets a reference to the given int32 and assigns it to the LimitPerTime field.
-func (o *ResponseStampsSoiledWriteOffResponse) SetLimitPerTime(v int32) {
+// SetLimitPerTime gets a reference to the given string and assigns it to the LimitPerTime field.
+func (o *ResponseStampsSoiledWriteOffResponse) SetLimitPerTime(v string) {
 	o.LimitPerTime = &v
 }
 

@@ -25,7 +25,6 @@ type HandlerUpdateStampSoiledRequest struct {
 	ApproverId int32 `json:"approver_id"`
 	DisposalDetails *string `json:"disposal_details,omitempty"`
 	IsApproved *bool `json:"is_approved,omitempty"`
-	Type HandlerStampStatus `json:"type"`
 }
 
 type _HandlerUpdateStampSoiledRequest HandlerUpdateStampSoiledRequest
@@ -34,10 +33,9 @@ type _HandlerUpdateStampSoiledRequest HandlerUpdateStampSoiledRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHandlerUpdateStampSoiledRequest(approverId int32, type_ HandlerStampStatus) *HandlerUpdateStampSoiledRequest {
+func NewHandlerUpdateStampSoiledRequest(approverId int32) *HandlerUpdateStampSoiledRequest {
 	this := HandlerUpdateStampSoiledRequest{}
 	this.ApproverId = approverId
-	this.Type = type_
 	return &this
 }
 
@@ -137,30 +135,6 @@ func (o *HandlerUpdateStampSoiledRequest) SetIsApproved(v bool) {
 	o.IsApproved = &v
 }
 
-// GetType returns the Type field value
-func (o *HandlerUpdateStampSoiledRequest) GetType() HandlerStampStatus {
-	if o == nil {
-		var ret HandlerStampStatus
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *HandlerUpdateStampSoiledRequest) GetTypeOk() (*HandlerStampStatus, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *HandlerUpdateStampSoiledRequest) SetType(v HandlerStampStatus) {
-	o.Type = v
-}
-
 func (o HandlerUpdateStampSoiledRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -178,7 +152,6 @@ func (o HandlerUpdateStampSoiledRequest) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.IsApproved) {
 		toSerialize["is_approved"] = o.IsApproved
 	}
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -188,7 +161,6 @@ func (o *HandlerUpdateStampSoiledRequest) UnmarshalJSON(data []byte) (err error)
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"approver_id",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **CustomerTypeId** | Pointer to **string** |  | [optional] 
 **CustomerTypeName** | **string** |  | 
 **IsAdvanceCustomer** | Pointer to **bool** |  | [optional] 
-**IsReceiptPayment** | **string** |  | 
+**IsReceiptPayment** | Pointer to **string** |  | [optional] 
 **IssOfficeId** | Pointer to **int32** |  | [optional] 
 **OfficeId** | **int32** |  | 
 **Remarks** | **string** |  | 
@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewHandlerCreateCustomerTransactionsRequest
 
-`func NewHandlerCreateCustomerTransactionsRequest(billAmount float32, billDate string, billId string, billRemarks string, customerId string, customerName string, customerTypeName string, isReceiptPayment string, officeId int32, remarks string, txAmount float32, txMode string, userId string, ) *HandlerCreateCustomerTransactionsRequest`
+`func NewHandlerCreateCustomerTransactionsRequest(billAmount float32, billDate string, billId string, billRemarks string, customerId string, customerName string, customerTypeName string, officeId int32, remarks string, txAmount float32, txMode string, userId string, ) *HandlerCreateCustomerTransactionsRequest`
 
 NewHandlerCreateCustomerTransactionsRequest instantiates a new HandlerCreateCustomerTransactionsRequest object
 This constructor will assign default values to properties that have it defined,
@@ -301,6 +301,11 @@ and a boolean to check if the value has been set.
 
 SetIsReceiptPayment sets IsReceiptPayment field to given value.
 
+### HasIsReceiptPayment
+
+`func (o *HandlerCreateCustomerTransactionsRequest) HasIsReceiptPayment() bool`
+
+HasIsReceiptPayment returns a boolean if a field has been set.
 
 ### GetIssOfficeId
 

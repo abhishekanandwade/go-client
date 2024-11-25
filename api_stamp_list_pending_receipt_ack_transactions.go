@@ -27,11 +27,25 @@ type ApiStampsTransactionsPdgProcessOrAckGetRequest struct {
 	ctx context.Context
 	ApiService *StampListPendingReceiptAckTransactionsAPIService
 	officeId *string
+	skip *int32
+	limit *int32
 }
 
 // Office ID
 func (r ApiStampsTransactionsPdgProcessOrAckGetRequest) OfficeId(officeId string) ApiStampsTransactionsPdgProcessOrAckGetRequest {
 	r.officeId = &officeId
+	return r
+}
+
+// Skip
+func (r ApiStampsTransactionsPdgProcessOrAckGetRequest) Skip(skip int32) ApiStampsTransactionsPdgProcessOrAckGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiStampsTransactionsPdgProcessOrAckGetRequest) Limit(limit int32) ApiStampsTransactionsPdgProcessOrAckGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -78,7 +92,13 @@ func (a *StampListPendingReceiptAckTransactionsAPIService) StampsTransactionsPdg
 		return localVarReturnValue, nil, reportError("officeId is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -119,7 +139,7 @@ func (a *StampListPendingReceiptAckTransactionsAPIService) StampsTransactionsPdg
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -130,7 +150,7 @@ func (a *StampListPendingReceiptAckTransactionsAPIService) StampsTransactionsPdg
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -141,7 +161,7 @@ func (a *StampListPendingReceiptAckTransactionsAPIService) StampsTransactionsPdg
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -152,7 +172,7 @@ func (a *StampListPendingReceiptAckTransactionsAPIService) StampsTransactionsPdg
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -163,7 +183,7 @@ func (a *StampListPendingReceiptAckTransactionsAPIService) StampsTransactionsPdg
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -174,7 +194,7 @@ func (a *StampListPendingReceiptAckTransactionsAPIService) StampsTransactionsPdg
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **EnteredByUserid** | Pointer to **string** |  | [optional] 
 **EntryDate** | Pointer to **string** |  | [optional] 
 **LimitId** | Pointer to **string** |  | [optional] 
-**LimitPerAnnum** | Pointer to **int32** |  | [optional] 
-**LimitPerTime** | Pointer to **int32** |  | [optional] 
+**LimitPerAnnum** | Pointer to **string** |  | [optional] 
+**LimitPerTime** | Pointer to **string** |  | [optional] 
 **UpdateDate** | Pointer to **string** |  | [optional] 
 **UpdatedByUserid** | Pointer to **string** |  | [optional] 
 **ValidFrom** | Pointer to **string** |  | [optional] 
@@ -110,20 +110,20 @@ HasLimitId returns a boolean if a field has been set.
 
 ### GetLimitPerAnnum
 
-`func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerAnnum() int32`
+`func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerAnnum() string`
 
 GetLimitPerAnnum returns the LimitPerAnnum field if non-nil, zero value otherwise.
 
 ### GetLimitPerAnnumOk
 
-`func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerAnnumOk() (*int32, bool)`
+`func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerAnnumOk() (*string, bool)`
 
 GetLimitPerAnnumOk returns a tuple with the LimitPerAnnum field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLimitPerAnnum
 
-`func (o *ResponseStampsSoiledWriteOffResponse) SetLimitPerAnnum(v int32)`
+`func (o *ResponseStampsSoiledWriteOffResponse) SetLimitPerAnnum(v string)`
 
 SetLimitPerAnnum sets LimitPerAnnum field to given value.
 
@@ -135,20 +135,20 @@ HasLimitPerAnnum returns a boolean if a field has been set.
 
 ### GetLimitPerTime
 
-`func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerTime() int32`
+`func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerTime() string`
 
 GetLimitPerTime returns the LimitPerTime field if non-nil, zero value otherwise.
 
 ### GetLimitPerTimeOk
 
-`func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerTimeOk() (*int32, bool)`
+`func (o *ResponseStampsSoiledWriteOffResponse) GetLimitPerTimeOk() (*string, bool)`
 
 GetLimitPerTimeOk returns a tuple with the LimitPerTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLimitPerTime
 
-`func (o *ResponseStampsSoiledWriteOffResponse) SetLimitPerTime(v int32)`
+`func (o *ResponseStampsSoiledWriteOffResponse) SetLimitPerTime(v string)`
 
 SetLimitPerTime sets LimitPerTime field to given value.
 

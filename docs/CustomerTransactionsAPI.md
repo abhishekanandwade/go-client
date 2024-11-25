@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CustomerTransactionsGet
 
-> ResponseListCustomerTransactionAPIResponse CustomerTransactionsGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Execute()
+> ResponseListCustomerTransactionAPIResponse CustomerTransactionsGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Skip(skip).Limit(limit).Execute()
 
 Get Customer Transactions
 
@@ -35,10 +35,12 @@ func main() {
 	fromDate := "fromDate_example" // string | From Date (example: 2024-01-31) (optional)
 	toDate := "toDate_example" // string | To Date (example: 2024-01-31) (optional)
 	isPdg := true // bool | Is PDG (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomerTransactionsAPI.CustomerTransactionsGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Execute()
+	resp, r, err := apiClient.CustomerTransactionsAPI.CustomerTransactionsGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomerTransactionsAPI.CustomerTransactionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +65,8 @@ Name | Type | Description  | Notes
  **fromDate** | **string** | From Date (example: 2024-01-31) | 
  **toDate** | **string** | To Date (example: 2024-01-31) | 
  **isPdg** | **bool** | Is PDG | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -103,7 +107,7 @@ import (
 )
 
 func main() {
-	body := *openapiclient.NewHandlerCreateCustomerTransactionsRequest(float32(1000.5), "9999-12-31T00:00:00Z", "BILL123456", "Monthly bill", "12345", "John Doe", "Regular", "Yes", int32(9000015), "Payment for December", float32(500.75), "Cash", "10998889") // HandlerCreateCustomerTransactionsRequest | Create customer transaction
+	body := *openapiclient.NewHandlerCreateCustomerTransactionsRequest(float32(1000.5), "9999-12-31T00:00:00Z", "BILL123456", "Monthly bill", "12345", "John Doe", "Regular", int32(9000015), "Payment for December", float32(500.75), "Cash", "10998889") // HandlerCreateCustomerTransactionsRequest | Create customer transaction
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -7,12 +7,13 @@ Method | HTTP request | Description
 [**StampObCsdReceiptsGet**](StampsOBCSDReceiptAPI.md#StampObCsdReceiptsGet) | **Get** /stamp-ob-csd-receipts | Get CSD Opening Balance Receipts
 [**StampObCsdReceiptsObTransactionIdApprovePut**](StampsOBCSDReceiptAPI.md#StampObCsdReceiptsObTransactionIdApprovePut) | **Put** /stamp-ob-csd-receipts/{ob-transaction-id}/approve | Approve CSD Opening Balance Receipts
 [**StampObCsdReceiptsObTransactionIdGet**](StampsOBCSDReceiptAPI.md#StampObCsdReceiptsObTransactionIdGet) | **Get** /stamp-ob-csd-receipts/{ob-transaction-id} | Get CSD Opening Balance Receipts by Transaction ID
+[**StampObCsdReceiptsPost**](StampsOBCSDReceiptAPI.md#StampObCsdReceiptsPost) | **Post** /stamp-ob-csd-receipts | Create CSD Opening Balance Receipts
 
 
 
 ## StampObCsdReceiptsGet
 
-> ResponseListStampObCsdReceiptsApiResponse StampObCsdReceiptsGet(ctx).OfficeId(officeId).IsPdg(isPdg).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseListStampObCsdReceiptsApiResponse StampObCsdReceiptsGet(ctx).OfficeId(officeId).IsPdg(isPdg).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Get CSD Opening Balance Receipts
 
@@ -35,10 +36,12 @@ func main() {
 	isPdg := true // bool | Is PDG (optional)
 	fromDate := "fromDate_example" // string | From Date (optional)
 	toDate := "toDate_example" // string | To Date (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StampsOBCSDReceiptAPI.StampObCsdReceiptsGet(context.Background()).OfficeId(officeId).IsPdg(isPdg).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.StampsOBCSDReceiptAPI.StampObCsdReceiptsGet(context.Background()).OfficeId(officeId).IsPdg(isPdg).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StampsOBCSDReceiptAPI.StampObCsdReceiptsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +66,8 @@ Name | Type | Description  | Notes
  **isPdg** | **bool** | Is PDG | 
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -209,6 +214,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ResponseStampObCsdReceiptsApiResponse**](ResponseStampObCsdReceiptsApiResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## StampObCsdReceiptsPost
+
+> ResponseCreateStampObCsdReceiptsAPIResponse StampObCsdReceiptsPost(ctx).CreateStampObCsdReceiptsRequest(createStampObCsdReceiptsRequest).Execute()
+
+Create CSD Opening Balance Receipts
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	createStampObCsdReceiptsRequest := map[string]interface{}{ ... } // map[string]interface{} | Information about creating stamp opening balances received from CSD
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StampsOBCSDReceiptAPI.StampObCsdReceiptsPost(context.Background()).CreateStampObCsdReceiptsRequest(createStampObCsdReceiptsRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StampsOBCSDReceiptAPI.StampObCsdReceiptsPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `StampObCsdReceiptsPost`: ResponseCreateStampObCsdReceiptsAPIResponse
+	fmt.Fprintf(os.Stdout, "Response from `StampsOBCSDReceiptAPI.StampObCsdReceiptsPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiStampObCsdReceiptsPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createStampObCsdReceiptsRequest** | **map[string]interface{}** | Information about creating stamp opening balances received from CSD | 
+
+### Return type
+
+[**ResponseCreateStampObCsdReceiptsAPIResponse**](ResponseCreateStampObCsdReceiptsAPIResponse.md)
 
 ### Authorization
 

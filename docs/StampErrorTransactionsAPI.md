@@ -83,7 +83,7 @@ No authorization required
 
 ## StampsErrorTransactionsGet
 
-> ResponseListStampsErrorTransactionsApiRespnse StampsErrorTransactionsGet(ctx).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).IsRaisingOffice(isRaisingOffice).Execute()
+> ResponseListStampsErrorTransactionsApiRespnse StampsErrorTransactionsGet(ctx).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).IsRaisingOffice(isRaisingOffice).Skip(skip).Limit(limit).Execute()
 
 Get stamp error Transactions
 
@@ -107,10 +107,12 @@ func main() {
 	fromDate := "fromDate_example" // string | From Date (optional)
 	toDate := "toDate_example" // string | To Date (optional)
 	isRaisingOffice := true // bool | Is Raising Office (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StampErrorTransactionsAPI.StampsErrorTransactionsGet(context.Background()).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).IsRaisingOffice(isRaisingOffice).Execute()
+	resp, r, err := apiClient.StampErrorTransactionsAPI.StampsErrorTransactionsGet(context.Background()).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).IsRaisingOffice(isRaisingOffice).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StampErrorTransactionsAPI.StampsErrorTransactionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -136,6 +138,8 @@ Name | Type | Description  | Notes
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
  **isRaisingOffice** | **bool** | Is Raising Office | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 

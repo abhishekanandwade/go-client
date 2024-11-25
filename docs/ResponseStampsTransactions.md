@@ -18,7 +18,9 @@ Name | Type | Description | Notes
 **IssApproverId** | Pointer to **int32** |  | [optional] 
 **IssApproverRemarks** | Pointer to **string** |  | [optional] 
 **IssOfficeId** | Pointer to **int32** |  | [optional] 
+**IssOfficeName** | Pointer to **string** |  | [optional] 
 **IssUserId** | Pointer to **int32** |  | [optional] 
+**IssUserName** | Pointer to **string** |  | [optional] 
 **IssUserProcessedDate** | Pointer to **string** |  | [optional] 
 **Remarks** | Pointer to **string** |  | [optional] 
 **ReqAmount** | Pointer to **float32** |  | [optional] 
@@ -28,13 +30,17 @@ Name | Type | Description | Notes
 **ReqApproverRemarks** | Pointer to **string** |  | [optional] 
 **ReqDetails** | Pointer to **map[string]int32** |  | [optional] 
 **ReqOfficeId** | Pointer to **int32** |  | [optional] 
+**ReqOfficeName** | Pointer to **string** |  | [optional] 
 **ReqUserId** | Pointer to **int32** |  | [optional] 
+**ReqUserName** | Pointer to **string** |  | [optional] 
 **RequestId** | Pointer to **string** |  | [optional] 
 **RequestSource** | Pointer to **string** |  | [optional] 
 **RequestType** | Pointer to **string** |  | [optional] 
 **StampDetails** | Pointer to [**[]ResponseStampdetails**](ResponseStampdetails.md) |  | [optional] 
+**StampIssuedDetails** | Pointer to [**[]ResponseStampdetails**](ResponseStampdetails.md) |  | [optional] 
 **TransDate** | Pointer to **string** |  | [optional] 
 **TransactionId** | Pointer to **string** |  | [optional] 
+**TxnStatus** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -405,6 +411,31 @@ SetIssOfficeId sets IssOfficeId field to given value.
 
 HasIssOfficeId returns a boolean if a field has been set.
 
+### GetIssOfficeName
+
+`func (o *ResponseStampsTransactions) GetIssOfficeName() string`
+
+GetIssOfficeName returns the IssOfficeName field if non-nil, zero value otherwise.
+
+### GetIssOfficeNameOk
+
+`func (o *ResponseStampsTransactions) GetIssOfficeNameOk() (*string, bool)`
+
+GetIssOfficeNameOk returns a tuple with the IssOfficeName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssOfficeName
+
+`func (o *ResponseStampsTransactions) SetIssOfficeName(v string)`
+
+SetIssOfficeName sets IssOfficeName field to given value.
+
+### HasIssOfficeName
+
+`func (o *ResponseStampsTransactions) HasIssOfficeName() bool`
+
+HasIssOfficeName returns a boolean if a field has been set.
+
 ### GetIssUserId
 
 `func (o *ResponseStampsTransactions) GetIssUserId() int32`
@@ -429,6 +460,31 @@ SetIssUserId sets IssUserId field to given value.
 `func (o *ResponseStampsTransactions) HasIssUserId() bool`
 
 HasIssUserId returns a boolean if a field has been set.
+
+### GetIssUserName
+
+`func (o *ResponseStampsTransactions) GetIssUserName() string`
+
+GetIssUserName returns the IssUserName field if non-nil, zero value otherwise.
+
+### GetIssUserNameOk
+
+`func (o *ResponseStampsTransactions) GetIssUserNameOk() (*string, bool)`
+
+GetIssUserNameOk returns a tuple with the IssUserName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIssUserName
+
+`func (o *ResponseStampsTransactions) SetIssUserName(v string)`
+
+SetIssUserName sets IssUserName field to given value.
+
+### HasIssUserName
+
+`func (o *ResponseStampsTransactions) HasIssUserName() bool`
+
+HasIssUserName returns a boolean if a field has been set.
 
 ### GetIssUserProcessedDate
 
@@ -655,6 +711,31 @@ SetReqOfficeId sets ReqOfficeId field to given value.
 
 HasReqOfficeId returns a boolean if a field has been set.
 
+### GetReqOfficeName
+
+`func (o *ResponseStampsTransactions) GetReqOfficeName() string`
+
+GetReqOfficeName returns the ReqOfficeName field if non-nil, zero value otherwise.
+
+### GetReqOfficeNameOk
+
+`func (o *ResponseStampsTransactions) GetReqOfficeNameOk() (*string, bool)`
+
+GetReqOfficeNameOk returns a tuple with the ReqOfficeName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReqOfficeName
+
+`func (o *ResponseStampsTransactions) SetReqOfficeName(v string)`
+
+SetReqOfficeName sets ReqOfficeName field to given value.
+
+### HasReqOfficeName
+
+`func (o *ResponseStampsTransactions) HasReqOfficeName() bool`
+
+HasReqOfficeName returns a boolean if a field has been set.
+
 ### GetReqUserId
 
 `func (o *ResponseStampsTransactions) GetReqUserId() int32`
@@ -679,6 +760,31 @@ SetReqUserId sets ReqUserId field to given value.
 `func (o *ResponseStampsTransactions) HasReqUserId() bool`
 
 HasReqUserId returns a boolean if a field has been set.
+
+### GetReqUserName
+
+`func (o *ResponseStampsTransactions) GetReqUserName() string`
+
+GetReqUserName returns the ReqUserName field if non-nil, zero value otherwise.
+
+### GetReqUserNameOk
+
+`func (o *ResponseStampsTransactions) GetReqUserNameOk() (*string, bool)`
+
+GetReqUserNameOk returns a tuple with the ReqUserName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReqUserName
+
+`func (o *ResponseStampsTransactions) SetReqUserName(v string)`
+
+SetReqUserName sets ReqUserName field to given value.
+
+### HasReqUserName
+
+`func (o *ResponseStampsTransactions) HasReqUserName() bool`
+
+HasReqUserName returns a boolean if a field has been set.
 
 ### GetRequestId
 
@@ -780,6 +886,31 @@ SetStampDetails sets StampDetails field to given value.
 
 HasStampDetails returns a boolean if a field has been set.
 
+### GetStampIssuedDetails
+
+`func (o *ResponseStampsTransactions) GetStampIssuedDetails() []ResponseStampdetails`
+
+GetStampIssuedDetails returns the StampIssuedDetails field if non-nil, zero value otherwise.
+
+### GetStampIssuedDetailsOk
+
+`func (o *ResponseStampsTransactions) GetStampIssuedDetailsOk() (*[]ResponseStampdetails, bool)`
+
+GetStampIssuedDetailsOk returns a tuple with the StampIssuedDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStampIssuedDetails
+
+`func (o *ResponseStampsTransactions) SetStampIssuedDetails(v []ResponseStampdetails)`
+
+SetStampIssuedDetails sets StampIssuedDetails field to given value.
+
+### HasStampIssuedDetails
+
+`func (o *ResponseStampsTransactions) HasStampIssuedDetails() bool`
+
+HasStampIssuedDetails returns a boolean if a field has been set.
+
 ### GetTransDate
 
 `func (o *ResponseStampsTransactions) GetTransDate() string`
@@ -829,6 +960,31 @@ SetTransactionId sets TransactionId field to given value.
 `func (o *ResponseStampsTransactions) HasTransactionId() bool`
 
 HasTransactionId returns a boolean if a field has been set.
+
+### GetTxnStatus
+
+`func (o *ResponseStampsTransactions) GetTxnStatus() string`
+
+GetTxnStatus returns the TxnStatus field if non-nil, zero value otherwise.
+
+### GetTxnStatusOk
+
+`func (o *ResponseStampsTransactions) GetTxnStatusOk() (*string, bool)`
+
+GetTxnStatusOk returns a tuple with the TxnStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTxnStatus
+
+`func (o *ResponseStampsTransactions) SetTxnStatus(v string)`
+
+SetTxnStatus sets TxnStatus field to given value.
+
+### HasTxnStatus
+
+`func (o *ResponseStampsTransactions) HasTxnStatus() bool`
+
+HasTxnStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

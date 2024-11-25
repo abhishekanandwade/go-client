@@ -4,29 +4,32 @@ All URIs are relative to *http://localhost:8080/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**OfficesOfficeIdDayBeginEndGet**](ReportsAPI.md#OfficesOfficeIdDayBeginEndGet) | **Get** /offices/{office-id}/day-begin-end | Get Day Begin End Report
+[**OfficesOfficeIdReportsAccountBalancesGet**](ReportsAPI.md#OfficesOfficeIdReportsAccountBalancesGet) | **Get** /offices/{office-id}/reports/account-balances | Get account Balances Report
 [**OfficesOfficeIdReportsCashBalancesGet**](ReportsAPI.md#OfficesOfficeIdReportsCashBalancesGet) | **Get** /offices/{office-id}/reports/cash-balances | Get Cash Balances Report
-[**OfficesOfficeIdReportsCashInTransitGet**](ReportsAPI.md#OfficesOfficeIdReportsCashInTransitGet) | **Get** /offices/{office-id}/reports/cash-in-transit | Get TCB Data Report
+[**OfficesOfficeIdReportsCashInTransitGet**](ReportsAPI.md#OfficesOfficeIdReportsCashInTransitGet) | **Get** /offices/{office-id}/reports/cash-in-transit | Get Cash in Transit Report
 [**OfficesOfficeIdReportsChequesInTransitGet**](ReportsAPI.md#OfficesOfficeIdReportsChequesInTransitGet) | **Get** /offices/{office-id}/reports/cheques-in-transit | Get Cheques in Transit Report
+[**OfficesOfficeIdReportsDayBeginEndGet**](ReportsAPI.md#OfficesOfficeIdReportsDayBeginEndGet) | **Get** /offices/{office-id}/reports/day-begin-end | Get Day Begin End Report
 [**OfficesOfficeIdReportsIpoBalancesGet**](ReportsAPI.md#OfficesOfficeIdReportsIpoBalancesGet) | **Get** /offices/{office-id}/reports/ipo-balances | Get IPO Balances Report
 [**OfficesOfficeIdReportsIposInTransitGet**](ReportsAPI.md#OfficesOfficeIdReportsIposInTransitGet) | **Get** /offices/{office-id}/reports/ipos-in-transit | Get IPOs in Transit Report
 [**OfficesOfficeIdReportsOutOfStockGet**](ReportsAPI.md#OfficesOfficeIdReportsOutOfStockGet) | **Get** /offices/{office-id}/reports/out-of-stock | Get Out-Of-Stock Inventory by Office ID
+[**OfficesOfficeIdReportsPaymentDetailsGet**](ReportsAPI.md#OfficesOfficeIdReportsPaymentDetailsGet) | **Get** /offices/{office-id}/reports/payment-details | Get Payment Details Report
 [**OfficesOfficeIdReportsPostmanTransactionsGet**](ReportsAPI.md#OfficesOfficeIdReportsPostmanTransactionsGet) | **Get** /offices/{office-id}/reports/postman-transactions | Get Postman Transactions Report
 [**OfficesOfficeIdReportsStampBalancesGet**](ReportsAPI.md#OfficesOfficeIdReportsStampBalancesGet) | **Get** /offices/{office-id}/reports/stamp-balances | Get Stamp Balances Report
 [**OfficesOfficeIdReportsStampBalancesLastSupplyGet**](ReportsAPI.md#OfficesOfficeIdReportsStampBalancesLastSupplyGet) | **Get** /offices/{office-id}/reports/stamp-balances-last-supply | Get Stamp Balances Report with last supply
 [**OfficesOfficeIdReportsStampsInTransitGet**](ReportsAPI.md#OfficesOfficeIdReportsStampsInTransitGet) | **Get** /offices/{office-id}/reports/stamps-in-transit | Get Stamps in Transit Report
 [**OfficesOfficeIdReportsTcbAllGet**](ReportsAPI.md#OfficesOfficeIdReportsTcbAllGet) | **Get** /offices/{office-id}/reports/tcb-all | Get TCB Data Report of all users
 [**OfficesOfficeIdReportsTcbDenomDetailsPut**](ReportsAPI.md#OfficesOfficeIdReportsTcbDenomDetailsPut) | **Put** /offices/{office-id}/reports/tcb-denom-details | Update TCB Denomination Details
+[**OfficesOfficeIdReportsTcbGet**](ReportsAPI.md#OfficesOfficeIdReportsTcbGet) | **Get** /offices/{office-id}/reports/tcb | Get TCB Data Report
 [**OfficesOfficeIdReportsTcbNewGet**](ReportsAPI.md#OfficesOfficeIdReportsTcbNewGet) | **Get** /offices/{office-id}/reports/tcb-new | Get TCB Data Report
 [**OfficesOfficeIdReportsTransitDashboardGet**](ReportsAPI.md#OfficesOfficeIdReportsTransitDashboardGet) | **Get** /offices/{office-id}/reports/transit-dashboard | Get Transit dashboard Report
 
 
 
-## OfficesOfficeIdDayBeginEndGet
+## OfficesOfficeIdReportsAccountBalancesGet
 
-> ResponseDayBeginEndListAPIResponse OfficesOfficeIdDayBeginEndGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseCashBalanceAPIResponse OfficesOfficeIdReportsAccountBalancesGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
-Get Day Begin End Report
+Get account Balances Report
 
 
 
@@ -43,19 +46,21 @@ import (
 )
 
 func main() {
-	officeId := "officeId_example" // string | Fetch Day Begin End Data
-	fromDate := "fromDate_example" // string | Fetch Day Begin End Data
-	toDate := "toDate_example" // string | Fetch Day Begin End Data
+	officeId := "officeId_example" // string | office ID (example: 90000003)
+	fromDate := "fromDate_example" // string | from date (example: 2024-01-31) (optional)
+	toDate := "toDate_example" // string | to date (example: 2024-01-31) (optional)
+	skip := int32(56) // int32 | skip records (example: 0) (optional)
+	limit := int32(56) // int32 | limit records (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdDayBeginEndGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsAccountBalancesGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdDayBeginEndGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsAccountBalancesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `OfficesOfficeIdDayBeginEndGet`: ResponseDayBeginEndListAPIResponse
-	fmt.Fprintf(os.Stdout, "Response from `ReportsAPI.OfficesOfficeIdDayBeginEndGet`: %v\n", resp)
+	// response from `OfficesOfficeIdReportsAccountBalancesGet`: ResponseCashBalanceAPIResponse
+	fmt.Fprintf(os.Stdout, "Response from `ReportsAPI.OfficesOfficeIdReportsAccountBalancesGet`: %v\n", resp)
 }
 ```
 
@@ -65,22 +70,24 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**officeId** | **string** | Fetch Day Begin End Data | 
+**officeId** | **string** | office ID (example: 90000003) | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiOfficesOfficeIdDayBeginEndGetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiOfficesOfficeIdReportsAccountBalancesGetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **fromDate** | **string** | Fetch Day Begin End Data | 
- **toDate** | **string** | Fetch Day Begin End Data | 
+ **fromDate** | **string** | from date (example: 2024-01-31) | 
+ **toDate** | **string** | to date (example: 2024-01-31) | 
+ **skip** | **int32** | skip records (example: 0) | 
+ **limit** | **int32** | limit records (example: 10) | 
 
 ### Return type
 
-[**ResponseDayBeginEndListAPIResponse**](ResponseDayBeginEndListAPIResponse.md)
+[**ResponseCashBalanceAPIResponse**](ResponseCashBalanceAPIResponse.md)
 
 ### Authorization
 
@@ -98,7 +105,7 @@ No authorization required
 
 ## OfficesOfficeIdReportsCashBalancesGet
 
-> ResponseCashBalanceAPIResponse OfficesOfficeIdReportsCashBalancesGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseCashBalanceAPIResponse OfficesOfficeIdReportsCashBalancesGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Get Cash Balances Report
 
@@ -120,10 +127,12 @@ func main() {
 	officeId := "officeId_example" // string | Fetch cash balances Data (example: 90000003)
 	fromDate := "fromDate_example" // string | Fetch cash balances Data (example: 2024-01-31) (optional)
 	toDate := "toDate_example" // string | Fetch cash balances Data (example: 2024-01-31) (optional)
+	skip := int32(56) // int32 | Skip records (example: 0) (optional)
+	limit := int32(56) // int32 | Limit records (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsCashBalancesGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsCashBalancesGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsCashBalancesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -151,6 +160,8 @@ Name | Type | Description  | Notes
 
  **fromDate** | **string** | Fetch cash balances Data (example: 2024-01-31) | 
  **toDate** | **string** | Fetch cash balances Data (example: 2024-01-31) | 
+ **skip** | **int32** | Skip records (example: 0) | 
+ **limit** | **int32** | Limit records (example: 10) | 
 
 ### Return type
 
@@ -172,9 +183,9 @@ No authorization required
 
 ## OfficesOfficeIdReportsCashInTransitGet
 
-> ResponseTcbBalanceAPIResponse OfficesOfficeIdReportsCashInTransitGet(ctx, officeId).UserId(userId).ReportDate(reportDate).Execute()
+> ResponseCashInTransitAPIResponse OfficesOfficeIdReportsCashInTransitGet(ctx, officeId).ReportDate(reportDate).Execute()
 
-Get TCB Data Report
+Get Cash in Transit Report
 
 
 
@@ -191,18 +202,17 @@ import (
 )
 
 func main() {
-	officeId := "officeId_example" // string | Fetch TCB Data (example: 90000003)
-	userId := "userId_example" // string | Fetch TCB Data (example: 10132232)
-	reportDate := "reportDate_example" // string | Fetch TCB Data (example: 2024-01-31)
+	officeId := "officeId_example" // string | Fetch Cash in Tranist transactions (example: 90000003)
+	reportDate := "reportDate_example" // string | Fetch Cash in Tranist transactions (example: 2024-01-31)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsCashInTransitGet(context.Background(), officeId).UserId(userId).ReportDate(reportDate).Execute()
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsCashInTransitGet(context.Background(), officeId).ReportDate(reportDate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsCashInTransitGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `OfficesOfficeIdReportsCashInTransitGet`: ResponseTcbBalanceAPIResponse
+	// response from `OfficesOfficeIdReportsCashInTransitGet`: ResponseCashInTransitAPIResponse
 	fmt.Fprintf(os.Stdout, "Response from `ReportsAPI.OfficesOfficeIdReportsCashInTransitGet`: %v\n", resp)
 }
 ```
@@ -213,7 +223,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**officeId** | **string** | Fetch TCB Data (example: 90000003) | 
+**officeId** | **string** | Fetch Cash in Tranist transactions (example: 90000003) | 
 
 ### Other Parameters
 
@@ -223,12 +233,11 @@ Other parameters are passed through a pointer to a apiOfficesOfficeIdReportsCash
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **userId** | **string** | Fetch TCB Data (example: 10132232) | 
- **reportDate** | **string** | Fetch TCB Data (example: 2024-01-31) | 
+ **reportDate** | **string** | Fetch Cash in Tranist transactions (example: 2024-01-31) | 
 
 ### Return type
 
-[**ResponseTcbBalanceAPIResponse**](ResponseTcbBalanceAPIResponse.md)
+[**ResponseCashInTransitAPIResponse**](ResponseCashInTransitAPIResponse.md)
 
 ### Authorization
 
@@ -316,9 +325,87 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## OfficesOfficeIdReportsDayBeginEndGet
+
+> ResponseDayBeginEndListAPIResponse OfficesOfficeIdReportsDayBeginEndGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
+
+Get Day Begin End Report
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	officeId := "officeId_example" // string | Fetch Day Begin End Data
+	fromDate := "fromDate_example" // string | Fetch Day Begin End Data
+	toDate := "toDate_example" // string | Fetch Day Begin End Data
+	skip := int32(56) // int32 | Skip records (optional)
+	limit := int32(56) // int32 | Limit records (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsDayBeginEndGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsDayBeginEndGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OfficesOfficeIdReportsDayBeginEndGet`: ResponseDayBeginEndListAPIResponse
+	fmt.Fprintf(os.Stdout, "Response from `ReportsAPI.OfficesOfficeIdReportsDayBeginEndGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**officeId** | **string** | Fetch Day Begin End Data | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOfficesOfficeIdReportsDayBeginEndGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fromDate** | **string** | Fetch Day Begin End Data | 
+ **toDate** | **string** | Fetch Day Begin End Data | 
+ **skip** | **int32** | Skip records | 
+ **limit** | **int32** | Limit records | 
+
+### Return type
+
+[**ResponseDayBeginEndListAPIResponse**](ResponseDayBeginEndListAPIResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## OfficesOfficeIdReportsIpoBalancesGet
 
-> ResponseIPOBalanceAPIResponse OfficesOfficeIdReportsIpoBalancesGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseIPOBalanceAPIResponse OfficesOfficeIdReportsIpoBalancesGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Get IPO Balances Report
 
@@ -340,10 +427,12 @@ func main() {
 	officeId := "officeId_example" // string | Fetch cash balances Data (example: 90000003)
 	fromDate := "fromDate_example" // string | Fetch cash balances Data (example: 2024-01-31) (optional)
 	toDate := "toDate_example" // string | Fetch cash balances Data (example: 2024-01-31) (optional)
+	skip := int32(56) // int32 | Skip records (example: 0) (optional)
+	limit := int32(56) // int32 | Limit records (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsIpoBalancesGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsIpoBalancesGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsIpoBalancesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -371,6 +460,8 @@ Name | Type | Description  | Notes
 
  **fromDate** | **string** | Fetch cash balances Data (example: 2024-01-31) | 
  **toDate** | **string** | Fetch cash balances Data (example: 2024-01-31) | 
+ **skip** | **int32** | Skip records (example: 0) | 
+ **limit** | **int32** | Limit records (example: 10) | 
 
 ### Return type
 
@@ -464,7 +555,7 @@ No authorization required
 
 ## OfficesOfficeIdReportsOutOfStockGet
 
-> ResponseOutOfStockInventoryAPIResponse OfficesOfficeIdReportsOutOfStockGet(ctx, officeId).Execute()
+> ResponseOutOfStockInventoryAPIResponse OfficesOfficeIdReportsOutOfStockGet(ctx, officeId).Skip(skip).Limit(limit).Execute()
 
 Get Out-Of-Stock Inventory by Office ID
 
@@ -484,10 +575,12 @@ import (
 
 func main() {
 	officeId := "officeId_example" // string | Office ID (example: 90000003)
+	skip := int32(56) // int32 | Skip records (example: 0) (optional)
+	limit := int32(56) // int32 | Limit records (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsOutOfStockGet(context.Background(), officeId).Execute()
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsOutOfStockGet(context.Background(), officeId).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsOutOfStockGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -513,6 +606,8 @@ Other parameters are passed through a pointer to a apiOfficesOfficeIdReportsOutO
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **skip** | **int32** | Skip records (example: 0) | 
+ **limit** | **int32** | Limit records (example: 10) | 
 
 ### Return type
 
@@ -532,9 +627,87 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## OfficesOfficeIdReportsPaymentDetailsGet
+
+> ResponseListPaymentDetailsResponse OfficesOfficeIdReportsPaymentDetailsGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
+
+Get Payment Details Report
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	officeId := "officeId_example" // string | Office ID (example: 90000003)
+	fromDate := "fromDate_example" // string | From date (example: 2024-01-31) (optional)
+	toDate := "toDate_example" // string | To date (example: 2024-01-31) (optional)
+	skip := int32(56) // int32 | Skip records (example: 0) (optional)
+	limit := int32(56) // int32 | Limit records (example: 10) (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsPaymentDetailsGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsPaymentDetailsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OfficesOfficeIdReportsPaymentDetailsGet`: ResponseListPaymentDetailsResponse
+	fmt.Fprintf(os.Stdout, "Response from `ReportsAPI.OfficesOfficeIdReportsPaymentDetailsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**officeId** | **string** | Office ID (example: 90000003) | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOfficesOfficeIdReportsPaymentDetailsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fromDate** | **string** | From date (example: 2024-01-31) | 
+ **toDate** | **string** | To date (example: 2024-01-31) | 
+ **skip** | **int32** | Skip records (example: 0) | 
+ **limit** | **int32** | Limit records (example: 10) | 
+
+### Return type
+
+[**ResponseListPaymentDetailsResponse**](ResponseListPaymentDetailsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## OfficesOfficeIdReportsPostmanTransactionsGet
 
-> ResponsePostmanTransactionsAPIResponse OfficesOfficeIdReportsPostmanTransactionsGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponsePostmanTransactionsAPIResponse OfficesOfficeIdReportsPostmanTransactionsGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Get Postman Transactions Report
 
@@ -556,10 +729,12 @@ func main() {
 	officeId := "officeId_example" // string | Fetch cash balances Data (example: 90000003)
 	fromDate := "fromDate_example" // string | Fetch cash balances Data (example: 2024-01-31) (optional)
 	toDate := "toDate_example" // string | Fetch cash balances Data (example: 2024-01-31) (optional)
+	skip := int32(56) // int32 | Skip records (example: 0) (optional)
+	limit := int32(56) // int32 | Limit records (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsPostmanTransactionsGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsPostmanTransactionsGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsPostmanTransactionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -587,6 +762,8 @@ Name | Type | Description  | Notes
 
  **fromDate** | **string** | Fetch cash balances Data (example: 2024-01-31) | 
  **toDate** | **string** | Fetch cash balances Data (example: 2024-01-31) | 
+ **skip** | **int32** | Skip records (example: 0) | 
+ **limit** | **int32** | Limit records (example: 10) | 
 
 ### Return type
 
@@ -608,7 +785,7 @@ No authorization required
 
 ## OfficesOfficeIdReportsStampBalancesGet
 
-> ResponseListStampBalanceAPIResponse OfficesOfficeIdReportsStampBalancesGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseListStampBalanceAPIResponse OfficesOfficeIdReportsStampBalancesGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Get Stamp Balances Report
 
@@ -630,10 +807,12 @@ func main() {
 	officeId := "officeId_example" // string | Fetch cash balances Data (example: 90000003)
 	fromDate := "fromDate_example" // string | Fetch cash balances Data (example: 2024-01-31) (optional)
 	toDate := "toDate_example" // string | Fetch cash balances Data (example: 2024-01-31) (optional)
+	skip := int32(56) // int32 | Skip records (example: 0) (optional)
+	limit := int32(56) // int32 | Limit records (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsStampBalancesGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsStampBalancesGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsStampBalancesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -661,6 +840,8 @@ Name | Type | Description  | Notes
 
  **fromDate** | **string** | Fetch cash balances Data (example: 2024-01-31) | 
  **toDate** | **string** | Fetch cash balances Data (example: 2024-01-31) | 
+ **skip** | **int32** | Skip records (example: 0) | 
+ **limit** | **int32** | Limit records (example: 10) | 
 
 ### Return type
 
@@ -828,7 +1009,7 @@ No authorization required
 
 ## OfficesOfficeIdReportsTcbAllGet
 
-> ResponseListTcbBalanceAPIResponse OfficesOfficeIdReportsTcbAllGet(ctx, officeId).ReportDate(reportDate).Execute()
+> ResponseListTcbBalanceAPIResponse OfficesOfficeIdReportsTcbAllGet(ctx, officeId).ReportDate(reportDate).Skip(skip).Limit(limit).Execute()
 
 Get TCB Data Report of all users
 
@@ -849,10 +1030,12 @@ import (
 func main() {
 	officeId := "officeId_example" // string | Fetch TCB Data of all users (example: 90000003)
 	reportDate := "reportDate_example" // string | Fetch TCB Data of all users (example: 2024-01-31)
+	skip := int32(56) // int32 | Skip records (example: 0) (optional)
+	limit := int32(56) // int32 | Limit records (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsTcbAllGet(context.Background(), officeId).ReportDate(reportDate).Execute()
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsTcbAllGet(context.Background(), officeId).ReportDate(reportDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsTcbAllGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -879,6 +1062,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **reportDate** | **string** | Fetch TCB Data of all users (example: 2024-01-31) | 
+ **skip** | **int32** | Skip records (example: 0) | 
+ **limit** | **int32** | Limit records (example: 10) | 
 
 ### Return type
 
@@ -970,6 +1155,80 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## OfficesOfficeIdReportsTcbGet
+
+> ResponseTcbBalanceAPIResponse OfficesOfficeIdReportsTcbGet(ctx, officeId).UserId(userId).ReportDate(reportDate).Execute()
+
+Get TCB Data Report
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	officeId := "officeId_example" // string | Fetch TCB Data (example: 90000003)
+	userId := "userId_example" // string | Fetch TCB Data (example: 10132232)
+	reportDate := "reportDate_example" // string | Fetch TCB Data (example: 2024-01-31)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsTcbGet(context.Background(), officeId).UserId(userId).ReportDate(reportDate).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsTcbGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `OfficesOfficeIdReportsTcbGet`: ResponseTcbBalanceAPIResponse
+	fmt.Fprintf(os.Stdout, "Response from `ReportsAPI.OfficesOfficeIdReportsTcbGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**officeId** | **string** | Fetch TCB Data (example: 90000003) | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiOfficesOfficeIdReportsTcbGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **userId** | **string** | Fetch TCB Data (example: 10132232) | 
+ **reportDate** | **string** | Fetch TCB Data (example: 2024-01-31) | 
+
+### Return type
+
+[**ResponseTcbBalanceAPIResponse**](ResponseTcbBalanceAPIResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## OfficesOfficeIdReportsTcbNewGet
 
 > ResponseListReportsTCBDataResponse OfficesOfficeIdReportsTcbNewGet(ctx, officeId).UserId(userId).ReportDate(reportDate).Execute()
@@ -1046,7 +1305,7 @@ No authorization required
 
 ## OfficesOfficeIdReportsTransitDashboardGet
 
-> ResponseTransitDetailsAPIResponse OfficesOfficeIdReportsTransitDashboardGet(ctx, officeId).Execute()
+> ResponseTransitDetailsAPIResponse OfficesOfficeIdReportsTransitDashboardGet(ctx, officeId).Skip(skip).Limit(limit).Execute()
 
 Get Transit dashboard Report
 
@@ -1066,10 +1325,12 @@ import (
 
 func main() {
 	officeId := "officeId_example" // string | Fetch Tranist Dashboard Data
+	skip := int32(56) // int32 | Skip records (example: 0) (optional)
+	limit := int32(56) // int32 | Limit records (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsTransitDashboardGet(context.Background(), officeId).Execute()
+	resp, r, err := apiClient.ReportsAPI.OfficesOfficeIdReportsTransitDashboardGet(context.Background(), officeId).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportsAPI.OfficesOfficeIdReportsTransitDashboardGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1095,6 +1356,8 @@ Other parameters are passed through a pointer to a apiOfficesOfficeIdReportsTran
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **skip** | **int32** | Skip records (example: 0) | 
+ **limit** | **int32** | Limit records (example: 10) | 
 
 ### Return type
 

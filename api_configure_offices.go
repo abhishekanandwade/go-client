@@ -125,7 +125,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdBankCreditLi
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -136,7 +136,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdBankCreditLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -147,7 +147,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdBankCreditLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -158,7 +158,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdBankCreditLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdBankCreditLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -180,7 +180,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdBankCreditLi
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -273,8 +273,8 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdDeleteExecut
 		return localVarReturnValue, nil, reportError("validTo is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "updated-by", r.updatedBy, "form", "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "valid-to", r.validTo, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "updated-by", r.updatedBy, "", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "valid-to", r.validTo, "", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -315,7 +315,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdDeleteExecut
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -326,7 +326,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdDeleteExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -337,7 +337,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdDeleteExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +348,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdDeleteExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +359,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdDeleteExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +370,7 @@ func (a *ConfigureOfficesAPIService) OfficeTransactionsTransactionIdDeleteExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -399,6 +399,8 @@ type ApiOfficesGetRequest struct {
 	ApiService *ConfigureOfficesAPIService
 	skip *int32
 	limit *int32
+	orderby *string
+	sort *string
 }
 
 // Number of records to skip for pagination
@@ -410,6 +412,18 @@ func (r ApiOfficesGetRequest) Skip(skip int32) ApiOfficesGetRequest {
 // Number of records to limit for pagination
 func (r ApiOfficesGetRequest) Limit(limit int32) ApiOfficesGetRequest {
 	r.limit = &limit
+	return r
+}
+
+// Order by field
+func (r ApiOfficesGetRequest) Orderby(orderby string) ApiOfficesGetRequest {
+	r.orderby = &orderby
+	return r
+}
+
+// Sort order
+func (r ApiOfficesGetRequest) Sort(sort string) ApiOfficesGetRequest {
+	r.sort = &sort
 	return r
 }
 
@@ -454,16 +468,28 @@ func (a *ConfigureOfficesAPIService) OfficesGetExecute(r ApiOfficesGetRequest) (
 	localVarFormParams := url.Values{}
 
 	if r.skip != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
 	} else {
 		var defaultValue int32 = 0
 		r.skip = &defaultValue
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	} else {
 		var defaultValue int32 = 10
 		r.limit = &defaultValue
+	}
+	if r.orderby != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderby", r.orderby, "", "")
+	} else {
+		var defaultValue string = "\"office_id\""
+		r.orderby = &defaultValue
+	}
+	if r.sort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "", "")
+	} else {
+		var defaultValue string = "\"asc\""
+		r.sort = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -505,7 +531,7 @@ func (a *ConfigureOfficesAPIService) OfficesGetExecute(r ApiOfficesGetRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -516,7 +542,7 @@ func (a *ConfigureOfficesAPIService) OfficesGetExecute(r ApiOfficesGetRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -527,7 +553,7 @@ func (a *ConfigureOfficesAPIService) OfficesGetExecute(r ApiOfficesGetRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -538,7 +564,7 @@ func (a *ConfigureOfficesAPIService) OfficesGetExecute(r ApiOfficesGetRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -549,7 +575,7 @@ func (a *ConfigureOfficesAPIService) OfficesGetExecute(r ApiOfficesGetRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -560,7 +586,7 @@ func (a *ConfigureOfficesAPIService) OfficesGetExecute(r ApiOfficesGetRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -588,6 +614,34 @@ type ApiOfficesOfficeIdBankCreditLmitsGetRequest struct {
 	ctx context.Context
 	ApiService *ConfigureOfficesAPIService
 	officeId int32
+	skip *int32
+	limit *int32
+	orderby *string
+	sort *string
+}
+
+// Number of records to skip for pagination
+func (r ApiOfficesOfficeIdBankCreditLmitsGetRequest) Skip(skip int32) ApiOfficesOfficeIdBankCreditLmitsGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Number of records to limit for pagination
+func (r ApiOfficesOfficeIdBankCreditLmitsGetRequest) Limit(limit int32) ApiOfficesOfficeIdBankCreditLmitsGetRequest {
+	r.limit = &limit
+	return r
+}
+
+// Order by field
+func (r ApiOfficesOfficeIdBankCreditLmitsGetRequest) Orderby(orderby string) ApiOfficesOfficeIdBankCreditLmitsGetRequest {
+	r.orderby = &orderby
+	return r
+}
+
+// Sort order
+func (r ApiOfficesOfficeIdBankCreditLmitsGetRequest) Sort(sort string) ApiOfficesOfficeIdBankCreditLmitsGetRequest {
+	r.sort = &sort
+	return r
 }
 
 func (r ApiOfficesOfficeIdBankCreditLmitsGetRequest) Execute() (*ResponseListBankCreditLimitAPIResponse, *http.Response, error) {
@@ -633,6 +687,30 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdBankCreditLmitsGetExecute(r 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	} else {
+		var defaultValue int32 = 10
+		r.limit = &defaultValue
+	}
+	if r.orderby != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderby", r.orderby, "", "")
+	} else {
+		var defaultValue string = "\"office_id\""
+		r.orderby = &defaultValue
+	}
+	if r.sort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "", "")
+	} else {
+		var defaultValue string = "\"asc\""
+		r.sort = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -673,7 +751,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdBankCreditLmitsGetExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -684,7 +762,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdBankCreditLmitsGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -695,7 +773,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdBankCreditLmitsGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -706,7 +784,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdBankCreditLmitsGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -717,7 +795,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdBankCreditLmitsGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -728,7 +806,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdBankCreditLmitsGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -757,11 +835,39 @@ type ApiOfficesOfficeIdConfigsGetRequest struct {
 	ApiService *ConfigureOfficesAPIService
 	officeId int32
 	type_ *string
+	skip *int32
+	limit *int32
+	orderby *string
+	sort *string
 }
 
 // Get linked or configured offices
 func (r ApiOfficesOfficeIdConfigsGetRequest) Type_(type_ string) ApiOfficesOfficeIdConfigsGetRequest {
 	r.type_ = &type_
+	return r
+}
+
+// Number of records to skip for pagination
+func (r ApiOfficesOfficeIdConfigsGetRequest) Skip(skip int32) ApiOfficesOfficeIdConfigsGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Number of records to limit for pagination
+func (r ApiOfficesOfficeIdConfigsGetRequest) Limit(limit int32) ApiOfficesOfficeIdConfigsGetRequest {
+	r.limit = &limit
+	return r
+}
+
+// Order by field
+func (r ApiOfficesOfficeIdConfigsGetRequest) Orderby(orderby string) ApiOfficesOfficeIdConfigsGetRequest {
+	r.orderby = &orderby
+	return r
+}
+
+// Sort order
+func (r ApiOfficesOfficeIdConfigsGetRequest) Sort(sort string) ApiOfficesOfficeIdConfigsGetRequest {
+	r.sort = &sort
 	return r
 }
 
@@ -811,7 +917,31 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdConfigsGetExecute(r ApiOffic
 		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	} else {
+		var defaultValue int32 = 10
+		r.limit = &defaultValue
+	}
+	if r.orderby != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderby", r.orderby, "", "")
+	} else {
+		var defaultValue string = "\"office_id\""
+		r.orderby = &defaultValue
+	}
+	if r.sort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "", "")
+	} else {
+		var defaultValue string = "\"asc\""
+		r.sort = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -852,7 +982,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdConfigsGetExecute(r ApiOffic
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -863,7 +993,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdConfigsGetExecute(r ApiOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -874,7 +1004,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdConfigsGetExecute(r ApiOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -885,7 +1015,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdConfigsGetExecute(r ApiOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -896,7 +1026,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdConfigsGetExecute(r ApiOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -907,7 +1037,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdConfigsGetExecute(r ApiOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1020,7 +1150,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdGetExecute(r ApiOfficesOffic
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1031,7 +1161,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdGetExecute(r ApiOfficesOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1042,7 +1172,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdGetExecute(r ApiOfficesOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1053,7 +1183,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdGetExecute(r ApiOfficesOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1064,7 +1194,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdGetExecute(r ApiOfficesOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1075,7 +1205,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdGetExecute(r ApiOfficesOffic
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1104,11 +1234,39 @@ type ApiOfficesOfficeIdLinkedConfiguredGetRequest struct {
 	ApiService *ConfigureOfficesAPIService
 	officeId int32
 	type_ *string
+	skip *int32
+	limit *int32
+	orderby *string
+	sort *string
 }
 
 // Get linked or configured offices
 func (r ApiOfficesOfficeIdLinkedConfiguredGetRequest) Type_(type_ string) ApiOfficesOfficeIdLinkedConfiguredGetRequest {
 	r.type_ = &type_
+	return r
+}
+
+// Number of records to skip for pagination
+func (r ApiOfficesOfficeIdLinkedConfiguredGetRequest) Skip(skip int32) ApiOfficesOfficeIdLinkedConfiguredGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Number of records to limit for pagination
+func (r ApiOfficesOfficeIdLinkedConfiguredGetRequest) Limit(limit int32) ApiOfficesOfficeIdLinkedConfiguredGetRequest {
+	r.limit = &limit
+	return r
+}
+
+// Order by field
+func (r ApiOfficesOfficeIdLinkedConfiguredGetRequest) Orderby(orderby string) ApiOfficesOfficeIdLinkedConfiguredGetRequest {
+	r.orderby = &orderby
+	return r
+}
+
+// Sort order
+func (r ApiOfficesOfficeIdLinkedConfiguredGetRequest) Sort(sort string) ApiOfficesOfficeIdLinkedConfiguredGetRequest {
+	r.sort = &sort
 	return r
 }
 
@@ -1158,7 +1316,31 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdLinkedConfiguredGetExecute(r
 		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	} else {
+		var defaultValue int32 = 0
+		r.skip = &defaultValue
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	} else {
+		var defaultValue int32 = 10
+		r.limit = &defaultValue
+	}
+	if r.orderby != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "orderby", r.orderby, "", "")
+	} else {
+		var defaultValue string = "\"office_id\""
+		r.orderby = &defaultValue
+	}
+	if r.sort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "", "")
+	} else {
+		var defaultValue string = "\"asc\""
+		r.sort = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1199,7 +1381,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdLinkedConfiguredGetExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1210,7 +1392,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdLinkedConfiguredGetExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1221,7 +1403,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdLinkedConfiguredGetExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1232,7 +1414,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdLinkedConfiguredGetExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1243,7 +1425,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdLinkedConfiguredGetExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1254,7 +1436,7 @@ func (a *ConfigureOfficesAPIService) OfficesOfficeIdLinkedConfiguredGetExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1375,7 +1557,7 @@ func (a *ConfigureOfficesAPIService) OfficesPostExecute(r ApiOfficesPostRequest)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1386,7 +1568,7 @@ func (a *ConfigureOfficesAPIService) OfficesPostExecute(r ApiOfficesPostRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1397,7 +1579,7 @@ func (a *ConfigureOfficesAPIService) OfficesPostExecute(r ApiOfficesPostRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1408,7 +1590,7 @@ func (a *ConfigureOfficesAPIService) OfficesPostExecute(r ApiOfficesPostRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1419,7 +1601,7 @@ func (a *ConfigureOfficesAPIService) OfficesPostExecute(r ApiOfficesPostRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1430,7 +1612,7 @@ func (a *ConfigureOfficesAPIService) OfficesPostExecute(r ApiOfficesPostRequest)
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

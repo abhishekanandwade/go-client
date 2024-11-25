@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **OfficeId** | Pointer to **int32** |  | [optional] 
 **Part** | Pointer to **string** |  | [optional] 
 **PositiveOrNegative** | Pointer to **string** |  | [optional] 
-**ReceiptOrPmt** | Pointer to **string** |  | [optional] 
+**ReceiptOrPayment** | Pointer to **string** |  | [optional] 
 **ReceiptSource** | Pointer to **string** |  | [optional] 
 **Remarks** | Pointer to **string** |  | [optional] 
 **SrcTranId** | Pointer to **string** |  | [optional] 
@@ -319,30 +319,30 @@ SetPositiveOrNegative sets PositiveOrNegative field to given value.
 
 HasPositiveOrNegative returns a boolean if a field has been set.
 
-### GetReceiptOrPmt
+### GetReceiptOrPayment
 
-`func (o *ResponseAccountingDetails) GetReceiptOrPmt() string`
+`func (o *ResponseAccountingDetails) GetReceiptOrPayment() string`
 
-GetReceiptOrPmt returns the ReceiptOrPmt field if non-nil, zero value otherwise.
+GetReceiptOrPayment returns the ReceiptOrPayment field if non-nil, zero value otherwise.
 
-### GetReceiptOrPmtOk
+### GetReceiptOrPaymentOk
 
-`func (o *ResponseAccountingDetails) GetReceiptOrPmtOk() (*string, bool)`
+`func (o *ResponseAccountingDetails) GetReceiptOrPaymentOk() (*string, bool)`
 
-GetReceiptOrPmtOk returns a tuple with the ReceiptOrPmt field if it's non-nil, zero value otherwise
+GetReceiptOrPaymentOk returns a tuple with the ReceiptOrPayment field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReceiptOrPmt
+### SetReceiptOrPayment
 
-`func (o *ResponseAccountingDetails) SetReceiptOrPmt(v string)`
+`func (o *ResponseAccountingDetails) SetReceiptOrPayment(v string)`
 
-SetReceiptOrPmt sets ReceiptOrPmt field to given value.
+SetReceiptOrPayment sets ReceiptOrPayment field to given value.
 
-### HasReceiptOrPmt
+### HasReceiptOrPayment
 
-`func (o *ResponseAccountingDetails) HasReceiptOrPmt() bool`
+`func (o *ResponseAccountingDetails) HasReceiptOrPayment() bool`
 
-HasReceiptOrPmt returns a boolean if a field has been set.
+HasReceiptOrPayment returns a boolean if a field has been set.
 
 ### GetReceiptSource
 

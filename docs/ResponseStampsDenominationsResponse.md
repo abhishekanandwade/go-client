@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CategoryDesc** | Pointer to **string** |  | [optional] 
 **CategoryId** | Pointer to **string** |  | [optional] 
 **DenominationDesc** | Pointer to **string** |  | [optional] 
 **DenominationId** | Pointer to **string** |  | [optional] 
@@ -11,6 +12,7 @@ Name | Type | Description | Notes
 **EnteredBy** | Pointer to **string** |  | [optional] 
 **EntryDate** | Pointer to **string** |  | [optional] 
 **OfficeId** | Pointer to **int32** |  | [optional] 
+**ProductCategory** | Pointer to **string** |  | [optional] 
 **UpdateDate** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to **string** |  | [optional] 
 **ValidFrom** | Pointer to **string** |  | [optional] 
@@ -34,6 +36,31 @@ will change when the set of required properties is changed
 NewResponseStampsDenominationsResponseWithDefaults instantiates a new ResponseStampsDenominationsResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCategoryDesc
+
+`func (o *ResponseStampsDenominationsResponse) GetCategoryDesc() string`
+
+GetCategoryDesc returns the CategoryDesc field if non-nil, zero value otherwise.
+
+### GetCategoryDescOk
+
+`func (o *ResponseStampsDenominationsResponse) GetCategoryDescOk() (*string, bool)`
+
+GetCategoryDescOk returns a tuple with the CategoryDesc field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCategoryDesc
+
+`func (o *ResponseStampsDenominationsResponse) SetCategoryDesc(v string)`
+
+SetCategoryDesc sets CategoryDesc field to given value.
+
+### HasCategoryDesc
+
+`func (o *ResponseStampsDenominationsResponse) HasCategoryDesc() bool`
+
+HasCategoryDesc returns a boolean if a field has been set.
 
 ### GetCategoryId
 
@@ -209,6 +236,31 @@ SetOfficeId sets OfficeId field to given value.
 `func (o *ResponseStampsDenominationsResponse) HasOfficeId() bool`
 
 HasOfficeId returns a boolean if a field has been set.
+
+### GetProductCategory
+
+`func (o *ResponseStampsDenominationsResponse) GetProductCategory() string`
+
+GetProductCategory returns the ProductCategory field if non-nil, zero value otherwise.
+
+### GetProductCategoryOk
+
+`func (o *ResponseStampsDenominationsResponse) GetProductCategoryOk() (*string, bool)`
+
+GetProductCategoryOk returns a tuple with the ProductCategory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProductCategory
+
+`func (o *ResponseStampsDenominationsResponse) SetProductCategory(v string)`
+
+SetProductCategory sets ProductCategory field to given value.
+
+### HasProductCategory
+
+`func (o *ResponseStampsDenominationsResponse) HasProductCategory() bool`
+
+HasProductCategory returns a boolean if a field has been set.
 
 ### GetUpdateDate
 

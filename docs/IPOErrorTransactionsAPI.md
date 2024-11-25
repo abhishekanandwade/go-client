@@ -83,7 +83,7 @@ No authorization required
 
 ## IposErrorTransactionsGet
 
-> ResponseListIPOErrorTransactionsAPIResponse IposErrorTransactionsGet(ctx).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseListIPOErrorTransactionsAPIResponse IposErrorTransactionsGet(ctx).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Fetch IPO error Transactions
 
@@ -106,10 +106,12 @@ func main() {
 	type_ := "type__example" // string | Type
 	fromDate := "fromDate_example" // string | From Date (optional)
 	toDate := "toDate_example" // string | To Date (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IPOErrorTransactionsAPI.IposErrorTransactionsGet(context.Background()).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.IPOErrorTransactionsAPI.IposErrorTransactionsGet(context.Background()).OfficeId(officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IPOErrorTransactionsAPI.IposErrorTransactionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -134,6 +136,8 @@ Name | Type | Description  | Notes
  **type_** | **string** | Type | 
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 

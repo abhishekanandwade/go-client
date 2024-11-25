@@ -22,7 +22,7 @@ var _ MappedNullable = &HandlerUpdateTransactionsStatusRequest{}
 
 // HandlerUpdateTransactionsStatusRequest struct for HandlerUpdateTransactionsStatusRequest
 type HandlerUpdateTransactionsStatusRequest struct {
-	Amtount *float32 `json:"amtount,omitempty"`
+	Amount *float32 `json:"amount,omitempty"`
 	Details *map[string]int32 `json:"details,omitempty"`
 	EmployeeId1 *int32 `json:"employee_id1,omitempty"`
 	EmployeeId2 *int32 `json:"employee_id2,omitempty"`
@@ -31,7 +31,6 @@ type HandlerUpdateTransactionsStatusRequest struct {
 	IsSingleHand *bool `json:"is_single_hand,omitempty"`
 	Remarks *string `json:"remarks,omitempty"`
 	RequestType string `json:"request_type"`
-	Type HandlerTransactionType `json:"type"`
 	UserId int32 `json:"user_id"`
 }
 
@@ -41,10 +40,9 @@ type _HandlerUpdateTransactionsStatusRequest HandlerUpdateTransactionsStatusRequ
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHandlerUpdateTransactionsStatusRequest(requestType string, type_ HandlerTransactionType, userId int32) *HandlerUpdateTransactionsStatusRequest {
+func NewHandlerUpdateTransactionsStatusRequest(requestType string, userId int32) *HandlerUpdateTransactionsStatusRequest {
 	this := HandlerUpdateTransactionsStatusRequest{}
 	this.RequestType = requestType
-	this.Type = type_
 	this.UserId = userId
 	return &this
 }
@@ -57,36 +55,36 @@ func NewHandlerUpdateTransactionsStatusRequestWithDefaults() *HandlerUpdateTrans
 	return &this
 }
 
-// GetAmtount returns the Amtount field value if set, zero value otherwise.
-func (o *HandlerUpdateTransactionsStatusRequest) GetAmtount() float32 {
-	if o == nil || IsNil(o.Amtount) {
+// GetAmount returns the Amount field value if set, zero value otherwise.
+func (o *HandlerUpdateTransactionsStatusRequest) GetAmount() float32 {
+	if o == nil || IsNil(o.Amount) {
 		var ret float32
 		return ret
 	}
-	return *o.Amtount
+	return *o.Amount
 }
 
-// GetAmtountOk returns a tuple with the Amtount field value if set, nil otherwise
+// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HandlerUpdateTransactionsStatusRequest) GetAmtountOk() (*float32, bool) {
-	if o == nil || IsNil(o.Amtount) {
+func (o *HandlerUpdateTransactionsStatusRequest) GetAmountOk() (*float32, bool) {
+	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
-	return o.Amtount, true
+	return o.Amount, true
 }
 
-// HasAmtount returns a boolean if a field has been set.
-func (o *HandlerUpdateTransactionsStatusRequest) HasAmtount() bool {
-	if o != nil && !IsNil(o.Amtount) {
+// HasAmount returns a boolean if a field has been set.
+func (o *HandlerUpdateTransactionsStatusRequest) HasAmount() bool {
+	if o != nil && !IsNil(o.Amount) {
 		return true
 	}
 
 	return false
 }
 
-// SetAmtount gets a reference to the given float32 and assigns it to the Amtount field.
-func (o *HandlerUpdateTransactionsStatusRequest) SetAmtount(v float32) {
-	o.Amtount = &v
+// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
+func (o *HandlerUpdateTransactionsStatusRequest) SetAmount(v float32) {
+	o.Amount = &v
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
@@ -337,30 +335,6 @@ func (o *HandlerUpdateTransactionsStatusRequest) SetRequestType(v string) {
 	o.RequestType = v
 }
 
-// GetType returns the Type field value
-func (o *HandlerUpdateTransactionsStatusRequest) GetType() HandlerTransactionType {
-	if o == nil {
-		var ret HandlerTransactionType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *HandlerUpdateTransactionsStatusRequest) GetTypeOk() (*HandlerTransactionType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *HandlerUpdateTransactionsStatusRequest) SetType(v HandlerTransactionType) {
-	o.Type = v
-}
-
 // GetUserId returns the UserId field value
 func (o *HandlerUpdateTransactionsStatusRequest) GetUserId() int32 {
 	if o == nil {
@@ -395,8 +369,8 @@ func (o HandlerUpdateTransactionsStatusRequest) MarshalJSON() ([]byte, error) {
 
 func (o HandlerUpdateTransactionsStatusRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Amtount) {
-		toSerialize["amtount"] = o.Amtount
+	if !IsNil(o.Amount) {
+		toSerialize["amount"] = o.Amount
 	}
 	if !IsNil(o.Details) {
 		toSerialize["details"] = o.Details
@@ -420,7 +394,6 @@ func (o HandlerUpdateTransactionsStatusRequest) ToMap() (map[string]interface{},
 		toSerialize["remarks"] = o.Remarks
 	}
 	toSerialize["request_type"] = o.RequestType
-	toSerialize["type"] = o.Type
 	toSerialize["user_id"] = o.UserId
 	return toSerialize, nil
 }
@@ -431,7 +404,6 @@ func (o *HandlerUpdateTransactionsStatusRequest) UnmarshalJSON(data []byte) (err
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"request_type",
-		"type",
 		"user_id",
 	}
 

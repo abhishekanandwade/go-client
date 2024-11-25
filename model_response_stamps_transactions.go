@@ -34,7 +34,9 @@ type ResponseStampsTransactions struct {
 	IssApproverId *int32 `json:"iss_approver_id,omitempty"`
 	IssApproverRemarks *string `json:"iss_approver_remarks,omitempty"`
 	IssOfficeId *int32 `json:"iss_office_id,omitempty"`
+	IssOfficeName *string `json:"iss_office_name,omitempty"`
 	IssUserId *int32 `json:"iss_user_id,omitempty"`
+	IssUserName *string `json:"iss_user_name,omitempty"`
 	IssUserProcessedDate *string `json:"iss_user_processed_date,omitempty"`
 	Remarks *string `json:"remarks,omitempty"`
 	ReqAmount *float32 `json:"req_amount,omitempty"`
@@ -44,13 +46,17 @@ type ResponseStampsTransactions struct {
 	ReqApproverRemarks *string `json:"req_approver_remarks,omitempty"`
 	ReqDetails *map[string]int32 `json:"req_details,omitempty"`
 	ReqOfficeId *int32 `json:"req_office_id,omitempty"`
+	ReqOfficeName *string `json:"req_office_name,omitempty"`
 	ReqUserId *int32 `json:"req_user_id,omitempty"`
+	ReqUserName *string `json:"req_user_name,omitempty"`
 	RequestId *string `json:"request_id,omitempty"`
 	RequestSource *string `json:"request_source,omitempty"`
 	RequestType *string `json:"request_type,omitempty"`
 	StampDetails []ResponseStampdetails `json:"stamp_details,omitempty"`
+	StampIssuedDetails []ResponseStampdetails `json:"stamp_issued_details,omitempty"`
 	TransDate *string `json:"trans_date,omitempty"`
 	TransactionId *string `json:"transaction_id,omitempty"`
+	TxnStatus *string `json:"txn_status,omitempty"`
 }
 
 // NewResponseStampsTransactions instantiates a new ResponseStampsTransactions object
@@ -518,6 +524,38 @@ func (o *ResponseStampsTransactions) SetIssOfficeId(v int32) {
 	o.IssOfficeId = &v
 }
 
+// GetIssOfficeName returns the IssOfficeName field value if set, zero value otherwise.
+func (o *ResponseStampsTransactions) GetIssOfficeName() string {
+	if o == nil || IsNil(o.IssOfficeName) {
+		var ret string
+		return ret
+	}
+	return *o.IssOfficeName
+}
+
+// GetIssOfficeNameOk returns a tuple with the IssOfficeName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponseStampsTransactions) GetIssOfficeNameOk() (*string, bool) {
+	if o == nil || IsNil(o.IssOfficeName) {
+		return nil, false
+	}
+	return o.IssOfficeName, true
+}
+
+// HasIssOfficeName returns a boolean if a field has been set.
+func (o *ResponseStampsTransactions) HasIssOfficeName() bool {
+	if o != nil && !IsNil(o.IssOfficeName) {
+		return true
+	}
+
+	return false
+}
+
+// SetIssOfficeName gets a reference to the given string and assigns it to the IssOfficeName field.
+func (o *ResponseStampsTransactions) SetIssOfficeName(v string) {
+	o.IssOfficeName = &v
+}
+
 // GetIssUserId returns the IssUserId field value if set, zero value otherwise.
 func (o *ResponseStampsTransactions) GetIssUserId() int32 {
 	if o == nil || IsNil(o.IssUserId) {
@@ -548,6 +586,38 @@ func (o *ResponseStampsTransactions) HasIssUserId() bool {
 // SetIssUserId gets a reference to the given int32 and assigns it to the IssUserId field.
 func (o *ResponseStampsTransactions) SetIssUserId(v int32) {
 	o.IssUserId = &v
+}
+
+// GetIssUserName returns the IssUserName field value if set, zero value otherwise.
+func (o *ResponseStampsTransactions) GetIssUserName() string {
+	if o == nil || IsNil(o.IssUserName) {
+		var ret string
+		return ret
+	}
+	return *o.IssUserName
+}
+
+// GetIssUserNameOk returns a tuple with the IssUserName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponseStampsTransactions) GetIssUserNameOk() (*string, bool) {
+	if o == nil || IsNil(o.IssUserName) {
+		return nil, false
+	}
+	return o.IssUserName, true
+}
+
+// HasIssUserName returns a boolean if a field has been set.
+func (o *ResponseStampsTransactions) HasIssUserName() bool {
+	if o != nil && !IsNil(o.IssUserName) {
+		return true
+	}
+
+	return false
+}
+
+// SetIssUserName gets a reference to the given string and assigns it to the IssUserName field.
+func (o *ResponseStampsTransactions) SetIssUserName(v string) {
+	o.IssUserName = &v
 }
 
 // GetIssUserProcessedDate returns the IssUserProcessedDate field value if set, zero value otherwise.
@@ -838,6 +908,38 @@ func (o *ResponseStampsTransactions) SetReqOfficeId(v int32) {
 	o.ReqOfficeId = &v
 }
 
+// GetReqOfficeName returns the ReqOfficeName field value if set, zero value otherwise.
+func (o *ResponseStampsTransactions) GetReqOfficeName() string {
+	if o == nil || IsNil(o.ReqOfficeName) {
+		var ret string
+		return ret
+	}
+	return *o.ReqOfficeName
+}
+
+// GetReqOfficeNameOk returns a tuple with the ReqOfficeName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponseStampsTransactions) GetReqOfficeNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ReqOfficeName) {
+		return nil, false
+	}
+	return o.ReqOfficeName, true
+}
+
+// HasReqOfficeName returns a boolean if a field has been set.
+func (o *ResponseStampsTransactions) HasReqOfficeName() bool {
+	if o != nil && !IsNil(o.ReqOfficeName) {
+		return true
+	}
+
+	return false
+}
+
+// SetReqOfficeName gets a reference to the given string and assigns it to the ReqOfficeName field.
+func (o *ResponseStampsTransactions) SetReqOfficeName(v string) {
+	o.ReqOfficeName = &v
+}
+
 // GetReqUserId returns the ReqUserId field value if set, zero value otherwise.
 func (o *ResponseStampsTransactions) GetReqUserId() int32 {
 	if o == nil || IsNil(o.ReqUserId) {
@@ -868,6 +970,38 @@ func (o *ResponseStampsTransactions) HasReqUserId() bool {
 // SetReqUserId gets a reference to the given int32 and assigns it to the ReqUserId field.
 func (o *ResponseStampsTransactions) SetReqUserId(v int32) {
 	o.ReqUserId = &v
+}
+
+// GetReqUserName returns the ReqUserName field value if set, zero value otherwise.
+func (o *ResponseStampsTransactions) GetReqUserName() string {
+	if o == nil || IsNil(o.ReqUserName) {
+		var ret string
+		return ret
+	}
+	return *o.ReqUserName
+}
+
+// GetReqUserNameOk returns a tuple with the ReqUserName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponseStampsTransactions) GetReqUserNameOk() (*string, bool) {
+	if o == nil || IsNil(o.ReqUserName) {
+		return nil, false
+	}
+	return o.ReqUserName, true
+}
+
+// HasReqUserName returns a boolean if a field has been set.
+func (o *ResponseStampsTransactions) HasReqUserName() bool {
+	if o != nil && !IsNil(o.ReqUserName) {
+		return true
+	}
+
+	return false
+}
+
+// SetReqUserName gets a reference to the given string and assigns it to the ReqUserName field.
+func (o *ResponseStampsTransactions) SetReqUserName(v string) {
+	o.ReqUserName = &v
 }
 
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
@@ -998,6 +1132,38 @@ func (o *ResponseStampsTransactions) SetStampDetails(v []ResponseStampdetails) {
 	o.StampDetails = v
 }
 
+// GetStampIssuedDetails returns the StampIssuedDetails field value if set, zero value otherwise.
+func (o *ResponseStampsTransactions) GetStampIssuedDetails() []ResponseStampdetails {
+	if o == nil || IsNil(o.StampIssuedDetails) {
+		var ret []ResponseStampdetails
+		return ret
+	}
+	return o.StampIssuedDetails
+}
+
+// GetStampIssuedDetailsOk returns a tuple with the StampIssuedDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponseStampsTransactions) GetStampIssuedDetailsOk() ([]ResponseStampdetails, bool) {
+	if o == nil || IsNil(o.StampIssuedDetails) {
+		return nil, false
+	}
+	return o.StampIssuedDetails, true
+}
+
+// HasStampIssuedDetails returns a boolean if a field has been set.
+func (o *ResponseStampsTransactions) HasStampIssuedDetails() bool {
+	if o != nil && !IsNil(o.StampIssuedDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetStampIssuedDetails gets a reference to the given []ResponseStampdetails and assigns it to the StampIssuedDetails field.
+func (o *ResponseStampsTransactions) SetStampIssuedDetails(v []ResponseStampdetails) {
+	o.StampIssuedDetails = v
+}
+
 // GetTransDate returns the TransDate field value if set, zero value otherwise.
 func (o *ResponseStampsTransactions) GetTransDate() string {
 	if o == nil || IsNil(o.TransDate) {
@@ -1062,6 +1228,38 @@ func (o *ResponseStampsTransactions) SetTransactionId(v string) {
 	o.TransactionId = &v
 }
 
+// GetTxnStatus returns the TxnStatus field value if set, zero value otherwise.
+func (o *ResponseStampsTransactions) GetTxnStatus() string {
+	if o == nil || IsNil(o.TxnStatus) {
+		var ret string
+		return ret
+	}
+	return *o.TxnStatus
+}
+
+// GetTxnStatusOk returns a tuple with the TxnStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponseStampsTransactions) GetTxnStatusOk() (*string, bool) {
+	if o == nil || IsNil(o.TxnStatus) {
+		return nil, false
+	}
+	return o.TxnStatus, true
+}
+
+// HasTxnStatus returns a boolean if a field has been set.
+func (o *ResponseStampsTransactions) HasTxnStatus() bool {
+	if o != nil && !IsNil(o.TxnStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetTxnStatus gets a reference to the given string and assigns it to the TxnStatus field.
+func (o *ResponseStampsTransactions) SetTxnStatus(v string) {
+	o.TxnStatus = &v
+}
+
 func (o ResponseStampsTransactions) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -1114,8 +1312,14 @@ func (o ResponseStampsTransactions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IssOfficeId) {
 		toSerialize["iss_office_id"] = o.IssOfficeId
 	}
+	if !IsNil(o.IssOfficeName) {
+		toSerialize["iss_office_name"] = o.IssOfficeName
+	}
 	if !IsNil(o.IssUserId) {
 		toSerialize["iss_user_id"] = o.IssUserId
+	}
+	if !IsNil(o.IssUserName) {
+		toSerialize["iss_user_name"] = o.IssUserName
 	}
 	if !IsNil(o.IssUserProcessedDate) {
 		toSerialize["iss_user_processed_date"] = o.IssUserProcessedDate
@@ -1144,8 +1348,14 @@ func (o ResponseStampsTransactions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ReqOfficeId) {
 		toSerialize["req_office_id"] = o.ReqOfficeId
 	}
+	if !IsNil(o.ReqOfficeName) {
+		toSerialize["req_office_name"] = o.ReqOfficeName
+	}
 	if !IsNil(o.ReqUserId) {
 		toSerialize["req_user_id"] = o.ReqUserId
+	}
+	if !IsNil(o.ReqUserName) {
+		toSerialize["req_user_name"] = o.ReqUserName
 	}
 	if !IsNil(o.RequestId) {
 		toSerialize["request_id"] = o.RequestId
@@ -1159,11 +1369,17 @@ func (o ResponseStampsTransactions) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StampDetails) {
 		toSerialize["stamp_details"] = o.StampDetails
 	}
+	if !IsNil(o.StampIssuedDetails) {
+		toSerialize["stamp_issued_details"] = o.StampIssuedDetails
+	}
 	if !IsNil(o.TransDate) {
 		toSerialize["trans_date"] = o.TransDate
 	}
 	if !IsNil(o.TransactionId) {
 		toSerialize["transaction_id"] = o.TransactionId
+	}
+	if !IsNil(o.TxnStatus) {
+		toSerialize["txn_status"] = o.TxnStatus
 	}
 	return toSerialize, nil
 }

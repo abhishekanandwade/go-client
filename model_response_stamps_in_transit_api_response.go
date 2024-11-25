@@ -21,14 +21,8 @@ var _ MappedNullable = &ResponseStampsInTransitAPIResponse{}
 // ResponseStampsInTransitAPIResponse struct for ResponseStampsInTransitAPIResponse
 type ResponseStampsInTransitAPIResponse struct {
 	Data []ResponseStampsInTransit `json:"data,omitempty"`
-	Limit *int32 `json:"limit,omitempty"`
 	Message *string `json:"message,omitempty"`
-	OrderBy *string `json:"order_by,omitempty"`
-	ReturnedRecordsCount *int32 `json:"returned_records_count,omitempty"`
-	Skip *int32 `json:"skip,omitempty"`
-	SortType *string `json:"sort_type,omitempty"`
 	StatusCode *int32 `json:"status_code,omitempty"`
-	TotalRecordsCount *int32 `json:"total_records_count,omitempty"`
 }
 
 // NewResponseStampsInTransitAPIResponse instantiates a new ResponseStampsInTransitAPIResponse object
@@ -80,38 +74,6 @@ func (o *ResponseStampsInTransitAPIResponse) SetData(v []ResponseStampsInTransit
 	o.Data = v
 }
 
-// GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *ResponseStampsInTransitAPIResponse) GetLimit() int32 {
-	if o == nil || IsNil(o.Limit) {
-		var ret int32
-		return ret
-	}
-	return *o.Limit
-}
-
-// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ResponseStampsInTransitAPIResponse) GetLimitOk() (*int32, bool) {
-	if o == nil || IsNil(o.Limit) {
-		return nil, false
-	}
-	return o.Limit, true
-}
-
-// HasLimit returns a boolean if a field has been set.
-func (o *ResponseStampsInTransitAPIResponse) HasLimit() bool {
-	if o != nil && !IsNil(o.Limit) {
-		return true
-	}
-
-	return false
-}
-
-// SetLimit gets a reference to the given int32 and assigns it to the Limit field.
-func (o *ResponseStampsInTransitAPIResponse) SetLimit(v int32) {
-	o.Limit = &v
-}
-
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ResponseStampsInTransitAPIResponse) GetMessage() string {
 	if o == nil || IsNil(o.Message) {
@@ -142,134 +104,6 @@ func (o *ResponseStampsInTransitAPIResponse) HasMessage() bool {
 // SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *ResponseStampsInTransitAPIResponse) SetMessage(v string) {
 	o.Message = &v
-}
-
-// GetOrderBy returns the OrderBy field value if set, zero value otherwise.
-func (o *ResponseStampsInTransitAPIResponse) GetOrderBy() string {
-	if o == nil || IsNil(o.OrderBy) {
-		var ret string
-		return ret
-	}
-	return *o.OrderBy
-}
-
-// GetOrderByOk returns a tuple with the OrderBy field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ResponseStampsInTransitAPIResponse) GetOrderByOk() (*string, bool) {
-	if o == nil || IsNil(o.OrderBy) {
-		return nil, false
-	}
-	return o.OrderBy, true
-}
-
-// HasOrderBy returns a boolean if a field has been set.
-func (o *ResponseStampsInTransitAPIResponse) HasOrderBy() bool {
-	if o != nil && !IsNil(o.OrderBy) {
-		return true
-	}
-
-	return false
-}
-
-// SetOrderBy gets a reference to the given string and assigns it to the OrderBy field.
-func (o *ResponseStampsInTransitAPIResponse) SetOrderBy(v string) {
-	o.OrderBy = &v
-}
-
-// GetReturnedRecordsCount returns the ReturnedRecordsCount field value if set, zero value otherwise.
-func (o *ResponseStampsInTransitAPIResponse) GetReturnedRecordsCount() int32 {
-	if o == nil || IsNil(o.ReturnedRecordsCount) {
-		var ret int32
-		return ret
-	}
-	return *o.ReturnedRecordsCount
-}
-
-// GetReturnedRecordsCountOk returns a tuple with the ReturnedRecordsCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ResponseStampsInTransitAPIResponse) GetReturnedRecordsCountOk() (*int32, bool) {
-	if o == nil || IsNil(o.ReturnedRecordsCount) {
-		return nil, false
-	}
-	return o.ReturnedRecordsCount, true
-}
-
-// HasReturnedRecordsCount returns a boolean if a field has been set.
-func (o *ResponseStampsInTransitAPIResponse) HasReturnedRecordsCount() bool {
-	if o != nil && !IsNil(o.ReturnedRecordsCount) {
-		return true
-	}
-
-	return false
-}
-
-// SetReturnedRecordsCount gets a reference to the given int32 and assigns it to the ReturnedRecordsCount field.
-func (o *ResponseStampsInTransitAPIResponse) SetReturnedRecordsCount(v int32) {
-	o.ReturnedRecordsCount = &v
-}
-
-// GetSkip returns the Skip field value if set, zero value otherwise.
-func (o *ResponseStampsInTransitAPIResponse) GetSkip() int32 {
-	if o == nil || IsNil(o.Skip) {
-		var ret int32
-		return ret
-	}
-	return *o.Skip
-}
-
-// GetSkipOk returns a tuple with the Skip field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ResponseStampsInTransitAPIResponse) GetSkipOk() (*int32, bool) {
-	if o == nil || IsNil(o.Skip) {
-		return nil, false
-	}
-	return o.Skip, true
-}
-
-// HasSkip returns a boolean if a field has been set.
-func (o *ResponseStampsInTransitAPIResponse) HasSkip() bool {
-	if o != nil && !IsNil(o.Skip) {
-		return true
-	}
-
-	return false
-}
-
-// SetSkip gets a reference to the given int32 and assigns it to the Skip field.
-func (o *ResponseStampsInTransitAPIResponse) SetSkip(v int32) {
-	o.Skip = &v
-}
-
-// GetSortType returns the SortType field value if set, zero value otherwise.
-func (o *ResponseStampsInTransitAPIResponse) GetSortType() string {
-	if o == nil || IsNil(o.SortType) {
-		var ret string
-		return ret
-	}
-	return *o.SortType
-}
-
-// GetSortTypeOk returns a tuple with the SortType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ResponseStampsInTransitAPIResponse) GetSortTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.SortType) {
-		return nil, false
-	}
-	return o.SortType, true
-}
-
-// HasSortType returns a boolean if a field has been set.
-func (o *ResponseStampsInTransitAPIResponse) HasSortType() bool {
-	if o != nil && !IsNil(o.SortType) {
-		return true
-	}
-
-	return false
-}
-
-// SetSortType gets a reference to the given string and assigns it to the SortType field.
-func (o *ResponseStampsInTransitAPIResponse) SetSortType(v string) {
-	o.SortType = &v
 }
 
 // GetStatusCode returns the StatusCode field value if set, zero value otherwise.
@@ -304,38 +138,6 @@ func (o *ResponseStampsInTransitAPIResponse) SetStatusCode(v int32) {
 	o.StatusCode = &v
 }
 
-// GetTotalRecordsCount returns the TotalRecordsCount field value if set, zero value otherwise.
-func (o *ResponseStampsInTransitAPIResponse) GetTotalRecordsCount() int32 {
-	if o == nil || IsNil(o.TotalRecordsCount) {
-		var ret int32
-		return ret
-	}
-	return *o.TotalRecordsCount
-}
-
-// GetTotalRecordsCountOk returns a tuple with the TotalRecordsCount field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ResponseStampsInTransitAPIResponse) GetTotalRecordsCountOk() (*int32, bool) {
-	if o == nil || IsNil(o.TotalRecordsCount) {
-		return nil, false
-	}
-	return o.TotalRecordsCount, true
-}
-
-// HasTotalRecordsCount returns a boolean if a field has been set.
-func (o *ResponseStampsInTransitAPIResponse) HasTotalRecordsCount() bool {
-	if o != nil && !IsNil(o.TotalRecordsCount) {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalRecordsCount gets a reference to the given int32 and assigns it to the TotalRecordsCount field.
-func (o *ResponseStampsInTransitAPIResponse) SetTotalRecordsCount(v int32) {
-	o.TotalRecordsCount = &v
-}
-
 func (o ResponseStampsInTransitAPIResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -349,29 +151,11 @@ func (o ResponseStampsInTransitAPIResponse) ToMap() (map[string]interface{}, err
 	if !IsNil(o.Data) {
 		toSerialize["data"] = o.Data
 	}
-	if !IsNil(o.Limit) {
-		toSerialize["limit"] = o.Limit
-	}
 	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
-	if !IsNil(o.OrderBy) {
-		toSerialize["order_by"] = o.OrderBy
-	}
-	if !IsNil(o.ReturnedRecordsCount) {
-		toSerialize["returned_records_count"] = o.ReturnedRecordsCount
-	}
-	if !IsNil(o.Skip) {
-		toSerialize["skip"] = o.Skip
-	}
-	if !IsNil(o.SortType) {
-		toSerialize["sort_type"] = o.SortType
-	}
 	if !IsNil(o.StatusCode) {
 		toSerialize["status_code"] = o.StatusCode
-	}
-	if !IsNil(o.TotalRecordsCount) {
-		toSerialize["total_records_count"] = o.TotalRecordsCount
 	}
 	return toSerialize, nil
 }

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreditOrDebit** | **string** |  | 
+**CreditOrDebit** | Pointer to **string** |  | [optional] 
 **DigitalTxnsAmount** | Pointer to **float32** |  | [optional] 
 **DigitalTxnsCount** | Pointer to **int32** |  | [optional] 
-**GlCode** | **string** |  | 
+**GlCode** | Pointer to **string** |  | [optional] 
 **NonDigitalTxnsAmount** | Pointer to **float32** |  | [optional] 
 **NonDigitalTxnsCount** | Pointer to **int32** |  | [optional] 
 **ReceiptSource** | **string** |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewHandlerCreateOfficesAccountingDetailsRequest
 
-`func NewHandlerCreateOfficesAccountingDetailsRequest(creditOrDebit string, glCode string, receiptSource string, srcTranId string, srcTransDate string, ) *HandlerCreateOfficesAccountingDetailsRequest`
+`func NewHandlerCreateOfficesAccountingDetailsRequest(receiptSource string, srcTranId string, srcTransDate string, ) *HandlerCreateOfficesAccountingDetailsRequest`
 
 NewHandlerCreateOfficesAccountingDetailsRequest instantiates a new HandlerCreateOfficesAccountingDetailsRequest object
 This constructor will assign default values to properties that have it defined,
@@ -53,6 +53,11 @@ and a boolean to check if the value has been set.
 
 SetCreditOrDebit sets CreditOrDebit field to given value.
 
+### HasCreditOrDebit
+
+`func (o *HandlerCreateOfficesAccountingDetailsRequest) HasCreditOrDebit() bool`
+
+HasCreditOrDebit returns a boolean if a field has been set.
 
 ### GetDigitalTxnsAmount
 
@@ -123,6 +128,11 @@ and a boolean to check if the value has been set.
 
 SetGlCode sets GlCode field to given value.
 
+### HasGlCode
+
+`func (o *HandlerCreateOfficesAccountingDetailsRequest) HasGlCode() bool`
+
+HasGlCode returns a boolean if a field has been set.
 
 ### GetNonDigitalTxnsAmount
 

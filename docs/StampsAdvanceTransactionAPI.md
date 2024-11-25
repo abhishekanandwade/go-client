@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## OfficesOfficeIdStampsAdvanceTxnBalancesGet
 
-> ResponseListStampAdvanceBalanceApiResponse OfficesOfficeIdStampsAdvanceTxnBalancesGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseListStampAdvanceBalanceApiResponse OfficesOfficeIdStampsAdvanceTxnBalancesGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Get List of All Advance Balances
 
@@ -35,10 +35,12 @@ func main() {
 	officeId := int32(56) // int32 | Office ID
 	fromDate := "fromDate_example" // string | From date (optional)
 	toDate := "toDate_example" // string | To date (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StampsAdvanceTransactionAPI.OfficesOfficeIdStampsAdvanceTxnBalancesGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.StampsAdvanceTransactionAPI.OfficesOfficeIdStampsAdvanceTxnBalancesGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StampsAdvanceTransactionAPI.OfficesOfficeIdStampsAdvanceTxnBalancesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -66,6 +68,8 @@ Name | Type | Description  | Notes
 
  **fromDate** | **string** | From date | 
  **toDate** | **string** | To date | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -87,7 +91,7 @@ No authorization required
 
 ## OfficesOfficeIdStampsAdvanceTxnGet
 
-> ResponseListAdvanceTxnApiResponse OfficesOfficeIdStampsAdvanceTxnGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Execute()
+> ResponseListAdvanceTxnApiResponse OfficesOfficeIdStampsAdvanceTxnGet(ctx, officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Skip(skip).Limit(limit).Execute()
 
 Get List of Stamp Advance Transactions
 
@@ -110,10 +114,12 @@ func main() {
 	fromDate := "fromDate_example" // string | From date (optional)
 	toDate := "toDate_example" // string | To date (optional)
 	isPdg := true // bool | Is pdg (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StampsAdvanceTransactionAPI.OfficesOfficeIdStampsAdvanceTxnGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Execute()
+	resp, r, err := apiClient.StampsAdvanceTransactionAPI.OfficesOfficeIdStampsAdvanceTxnGet(context.Background(), officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StampsAdvanceTransactionAPI.OfficesOfficeIdStampsAdvanceTxnGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -142,6 +148,8 @@ Name | Type | Description  | Notes
  **fromDate** | **string** | From date | 
  **toDate** | **string** | To date | 
  **isPdg** | **bool** | Is pdg | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -183,7 +191,7 @@ import (
 
 func main() {
 	officeId := int32(56) // int32 | Office ID
-	body := *openapiclient.NewHandlerCreateStampsAdvanceTxnsRequest(float32(500.0), map[string]int32{"key": int32(123)}, int32(10145824), "Issue/ Sale/ Return", int32(10145826)) // HandlerCreateStampsAdvanceTxnsRequest | Request body for creating a new stamp advance transaction (optional)
+	body := map[string]interface{}{ ... } // map[string]interface{} | Request body for creating a new stamp advance transaction (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -213,7 +221,7 @@ Other parameters are passed through a pointer to a apiOfficesOfficeIdStampsAdvan
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**HandlerCreateStampsAdvanceTxnsRequest**](HandlerCreateStampsAdvanceTxnsRequest.md) | Request body for creating a new stamp advance transaction | 
+ **body** | **map[string]interface{}** | Request body for creating a new stamp advance transaction | 
 
 ### Return type
 

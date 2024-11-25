@@ -125,7 +125,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsErrorIdPutExecute(r ApiCashE
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -136,7 +136,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsErrorIdPutExecute(r ApiCashE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -147,7 +147,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsErrorIdPutExecute(r ApiCashE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -158,7 +158,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsErrorIdPutExecute(r ApiCashE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsErrorIdPutExecute(r ApiCashE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -180,7 +180,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsErrorIdPutExecute(r ApiCashE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -212,6 +212,8 @@ type ApiCashErrorsGetRequest struct {
 	fromDate *string
 	toDate *string
 	isRaisingOffice *bool
+	skip *int32
+	limit *int32
 }
 
 // Office ID
@@ -241,6 +243,18 @@ func (r ApiCashErrorsGetRequest) ToDate(toDate string) ApiCashErrorsGetRequest {
 // Is Raising Office
 func (r ApiCashErrorsGetRequest) IsRaisingOffice(isRaisingOffice bool) ApiCashErrorsGetRequest {
 	r.isRaisingOffice = &isRaisingOffice
+	return r
+}
+
+// Skip
+func (r ApiCashErrorsGetRequest) Skip(skip int32) ApiCashErrorsGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiCashErrorsGetRequest) Limit(limit int32) ApiCashErrorsGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -290,17 +304,23 @@ func (a *CashErrorTransactionsAPIService) CashErrorsGetExecute(r ApiCashErrorsGe
 		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
 	}
 	if r.isRaisingOffice != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is-raising-office", r.isRaisingOffice, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is-raising-office", r.isRaisingOffice, "", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -341,7 +361,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsGetExecute(r ApiCashErrorsGe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -352,7 +372,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsGetExecute(r ApiCashErrorsGe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -363,7 +383,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsGetExecute(r ApiCashErrorsGe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -374,7 +394,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsGetExecute(r ApiCashErrorsGe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -385,7 +405,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsGetExecute(r ApiCashErrorsGe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -396,7 +416,7 @@ func (a *CashErrorTransactionsAPIService) CashErrorsGetExecute(r ApiCashErrorsGe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

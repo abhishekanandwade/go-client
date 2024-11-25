@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## OfficesOfficeIdChequesGet
 
-> ResponseListChequesApiResponse OfficesOfficeIdChequesGet(ctx, officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).ReportDate(reportDate).Execute()
+> ResponseListChequesApiResponse OfficesOfficeIdChequesGet(ctx, officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).ReportDate(reportDate).Skip(skip).Limit(limit).Execute()
 
 Fetch cheques for disposal
 
@@ -34,10 +34,12 @@ func main() {
 	fromDate := "fromDate_example" // string | From Date (optional)
 	toDate := "toDate_example" // string | To Date (optional)
 	reportDate := "reportDate_example" // string | Report Date (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ChequesForDisposalAPI.OfficesOfficeIdChequesGet(context.Background(), officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).ReportDate(reportDate).Execute()
+	resp, r, err := apiClient.ChequesForDisposalAPI.OfficesOfficeIdChequesGet(context.Background(), officeId).Type_(type_).FromDate(fromDate).ToDate(toDate).ReportDate(reportDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ChequesForDisposalAPI.OfficesOfficeIdChequesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,6 +69,8 @@ Name | Type | Description  | Notes
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
  **reportDate** | **string** | Report Date | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 

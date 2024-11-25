@@ -154,7 +154,7 @@ No authorization required
 
 ## SoiledWriteOffLimitsPost
 
-> HandlerStampsSoiledWriteOffResponse SoiledWriteOffLimitsPost(ctx).CreateStampsSoiledWriteOffLimitsRequest(createStampsSoiledWriteOffLimitsRequest).Execute()
+> ResponseCreateStampsSoiledWriteOffLimitsAPIResponse SoiledWriteOffLimitsPost(ctx).CreateStampsSoiledWriteOffLimitsRequest(createStampsSoiledWriteOffLimitsRequest).Execute()
 
 Create Soiled Write Off
 
@@ -182,7 +182,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConfigureStampsWriteOffLimitsAPI.SoiledWriteOffLimitsPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SoiledWriteOffLimitsPost`: HandlerStampsSoiledWriteOffResponse
+	// response from `SoiledWriteOffLimitsPost`: ResponseCreateStampsSoiledWriteOffLimitsAPIResponse
 	fmt.Fprintf(os.Stdout, "Response from `ConfigureStampsWriteOffLimitsAPI.SoiledWriteOffLimitsPost`: %v\n", resp)
 }
 ```
@@ -202,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStampsSoiledWriteOffResponse**](HandlerStampsSoiledWriteOffResponse.md)
+[**ResponseCreateStampsSoiledWriteOffLimitsAPIResponse**](ResponseCreateStampsSoiledWriteOffLimitsAPIResponse.md)
 
 ### Authorization
 

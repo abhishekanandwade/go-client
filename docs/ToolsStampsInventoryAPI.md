@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## StampsInventoryGet
 
-> ResponseListStampsInventoryAPIResponse StampsInventoryGet(ctx).OfficeId(officeId).Execute()
+> ResponseListStampsInventoryAPIResponse StampsInventoryGet(ctx).OfficeId(officeId).Skip(skip).Limit(limit).Execute()
 
 Fetch stamps inventory
 
@@ -31,10 +31,12 @@ import (
 
 func main() {
 	officeId := int32(56) // int32 | Office ID (example: 9000003)
+	skip := int32(56) // int32 | Skip records (example: 0) (optional)
+	limit := int32(56) // int32 | Limit records (example: 10) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ToolsStampsInventoryAPI.StampsInventoryGet(context.Background()).OfficeId(officeId).Execute()
+	resp, r, err := apiClient.ToolsStampsInventoryAPI.StampsInventoryGet(context.Background()).OfficeId(officeId).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ToolsStampsInventoryAPI.StampsInventoryGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -56,6 +58,8 @@ Other parameters are passed through a pointer to a apiStampsInventoryGetRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **officeId** | **int32** | Office ID (example: 9000003) | 
+ **skip** | **int32** | Skip records (example: 0) | 
+ **limit** | **int32** | Limit records (example: 10) | 
 
 ### Return type
 

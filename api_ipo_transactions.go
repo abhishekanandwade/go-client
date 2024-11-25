@@ -32,6 +32,8 @@ type ApiIposTransactionsGetRequest struct {
 	fromDate *string
 	toDate *string
 	txnStatus *string
+	skip *int32
+	limit *int32
 }
 
 // Office ID of the user
@@ -61,6 +63,18 @@ func (r ApiIposTransactionsGetRequest) ToDate(toDate string) ApiIposTransactions
 // Status of IPO transactions
 func (r ApiIposTransactionsGetRequest) TxnStatus(txnStatus string) ApiIposTransactionsGetRequest {
 	r.txnStatus = &txnStatus
+	return r
+}
+
+// Skip records
+func (r ApiIposTransactionsGetRequest) Skip(skip int32) ApiIposTransactionsGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit records
+func (r ApiIposTransactionsGetRequest) Limit(limit int32) ApiIposTransactionsGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -110,17 +124,23 @@ func (a *IPOTransactionsAPIService) IposTransactionsGetExecute(r ApiIposTransact
 		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
 	}
 	if r.txnStatus != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "txn-status", r.txnStatus, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "txn-status", r.txnStatus, "", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -161,7 +181,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsGetExecute(r ApiIposTransact
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -172,7 +192,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsGetExecute(r ApiIposTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -183,7 +203,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsGetExecute(r ApiIposTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -194,7 +214,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsGetExecute(r ApiIposTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -205,7 +225,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsGetExecute(r ApiIposTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -216,7 +236,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsGetExecute(r ApiIposTransact
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -337,7 +357,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsPostExecute(r ApiIposTransac
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +368,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsPostExecute(r ApiIposTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +379,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsPostExecute(r ApiIposTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +390,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsPostExecute(r ApiIposTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -381,7 +401,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsPostExecute(r ApiIposTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -392,7 +412,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsPostExecute(r ApiIposTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -416,34 +436,41 @@ func (a *IPOTransactionsAPIService) IposTransactionsPostExecute(r ApiIposTransac
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiIposTransactionsTransactionIdStatusPutRequest struct {
+type ApiIposTransactionsTransactionIdChangeStatusPutRequest struct {
 	ctx context.Context
 	ApiService *IPOTransactionsAPIService
 	transactionId string
+	type_ *string
 	updateIPOsTransactionsStatusRequest *HandlerUpdateIPOsTransactionsStatusRequest
 }
 
+// Type of transaction to be processed
+func (r ApiIposTransactionsTransactionIdChangeStatusPutRequest) Type_(type_ string) ApiIposTransactionsTransactionIdChangeStatusPutRequest {
+	r.type_ = &type_
+	return r
+}
+
 // Process IPO txn at Dest Office
-func (r ApiIposTransactionsTransactionIdStatusPutRequest) UpdateIPOsTransactionsStatusRequest(updateIPOsTransactionsStatusRequest HandlerUpdateIPOsTransactionsStatusRequest) ApiIposTransactionsTransactionIdStatusPutRequest {
+func (r ApiIposTransactionsTransactionIdChangeStatusPutRequest) UpdateIPOsTransactionsStatusRequest(updateIPOsTransactionsStatusRequest HandlerUpdateIPOsTransactionsStatusRequest) ApiIposTransactionsTransactionIdChangeStatusPutRequest {
 	r.updateIPOsTransactionsStatusRequest = &updateIPOsTransactionsStatusRequest
 	return r
 }
 
-func (r ApiIposTransactionsTransactionIdStatusPutRequest) Execute() (*ResponseUpdateIPOsTransactionsApiResonse, *http.Response, error) {
-	return r.ApiService.IposTransactionsTransactionIdStatusPutExecute(r)
+func (r ApiIposTransactionsTransactionIdChangeStatusPutRequest) Execute() (*ResponseUpdateIPOsTransactionsApiResonse, *http.Response, error) {
+	return r.ApiService.IposTransactionsTransactionIdChangeStatusPutExecute(r)
 }
 
 /*
-IposTransactionsTransactionIdStatusPut Process IPO  Transaction Issue Request
+IposTransactionsTransactionIdChangeStatusPut Process IPO  Transaction Issue Request
 
 Information of IPO Transaction issue request to be processed  (e.g., iss_user_id,approved_details,approved_amt,status, e.t.c.,)
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param transactionId Process IPO txn at Dest Office
- @return ApiIposTransactionsTransactionIdStatusPutRequest
+ @return ApiIposTransactionsTransactionIdChangeStatusPutRequest
 */
-func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPut(ctx context.Context, transactionId string) ApiIposTransactionsTransactionIdStatusPutRequest {
-	return ApiIposTransactionsTransactionIdStatusPutRequest{
+func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdChangeStatusPut(ctx context.Context, transactionId string) ApiIposTransactionsTransactionIdChangeStatusPutRequest {
+	return ApiIposTransactionsTransactionIdChangeStatusPutRequest{
 		ApiService: a,
 		ctx: ctx,
 		transactionId: transactionId,
@@ -452,7 +479,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPut(ctx c
 
 // Execute executes the request
 //  @return ResponseUpdateIPOsTransactionsApiResonse
-func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPutExecute(r ApiIposTransactionsTransactionIdStatusPutRequest) (*ResponseUpdateIPOsTransactionsApiResonse, *http.Response, error) {
+func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdChangeStatusPutExecute(r ApiIposTransactionsTransactionIdChangeStatusPutRequest) (*ResponseUpdateIPOsTransactionsApiResonse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
@@ -460,21 +487,25 @@ func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPutExecut
 		localVarReturnValue  *ResponseUpdateIPOsTransactionsApiResonse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPOTransactionsAPIService.IposTransactionsTransactionIdStatusPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPOTransactionsAPIService.IposTransactionsTransactionIdChangeStatusPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/ipos-transactions/{transaction-id}/status"
+	localVarPath := localBasePath + "/ipos-transactions/{transaction-id}/change-status"
 	localVarPath = strings.Replace(localVarPath, "{"+"transaction-id"+"}", url.PathEscape(parameterValueToString(r.transactionId, "transactionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.type_ == nil {
+		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
+	}
 	if r.updateIPOsTransactionsStatusRequest == nil {
 		return localVarReturnValue, nil, reportError("updateIPOsTransactionsStatusRequest is required and must be specified")
 	}
 
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -517,7 +548,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPutExecut
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -528,7 +559,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPutExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -539,7 +570,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPutExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -550,7 +581,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPutExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -561,7 +592,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPutExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -572,7 +603,7 @@ func (a *IPOTransactionsAPIService) IposTransactionsTransactionIdStatusPutExecut
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

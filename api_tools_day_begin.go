@@ -37,7 +37,7 @@ func (r ApiOfficesOfficeIdPerformDayBeginPostRequest) Body(body HandlerCreateOff
 	return r
 }
 
-func (r ApiOfficesOfficeIdPerformDayBeginPostRequest) Execute() (*DomainDayBeginEnd, *http.Response, error) {
+func (r ApiOfficesOfficeIdPerformDayBeginPostRequest) Execute() (*ResponseCreateDayBeginEndAPIResponse, *http.Response, error) {
 	return r.ApiService.OfficesOfficeIdPerformDayBeginPostExecute(r)
 }
 
@@ -59,13 +59,13 @@ func (a *ToolsDayBeginAPIService) OfficesOfficeIdPerformDayBeginPost(ctx context
 }
 
 // Execute executes the request
-//  @return DomainDayBeginEnd
-func (a *ToolsDayBeginAPIService) OfficesOfficeIdPerformDayBeginPostExecute(r ApiOfficesOfficeIdPerformDayBeginPostRequest) (*DomainDayBeginEnd, *http.Response, error) {
+//  @return ResponseCreateDayBeginEndAPIResponse
+func (a *ToolsDayBeginAPIService) OfficesOfficeIdPerformDayBeginPostExecute(r ApiOfficesOfficeIdPerformDayBeginPostRequest) (*ResponseCreateDayBeginEndAPIResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DomainDayBeginEnd
+		localVarReturnValue  *ResponseCreateDayBeginEndAPIResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ToolsDayBeginAPIService.OfficesOfficeIdPerformDayBeginPost")
@@ -125,7 +125,7 @@ func (a *ToolsDayBeginAPIService) OfficesOfficeIdPerformDayBeginPostExecute(r Ap
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -136,7 +136,7 @@ func (a *ToolsDayBeginAPIService) OfficesOfficeIdPerformDayBeginPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -147,7 +147,7 @@ func (a *ToolsDayBeginAPIService) OfficesOfficeIdPerformDayBeginPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -158,7 +158,7 @@ func (a *ToolsDayBeginAPIService) OfficesOfficeIdPerformDayBeginPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *ToolsDayBeginAPIService) OfficesOfficeIdPerformDayBeginPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -180,7 +180,7 @@ func (a *ToolsDayBeginAPIService) OfficesOfficeIdPerformDayBeginPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

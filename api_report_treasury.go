@@ -26,12 +26,40 @@ type ReportTreasuryAPIService service
 type ApiTransactionsCashRemittanceReportGetRequest struct {
 	ctx context.Context
 	ApiService *ReportTreasuryAPIService
-	remittanceId *string
+	officeId *string
+	fromDate *string
+	toDate *string
+	skip *int32
+	limit *int32
 }
 
 // Report about list of Treasury Transactions
-func (r ApiTransactionsCashRemittanceReportGetRequest) RemittanceId(remittanceId string) ApiTransactionsCashRemittanceReportGetRequest {
-	r.remittanceId = &remittanceId
+func (r ApiTransactionsCashRemittanceReportGetRequest) OfficeId(officeId string) ApiTransactionsCashRemittanceReportGetRequest {
+	r.officeId = &officeId
+	return r
+}
+
+// Report about list of Treasury Transactions
+func (r ApiTransactionsCashRemittanceReportGetRequest) FromDate(fromDate string) ApiTransactionsCashRemittanceReportGetRequest {
+	r.fromDate = &fromDate
+	return r
+}
+
+// Report about list of Treasury Transactions
+func (r ApiTransactionsCashRemittanceReportGetRequest) ToDate(toDate string) ApiTransactionsCashRemittanceReportGetRequest {
+	r.toDate = &toDate
+	return r
+}
+
+// Skip
+func (r ApiTransactionsCashRemittanceReportGetRequest) Skip(skip int32) ApiTransactionsCashRemittanceReportGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiTransactionsCashRemittanceReportGetRequest) Limit(limit int32) ApiTransactionsCashRemittanceReportGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -74,11 +102,25 @@ func (a *ReportTreasuryAPIService) TransactionsCashRemittanceReportGetExecute(r 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.remittanceId == nil {
-		return localVarReturnValue, nil, reportError("remittanceId is required and must be specified")
+	if r.officeId == nil {
+		return localVarReturnValue, nil, reportError("officeId is required and must be specified")
+	}
+	if r.fromDate == nil {
+		return localVarReturnValue, nil, reportError("fromDate is required and must be specified")
+	}
+	if r.toDate == nil {
+		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "remittance-id", r.remittanceId, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -119,7 +161,7 @@ func (a *ReportTreasuryAPIService) TransactionsCashRemittanceReportGetExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -130,7 +172,7 @@ func (a *ReportTreasuryAPIService) TransactionsCashRemittanceReportGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -141,7 +183,7 @@ func (a *ReportTreasuryAPIService) TransactionsCashRemittanceReportGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -152,7 +194,7 @@ func (a *ReportTreasuryAPIService) TransactionsCashRemittanceReportGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -163,7 +205,7 @@ func (a *ReportTreasuryAPIService) TransactionsCashRemittanceReportGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -174,7 +216,7 @@ func (a *ReportTreasuryAPIService) TransactionsCashRemittanceReportGetExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

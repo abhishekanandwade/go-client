@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## MiscTransactionsAccountCodesGet
 
-> ResponseListAccountCodesApiResponse MiscTransactionsAccountCodesGet(ctx).ReceiptOrPmt(receiptOrPmt).Execute()
+> ResponseListAccountCodesApiResponse MiscTransactionsAccountCodesGet(ctx).ReceiptOrPmt(receiptOrPmt).Skip(skip).Limit(limit).Execute()
 
 List account codes
 
@@ -34,10 +34,12 @@ import (
 
 func main() {
 	receiptOrPmt := "receiptOrPmt_example" // string | List account codes for receipt or pmt
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MiscTransactionsAPI.MiscTransactionsAccountCodesGet(context.Background()).ReceiptOrPmt(receiptOrPmt).Execute()
+	resp, r, err := apiClient.MiscTransactionsAPI.MiscTransactionsAccountCodesGet(context.Background()).ReceiptOrPmt(receiptOrPmt).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MiscTransactionsAPI.MiscTransactionsAccountCodesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,6 +61,8 @@ Other parameters are passed through a pointer to a apiMiscTransactionsAccountCod
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **receiptOrPmt** | **string** | List account codes for receipt or pmt | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -80,7 +84,7 @@ No authorization required
 
 ## MiscTransactionsGet
 
-> ResponseListMiscTransactionsApiResponse MiscTransactionsGet(ctx).OfficeId(officeId).IsPdg(isPdg).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseListMiscTransactionsApiResponse MiscTransactionsGet(ctx).OfficeId(officeId).IsPdg(isPdg).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 List Misc Treasury Transaction
 
@@ -103,10 +107,12 @@ func main() {
 	isPdg := true // bool | Is PDG (optional)
 	fromDate := "fromDate_example" // string | From Date (optional)
 	toDate := "toDate_example" // string | To Date (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MiscTransactionsAPI.MiscTransactionsGet(context.Background()).OfficeId(officeId).IsPdg(isPdg).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.MiscTransactionsAPI.MiscTransactionsGet(context.Background()).OfficeId(officeId).IsPdg(isPdg).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MiscTransactionsAPI.MiscTransactionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,6 +137,8 @@ Name | Type | Description  | Notes
  **isPdg** | **bool** | Is PDG | 
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -152,7 +160,7 @@ No authorization required
 
 ## MiscTransactionsPost
 
-> HandlerTreasuryMiscTransactionResponse MiscTransactionsPost(ctx).Body(body).Execute()
+> ResponseCreateMiscTransactionsApiResponse MiscTransactionsPost(ctx).Body(body).Execute()
 
 Create a New Misc Treasury Transaction
 
@@ -180,7 +188,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MiscTransactionsAPI.MiscTransactionsPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `MiscTransactionsPost`: HandlerTreasuryMiscTransactionResponse
+	// response from `MiscTransactionsPost`: ResponseCreateMiscTransactionsApiResponse
 	fmt.Fprintf(os.Stdout, "Response from `MiscTransactionsAPI.MiscTransactionsPost`: %v\n", resp)
 }
 ```
@@ -200,7 +208,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerTreasuryMiscTransactionResponse**](HandlerTreasuryMiscTransactionResponse.md)
+[**ResponseCreateMiscTransactionsApiResponse**](ResponseCreateMiscTransactionsApiResponse.md)
 
 ### Authorization
 
@@ -290,7 +298,7 @@ No authorization required
 
 ## MiscTransactionsTransactionIdGet
 
-> HandlerTreasuryMiscTransactionResponse MiscTransactionsTransactionIdGet(ctx, transactionId).Execute()
+> ResponseMiscTransactionsApiResponse MiscTransactionsTransactionIdGet(ctx, transactionId).Execute()
 
 List Misc Treasury Transaction by ID
 
@@ -318,7 +326,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MiscTransactionsAPI.MiscTransactionsTransactionIdGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `MiscTransactionsTransactionIdGet`: HandlerTreasuryMiscTransactionResponse
+	// response from `MiscTransactionsTransactionIdGet`: ResponseMiscTransactionsApiResponse
 	fmt.Fprintf(os.Stdout, "Response from `MiscTransactionsAPI.MiscTransactionsTransactionIdGet`: %v\n", resp)
 }
 ```
@@ -342,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerTreasuryMiscTransactionResponse**](HandlerTreasuryMiscTransactionResponse.md)
+[**ResponseMiscTransactionsApiResponse**](ResponseMiscTransactionsApiResponse.md)
 
 ### Authorization
 

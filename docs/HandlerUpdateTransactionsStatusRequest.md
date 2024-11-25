@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amtount** | Pointer to **float32** |  | [optional] 
+**Amount** | Pointer to **float32** |  | [optional] 
 **Details** | Pointer to **map[string]int32** |  | [optional] 
 **EmployeeId1** | Pointer to **int32** |  | [optional] 
 **EmployeeId2** | Pointer to **int32** |  | [optional] 
@@ -13,14 +13,13 @@ Name | Type | Description | Notes
 **IsSingleHand** | Pointer to **bool** |  | [optional] 
 **Remarks** | Pointer to **string** |  | [optional] 
 **RequestType** | **string** |  | 
-**Type** | [**HandlerTransactionType**](HandlerTransactionType.md) |  | 
 **UserId** | **int32** |  | 
 
 ## Methods
 
 ### NewHandlerUpdateTransactionsStatusRequest
 
-`func NewHandlerUpdateTransactionsStatusRequest(requestType string, type_ HandlerTransactionType, userId int32, ) *HandlerUpdateTransactionsStatusRequest`
+`func NewHandlerUpdateTransactionsStatusRequest(requestType string, userId int32, ) *HandlerUpdateTransactionsStatusRequest`
 
 NewHandlerUpdateTransactionsStatusRequest instantiates a new HandlerUpdateTransactionsStatusRequest object
 This constructor will assign default values to properties that have it defined,
@@ -35,30 +34,30 @@ NewHandlerUpdateTransactionsStatusRequestWithDefaults instantiates a new Handler
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAmtount
+### GetAmount
 
-`func (o *HandlerUpdateTransactionsStatusRequest) GetAmtount() float32`
+`func (o *HandlerUpdateTransactionsStatusRequest) GetAmount() float32`
 
-GetAmtount returns the Amtount field if non-nil, zero value otherwise.
+GetAmount returns the Amount field if non-nil, zero value otherwise.
 
-### GetAmtountOk
+### GetAmountOk
 
-`func (o *HandlerUpdateTransactionsStatusRequest) GetAmtountOk() (*float32, bool)`
+`func (o *HandlerUpdateTransactionsStatusRequest) GetAmountOk() (*float32, bool)`
 
-GetAmtountOk returns a tuple with the Amtount field if it's non-nil, zero value otherwise
+GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAmtount
+### SetAmount
 
-`func (o *HandlerUpdateTransactionsStatusRequest) SetAmtount(v float32)`
+`func (o *HandlerUpdateTransactionsStatusRequest) SetAmount(v float32)`
 
-SetAmtount sets Amtount field to given value.
+SetAmount sets Amount field to given value.
 
-### HasAmtount
+### HasAmount
 
-`func (o *HandlerUpdateTransactionsStatusRequest) HasAmtount() bool`
+`func (o *HandlerUpdateTransactionsStatusRequest) HasAmount() bool`
 
-HasAmtount returns a boolean if a field has been set.
+HasAmount returns a boolean if a field has been set.
 
 ### GetDetails
 
@@ -253,26 +252,6 @@ and a boolean to check if the value has been set.
 `func (o *HandlerUpdateTransactionsStatusRequest) SetRequestType(v string)`
 
 SetRequestType sets RequestType field to given value.
-
-
-### GetType
-
-`func (o *HandlerUpdateTransactionsStatusRequest) GetType() HandlerTransactionType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *HandlerUpdateTransactionsStatusRequest) GetTypeOk() (*HandlerTransactionType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *HandlerUpdateTransactionsStatusRequest) SetType(v HandlerTransactionType)`
-
-SetType sets Type field to given value.
 
 
 ### GetUserId

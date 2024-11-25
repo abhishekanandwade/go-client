@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## TransactionsSpecialRemittanceSlipGet
 
-> ResponseListTransactionsSpecialRemittanceSlipApiResponse TransactionsSpecialRemittanceSlipGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Type_(type_).Execute()
+> ResponseListTransactionsSpecialRemittanceSlipApiResponse TransactionsSpecialRemittanceSlipGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Type_(type_).Skip(skip).Limit(limit).Execute()
 
 Fetch special remittance
 
@@ -33,10 +33,12 @@ func main() {
 	fromDate := "fromDate_example" // string | From Date (optional)
 	toDate := "toDate_example" // string | To Date (optional)
 	type_ := "type__example" // string | Type (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportSpecialRemittanceAPI.TransactionsSpecialRemittanceSlipGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Type_(type_).Execute()
+	resp, r, err := apiClient.ReportSpecialRemittanceAPI.TransactionsSpecialRemittanceSlipGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).Type_(type_).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportSpecialRemittanceAPI.TransactionsSpecialRemittanceSlipGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,6 +63,8 @@ Name | Type | Description  | Notes
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
  **type_** | **string** | Type | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 

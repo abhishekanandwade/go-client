@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## StampBulkSalesGet
 
-> ResponseListStampBulkSalesApiResponse StampBulkSalesGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Execute()
+> ResponseListStampBulkSalesApiResponse StampBulkSalesGet(ctx).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Skip(skip).Limit(limit).Execute()
 
 Get Stamps Bulk Sales List
 
@@ -36,10 +36,12 @@ func main() {
 	fromDate := "fromDate_example" // string | From Date (optional)
 	toDate := "toDate_example" // string | To Date (optional)
 	isPdg := true // bool | Is PDG (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StampsBulkSalesAPI.StampBulkSalesGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Execute()
+	resp, r, err := apiClient.StampsBulkSalesAPI.StampBulkSalesGet(context.Background()).OfficeId(officeId).FromDate(fromDate).ToDate(toDate).IsPdg(isPdg).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StampsBulkSalesAPI.StampBulkSalesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -64,6 +66,8 @@ Name | Type | Description  | Notes
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
  **isPdg** | **bool** | Is PDG | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -223,7 +227,7 @@ No authorization required
 
 ## StampBulkSalesTransactionIdGet
 
-> HandlerStampBulkSaleResponse StampBulkSalesTransactionIdGet(ctx, transactionId).Execute()
+> ResponseStampBulkSalesApiResponse StampBulkSalesTransactionIdGet(ctx, transactionId).Execute()
 
 Get Stamp Bulk Sales by ID
 
@@ -251,7 +255,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `StampsBulkSalesAPI.StampBulkSalesTransactionIdGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StampBulkSalesTransactionIdGet`: HandlerStampBulkSaleResponse
+	// response from `StampBulkSalesTransactionIdGet`: ResponseStampBulkSalesApiResponse
 	fmt.Fprintf(os.Stdout, "Response from `StampsBulkSalesAPI.StampBulkSalesTransactionIdGet`: %v\n", resp)
 }
 ```
@@ -275,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**HandlerStampBulkSaleResponse**](HandlerStampBulkSaleResponse.md)
+[**ResponseStampBulkSalesApiResponse**](ResponseStampBulkSalesApiResponse.md)
 
 ### Authorization
 

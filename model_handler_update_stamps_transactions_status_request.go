@@ -29,7 +29,6 @@ type HandlerUpdateStampsTransactionsStatusRequest struct {
 	IsSingleHand *bool `json:"is_single_hand,omitempty"`
 	IssApproverRemarks *string `json:"iss_approver_remarks,omitempty"`
 	ReqType *string `json:"req_type,omitempty"`
-	Type HandlerTransactionType `json:"type"`
 	UserId int32 `json:"user_id"`
 }
 
@@ -39,9 +38,8 @@ type _HandlerUpdateStampsTransactionsStatusRequest HandlerUpdateStampsTransactio
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHandlerUpdateStampsTransactionsStatusRequest(type_ HandlerTransactionType, userId int32) *HandlerUpdateStampsTransactionsStatusRequest {
+func NewHandlerUpdateStampsTransactionsStatusRequest(userId int32) *HandlerUpdateStampsTransactionsStatusRequest {
 	this := HandlerUpdateStampsTransactionsStatusRequest{}
-	this.Type = type_
 	this.UserId = userId
 	return &this
 }
@@ -278,30 +276,6 @@ func (o *HandlerUpdateStampsTransactionsStatusRequest) SetReqType(v string) {
 	o.ReqType = &v
 }
 
-// GetType returns the Type field value
-func (o *HandlerUpdateStampsTransactionsStatusRequest) GetType() HandlerTransactionType {
-	if o == nil {
-		var ret HandlerTransactionType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *HandlerUpdateStampsTransactionsStatusRequest) GetTypeOk() (*HandlerTransactionType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *HandlerUpdateStampsTransactionsStatusRequest) SetType(v HandlerTransactionType) {
-	o.Type = v
-}
-
 // GetUserId returns the UserId field value
 func (o *HandlerUpdateStampsTransactionsStatusRequest) GetUserId() int32 {
 	if o == nil {
@@ -357,7 +331,6 @@ func (o HandlerUpdateStampsTransactionsStatusRequest) ToMap() (map[string]interf
 	if !IsNil(o.ReqType) {
 		toSerialize["req_type"] = o.ReqType
 	}
-	toSerialize["type"] = o.Type
 	toSerialize["user_id"] = o.UserId
 	return toSerialize, nil
 }
@@ -367,7 +340,6 @@ func (o *HandlerUpdateStampsTransactionsStatusRequest) UnmarshalJSON(data []byte
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"type",
 		"user_id",
 	}
 

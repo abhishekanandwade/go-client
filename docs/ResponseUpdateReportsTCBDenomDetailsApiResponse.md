@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**DomainTcbBalance**](DomainTcbBalance.md) |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
 **StatusCode** | Pointer to **int32** |  | [optional] 
 
@@ -26,31 +25,6 @@ will change when the set of required properties is changed
 NewResponseUpdateReportsTCBDenomDetailsApiResponseWithDefaults instantiates a new ResponseUpdateReportsTCBDenomDetailsApiResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetData
-
-`func (o *ResponseUpdateReportsTCBDenomDetailsApiResponse) GetData() DomainTcbBalance`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *ResponseUpdateReportsTCBDenomDetailsApiResponse) GetDataOk() (*DomainTcbBalance, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetData
-
-`func (o *ResponseUpdateReportsTCBDenomDetailsApiResponse) SetData(v DomainTcbBalance)`
-
-SetData sets Data field to given value.
-
-### HasData
-
-`func (o *ResponseUpdateReportsTCBDenomDetailsApiResponse) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 ### GetMessage
 

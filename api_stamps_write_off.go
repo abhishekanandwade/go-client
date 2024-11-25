@@ -32,6 +32,8 @@ type ApiOfficesOfficeIdStampsWriteOffGetRequest struct {
 	checkerOrApproval *string
 	fromDate *string
 	toDate *string
+	skip *int32
+	limit *int32
 }
 
 // Is PDG
@@ -55,6 +57,18 @@ func (r ApiOfficesOfficeIdStampsWriteOffGetRequest) FromDate(fromDate string) Ap
 // To Date
 func (r ApiOfficesOfficeIdStampsWriteOffGetRequest) ToDate(toDate string) ApiOfficesOfficeIdStampsWriteOffGetRequest {
 	r.toDate = &toDate
+	return r
+}
+
+// Skip
+func (r ApiOfficesOfficeIdStampsWriteOffGetRequest) Skip(skip int32) ApiOfficesOfficeIdStampsWriteOffGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiOfficesOfficeIdStampsWriteOffGetRequest) Limit(limit int32) ApiOfficesOfficeIdStampsWriteOffGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -102,16 +116,22 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffGetExecute(r Api
 	localVarFormParams := url.Values{}
 
 	if r.isPdg != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is-pdg", r.isPdg, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is-pdg", r.isPdg, "", "")
 	}
 	if r.checkerOrApproval != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "checker-or-approval", r.checkerOrApproval, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "checker-or-approval", r.checkerOrApproval, "", "")
 	}
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
+	}
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -153,7 +173,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffGetExecute(r Api
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -164,7 +184,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -175,7 +195,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -186,7 +206,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -197,7 +217,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -208,7 +228,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffGetExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -333,7 +353,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffPostExecute(r Ap
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -344,7 +364,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -355,7 +375,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -366,7 +386,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -377,7 +397,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -388,7 +408,7 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffPostExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -412,61 +432,76 @@ func (a *StampsWriteOffAPIService) OfficesOfficeIdStampsWriteOffPostExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiStampsWriteoffApprovePutRequest struct {
+type ApiStampsWriteOffTransactionIdChangeStatusPutRequest struct {
 	ctx context.Context
 	ApiService *StampsWriteOffAPIService
+	transactionId string
+	type_ *string
 	body *HandlerUpdateStampSoiledRequest
 }
 
+// Type of transaction
+func (r ApiStampsWriteOffTransactionIdChangeStatusPutRequest) Type_(type_ string) ApiStampsWriteOffTransactionIdChangeStatusPutRequest {
+	r.type_ = &type_
+	return r
+}
+
 // Update or approving write off Transaction details
-func (r ApiStampsWriteoffApprovePutRequest) Body(body HandlerUpdateStampSoiledRequest) ApiStampsWriteoffApprovePutRequest {
+func (r ApiStampsWriteOffTransactionIdChangeStatusPutRequest) Body(body HandlerUpdateStampSoiledRequest) ApiStampsWriteOffTransactionIdChangeStatusPutRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiStampsWriteoffApprovePutRequest) Execute() (*HandlerStampsSoiledResponse, *http.Response, error) {
-	return r.ApiService.StampsWriteoffApprovePutExecute(r)
+func (r ApiStampsWriteOffTransactionIdChangeStatusPutRequest) Execute() (*ResponseUpdateStampSoiledApiResponse, *http.Response, error) {
+	return r.ApiService.StampsWriteOffTransactionIdChangeStatusPutExecute(r)
 }
 
 /*
-StampsWriteoffApprovePut Approve WriteOff Transaction Request
+StampsWriteOffTransactionIdChangeStatusPut Approve WriteOff Transaction Request
 
 Information about approving write off Transaction (e.g., Tran_id,   approver_id,disposal_details,approved_date, etc.,
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiStampsWriteoffApprovePutRequest
+ @param transactionId Transaction ID
+ @return ApiStampsWriteOffTransactionIdChangeStatusPutRequest
 */
-func (a *StampsWriteOffAPIService) StampsWriteoffApprovePut(ctx context.Context) ApiStampsWriteoffApprovePutRequest {
-	return ApiStampsWriteoffApprovePutRequest{
+func (a *StampsWriteOffAPIService) StampsWriteOffTransactionIdChangeStatusPut(ctx context.Context, transactionId string) ApiStampsWriteOffTransactionIdChangeStatusPutRequest {
+	return ApiStampsWriteOffTransactionIdChangeStatusPutRequest{
 		ApiService: a,
 		ctx: ctx,
+		transactionId: transactionId,
 	}
 }
 
 // Execute executes the request
-//  @return HandlerStampsSoiledResponse
-func (a *StampsWriteOffAPIService) StampsWriteoffApprovePutExecute(r ApiStampsWriteoffApprovePutRequest) (*HandlerStampsSoiledResponse, *http.Response, error) {
+//  @return ResponseUpdateStampSoiledApiResponse
+func (a *StampsWriteOffAPIService) StampsWriteOffTransactionIdChangeStatusPutExecute(r ApiStampsWriteOffTransactionIdChangeStatusPutRequest) (*ResponseUpdateStampSoiledApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStampsSoiledResponse
+		localVarReturnValue  *ResponseUpdateStampSoiledApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StampsWriteOffAPIService.StampsWriteoffApprovePut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StampsWriteOffAPIService.StampsWriteOffTransactionIdChangeStatusPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/stamps/writeoff/approve"
+	localVarPath := localBasePath + "/stamps-write-off/{transaction-id}/change-status"
+	localVarPath = strings.Replace(localVarPath, "{"+"transaction-id"+"}", url.PathEscape(parameterValueToString(r.transactionId, "transactionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.type_ == nil {
+		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
+	}
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -509,7 +544,7 @@ func (a *StampsWriteOffAPIService) StampsWriteoffApprovePutExecute(r ApiStampsWr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -520,7 +555,7 @@ func (a *StampsWriteOffAPIService) StampsWriteoffApprovePutExecute(r ApiStampsWr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -531,7 +566,7 @@ func (a *StampsWriteOffAPIService) StampsWriteoffApprovePutExecute(r ApiStampsWr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -542,7 +577,7 @@ func (a *StampsWriteOffAPIService) StampsWriteoffApprovePutExecute(r ApiStampsWr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -553,7 +588,7 @@ func (a *StampsWriteOffAPIService) StampsWriteoffApprovePutExecute(r ApiStampsWr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -564,7 +599,7 @@ func (a *StampsWriteOffAPIService) StampsWriteoffApprovePutExecute(r ApiStampsWr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

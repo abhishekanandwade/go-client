@@ -28,11 +28,25 @@ type ApiMiscTransactionsAccountCodesGetRequest struct {
 	ctx context.Context
 	ApiService *MiscTransactionsAPIService
 	receiptOrPmt *string
+	skip *int32
+	limit *int32
 }
 
 // List account codes for receipt or pmt
 func (r ApiMiscTransactionsAccountCodesGetRequest) ReceiptOrPmt(receiptOrPmt string) ApiMiscTransactionsAccountCodesGetRequest {
 	r.receiptOrPmt = &receiptOrPmt
+	return r
+}
+
+// Skip
+func (r ApiMiscTransactionsAccountCodesGetRequest) Skip(skip int32) ApiMiscTransactionsAccountCodesGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiMiscTransactionsAccountCodesGetRequest) Limit(limit int32) ApiMiscTransactionsAccountCodesGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -79,7 +93,13 @@ func (a *MiscTransactionsAPIService) MiscTransactionsAccountCodesGetExecute(r Ap
 		return localVarReturnValue, nil, reportError("receiptOrPmt is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "receipt-or-pmt", r.receiptOrPmt, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "receipt-or-pmt", r.receiptOrPmt, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -120,7 +140,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsAccountCodesGetExecute(r Ap
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -131,7 +151,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsAccountCodesGetExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -142,7 +162,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsAccountCodesGetExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -153,7 +173,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsAccountCodesGetExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -164,7 +184,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsAccountCodesGetExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -175,7 +195,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsAccountCodesGetExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -206,6 +226,8 @@ type ApiMiscTransactionsGetRequest struct {
 	isPdg *bool
 	fromDate *string
 	toDate *string
+	skip *int32
+	limit *int32
 }
 
 // Office ID
@@ -229,6 +251,18 @@ func (r ApiMiscTransactionsGetRequest) FromDate(fromDate string) ApiMiscTransact
 // To Date
 func (r ApiMiscTransactionsGetRequest) ToDate(toDate string) ApiMiscTransactionsGetRequest {
 	r.toDate = &toDate
+	return r
+}
+
+// Skip
+func (r ApiMiscTransactionsGetRequest) Skip(skip int32) ApiMiscTransactionsGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiMiscTransactionsGetRequest) Limit(limit int32) ApiMiscTransactionsGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -275,15 +309,21 @@ func (a *MiscTransactionsAPIService) MiscTransactionsGetExecute(r ApiMiscTransac
 		return localVarReturnValue, nil, reportError("officeId is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
 	if r.isPdg != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is-pdg", r.isPdg, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is-pdg", r.isPdg, "", "")
 	}
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
+	}
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -325,7 +365,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsGetExecute(r ApiMiscTransac
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -336,7 +376,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsGetExecute(r ApiMiscTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -347,7 +387,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsGetExecute(r ApiMiscTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -358,7 +398,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsGetExecute(r ApiMiscTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -369,7 +409,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsGetExecute(r ApiMiscTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -380,7 +420,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsGetExecute(r ApiMiscTransac
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -416,7 +456,7 @@ func (r ApiMiscTransactionsPostRequest) Body(body HandlerCreateMiscTransactionsR
 	return r
 }
 
-func (r ApiMiscTransactionsPostRequest) Execute() (*HandlerTreasuryMiscTransactionResponse, *http.Response, error) {
+func (r ApiMiscTransactionsPostRequest) Execute() (*ResponseCreateMiscTransactionsApiResponse, *http.Response, error) {
 	return r.ApiService.MiscTransactionsPostExecute(r)
 }
 
@@ -436,13 +476,13 @@ func (a *MiscTransactionsAPIService) MiscTransactionsPost(ctx context.Context) A
 }
 
 // Execute executes the request
-//  @return HandlerTreasuryMiscTransactionResponse
-func (a *MiscTransactionsAPIService) MiscTransactionsPostExecute(r ApiMiscTransactionsPostRequest) (*HandlerTreasuryMiscTransactionResponse, *http.Response, error) {
+//  @return ResponseCreateMiscTransactionsApiResponse
+func (a *MiscTransactionsAPIService) MiscTransactionsPostExecute(r ApiMiscTransactionsPostRequest) (*ResponseCreateMiscTransactionsApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerTreasuryMiscTransactionResponse
+		localVarReturnValue  *ResponseCreateMiscTransactionsApiResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MiscTransactionsAPIService.MiscTransactionsPost")
@@ -501,7 +541,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsPostExecute(r ApiMiscTransa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -512,7 +552,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsPostExecute(r ApiMiscTransa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -523,7 +563,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsPostExecute(r ApiMiscTransa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -534,7 +574,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsPostExecute(r ApiMiscTransa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -545,7 +585,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsPostExecute(r ApiMiscTransa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -556,7 +596,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsPostExecute(r ApiMiscTransa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -678,7 +718,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdApprovePutExec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -689,7 +729,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdApprovePutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -700,7 +740,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdApprovePutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -711,7 +751,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdApprovePutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -722,7 +762,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdApprovePutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -733,7 +773,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdApprovePutExec
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -763,7 +803,7 @@ type ApiMiscTransactionsTransactionIdGetRequest struct {
 	transactionId string
 }
 
-func (r ApiMiscTransactionsTransactionIdGetRequest) Execute() (*HandlerTreasuryMiscTransactionResponse, *http.Response, error) {
+func (r ApiMiscTransactionsTransactionIdGetRequest) Execute() (*ResponseMiscTransactionsApiResponse, *http.Response, error) {
 	return r.ApiService.MiscTransactionsTransactionIdGetExecute(r)
 }
 
@@ -785,13 +825,13 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdGet(ctx contex
 }
 
 // Execute executes the request
-//  @return HandlerTreasuryMiscTransactionResponse
-func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdGetExecute(r ApiMiscTransactionsTransactionIdGetRequest) (*HandlerTreasuryMiscTransactionResponse, *http.Response, error) {
+//  @return ResponseMiscTransactionsApiResponse
+func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdGetExecute(r ApiMiscTransactionsTransactionIdGetRequest) (*ResponseMiscTransactionsApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerTreasuryMiscTransactionResponse
+		localVarReturnValue  *ResponseMiscTransactionsApiResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MiscTransactionsAPIService.MiscTransactionsTransactionIdGet")
@@ -846,7 +886,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdGetExecute(r A
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -857,7 +897,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdGetExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -868,7 +908,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdGetExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -879,7 +919,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdGetExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -890,7 +930,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdGetExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -901,7 +941,7 @@ func (a *MiscTransactionsAPIService) MiscTransactionsTransactionIdGetExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

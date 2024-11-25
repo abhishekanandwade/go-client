@@ -30,6 +30,8 @@ type ApiOfficesOfficeIdStampsAdvanceTxnBalancesGetRequest struct {
 	officeId int32
 	fromDate *string
 	toDate *string
+	skip *int32
+	limit *int32
 }
 
 // From date
@@ -41,6 +43,18 @@ func (r ApiOfficesOfficeIdStampsAdvanceTxnBalancesGetRequest) FromDate(fromDate 
 // To date
 func (r ApiOfficesOfficeIdStampsAdvanceTxnBalancesGetRequest) ToDate(toDate string) ApiOfficesOfficeIdStampsAdvanceTxnBalancesGetRequest {
 	r.toDate = &toDate
+	return r
+}
+
+// Skip
+func (r ApiOfficesOfficeIdStampsAdvanceTxnBalancesGetRequest) Skip(skip int32) ApiOfficesOfficeIdStampsAdvanceTxnBalancesGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiOfficesOfficeIdStampsAdvanceTxnBalancesGetRequest) Limit(limit int32) ApiOfficesOfficeIdStampsAdvanceTxnBalancesGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -88,10 +102,16 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnBala
 	localVarFormParams := url.Values{}
 
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
+	}
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -133,7 +153,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnBala
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +164,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnBala
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +175,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnBala
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -166,7 +186,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnBala
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -177,7 +197,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnBala
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -188,7 +208,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnBala
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -219,6 +239,8 @@ type ApiOfficesOfficeIdStampsAdvanceTxnGetRequest struct {
 	fromDate *string
 	toDate *string
 	isPdg *bool
+	skip *int32
+	limit *int32
 }
 
 // From date
@@ -236,6 +258,18 @@ func (r ApiOfficesOfficeIdStampsAdvanceTxnGetRequest) ToDate(toDate string) ApiO
 // Is pdg
 func (r ApiOfficesOfficeIdStampsAdvanceTxnGetRequest) IsPdg(isPdg bool) ApiOfficesOfficeIdStampsAdvanceTxnGetRequest {
 	r.isPdg = &isPdg
+	return r
+}
+
+// Skip
+func (r ApiOfficesOfficeIdStampsAdvanceTxnGetRequest) Skip(skip int32) ApiOfficesOfficeIdStampsAdvanceTxnGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiOfficesOfficeIdStampsAdvanceTxnGetRequest) Limit(limit int32) ApiOfficesOfficeIdStampsAdvanceTxnGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -283,13 +317,19 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnGetE
 	localVarFormParams := url.Values{}
 
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
 	}
 	if r.isPdg != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is-pdg", r.isPdg, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is-pdg", r.isPdg, "", "")
+	}
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -331,7 +371,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnGetE
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -342,7 +382,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnGetE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -353,7 +393,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnGetE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -364,7 +404,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnGetE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -375,7 +415,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnGetE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -386,7 +426,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnGetE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -414,11 +454,11 @@ type ApiOfficesOfficeIdStampsAdvanceTxnPostRequest struct {
 	ctx context.Context
 	ApiService *StampsAdvanceTransactionAPIService
 	officeId int32
-	body *HandlerCreateStampsAdvanceTxnsRequest
+	body *map[string]interface{}
 }
 
 // Request body for creating a new stamp advance transaction
-func (r ApiOfficesOfficeIdStampsAdvanceTxnPostRequest) Body(body HandlerCreateStampsAdvanceTxnsRequest) ApiOfficesOfficeIdStampsAdvanceTxnPostRequest {
+func (r ApiOfficesOfficeIdStampsAdvanceTxnPostRequest) Body(body map[string]interface{}) ApiOfficesOfficeIdStampsAdvanceTxnPostRequest {
 	r.body = &body
 	return r
 }
@@ -508,7 +548,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnPost
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -519,7 +559,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -530,7 +570,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -541,7 +581,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -552,7 +592,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -563,7 +603,7 @@ func (a *StampsAdvanceTransactionAPIService) OfficesOfficeIdStampsAdvanceTxnPost
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -685,7 +725,7 @@ func (a *StampsAdvanceTransactionAPIService) StampsAdvanceTxnTransactionIdApprov
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -696,7 +736,7 @@ func (a *StampsAdvanceTransactionAPIService) StampsAdvanceTxnTransactionIdApprov
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -707,7 +747,7 @@ func (a *StampsAdvanceTransactionAPIService) StampsAdvanceTxnTransactionIdApprov
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -718,7 +758,7 @@ func (a *StampsAdvanceTransactionAPIService) StampsAdvanceTxnTransactionIdApprov
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -729,7 +769,7 @@ func (a *StampsAdvanceTransactionAPIService) StampsAdvanceTxnTransactionIdApprov
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -740,7 +780,7 @@ func (a *StampsAdvanceTransactionAPIService) StampsAdvanceTxnTransactionIdApprov
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

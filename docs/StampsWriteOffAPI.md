@@ -6,13 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**OfficesOfficeIdStampsWriteOffGet**](StampsWriteOffAPI.md#OfficesOfficeIdStampsWriteOffGet) | **Get** /offices/{office-id}/stamps-write-off | Get Pending WriteOff Transactions List
 [**OfficesOfficeIdStampsWriteOffPost**](StampsWriteOffAPI.md#OfficesOfficeIdStampsWriteOffPost) | **Post** /offices/{office-id}/stamps-write-off | Create a New Stamp WriteOff Transaction
-[**StampsWriteoffApprovePut**](StampsWriteOffAPI.md#StampsWriteoffApprovePut) | **Put** /stamps/writeoff/approve | Approve WriteOff Transaction Request
+[**StampsWriteOffTransactionIdChangeStatusPut**](StampsWriteOffAPI.md#StampsWriteOffTransactionIdChangeStatusPut) | **Put** /stamps-write-off/{transaction-id}/change-status | Approve WriteOff Transaction Request
 
 
 
 ## OfficesOfficeIdStampsWriteOffGet
 
-> ResponseListStampsSoiledApiResponse OfficesOfficeIdStampsWriteOffGet(ctx, officeId).IsPdg(isPdg).CheckerOrApproval(checkerOrApproval).FromDate(fromDate).ToDate(toDate).Execute()
+> ResponseListStampsSoiledApiResponse OfficesOfficeIdStampsWriteOffGet(ctx, officeId).IsPdg(isPdg).CheckerOrApproval(checkerOrApproval).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 
 Get Pending WriteOff Transactions List
 
@@ -36,10 +36,12 @@ func main() {
 	checkerOrApproval := "checkerOrApproval_example" // string | Checker or Approval (optional)
 	fromDate := "fromDate_example" // string | From Date (optional)
 	toDate := "toDate_example" // string | To Date (optional)
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StampsWriteOffAPI.OfficesOfficeIdStampsWriteOffGet(context.Background(), officeId).IsPdg(isPdg).CheckerOrApproval(checkerOrApproval).FromDate(fromDate).ToDate(toDate).Execute()
+	resp, r, err := apiClient.StampsWriteOffAPI.OfficesOfficeIdStampsWriteOffGet(context.Background(), officeId).IsPdg(isPdg).CheckerOrApproval(checkerOrApproval).FromDate(fromDate).ToDate(toDate).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StampsWriteOffAPI.OfficesOfficeIdStampsWriteOffGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,6 +71,8 @@ Name | Type | Description  | Notes
  **checkerOrApproval** | **string** | Checker or Approval | 
  **fromDate** | **string** | From Date | 
  **toDate** | **string** | To Date | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 
@@ -160,9 +164,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## StampsWriteoffApprovePut
+## StampsWriteOffTransactionIdChangeStatusPut
 
-> HandlerStampsSoiledResponse StampsWriteoffApprovePut(ctx).Body(body).Execute()
+> ResponseUpdateStampSoiledApiResponse StampsWriteOffTransactionIdChangeStatusPut(ctx, transactionId).Type_(type_).Body(body).Execute()
 
 Approve WriteOff Transaction Request
 
@@ -181,36 +185,44 @@ import (
 )
 
 func main() {
-	body := *openapiclient.NewHandlerUpdateStampSoiledRequest(int32(10145824), openapiclient.handler.stampStatus("all")) // HandlerUpdateStampSoiledRequest | Update or approving write off Transaction details
+	transactionId := "transactionId_example" // string | Transaction ID
+	type_ := "type__example" // string | Type of transaction
+	body := *openapiclient.NewHandlerUpdateStampSoiledRequest(int32(10145824)) // HandlerUpdateStampSoiledRequest | Update or approving write off Transaction details
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.StampsWriteOffAPI.StampsWriteoffApprovePut(context.Background()).Body(body).Execute()
+	resp, r, err := apiClient.StampsWriteOffAPI.StampsWriteOffTransactionIdChangeStatusPut(context.Background(), transactionId).Type_(type_).Body(body).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `StampsWriteOffAPI.StampsWriteoffApprovePut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `StampsWriteOffAPI.StampsWriteOffTransactionIdChangeStatusPut``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `StampsWriteoffApprovePut`: HandlerStampsSoiledResponse
-	fmt.Fprintf(os.Stdout, "Response from `StampsWriteOffAPI.StampsWriteoffApprovePut`: %v\n", resp)
+	// response from `StampsWriteOffTransactionIdChangeStatusPut`: ResponseUpdateStampSoiledApiResponse
+	fmt.Fprintf(os.Stdout, "Response from `StampsWriteOffAPI.StampsWriteOffTransactionIdChangeStatusPut`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**transactionId** | **string** | Transaction ID | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiStampsWriteoffApprovePutRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiStampsWriteOffTransactionIdChangeStatusPutRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
+ **type_** | **string** | Type of transaction | 
  **body** | [**HandlerUpdateStampSoiledRequest**](HandlerUpdateStampSoiledRequest.md) | Update or approving write off Transaction details | 
 
 ### Return type
 
-[**HandlerStampsSoiledResponse**](HandlerStampsSoiledResponse.md)
+[**ResponseUpdateStampSoiledApiResponse**](ResponseUpdateStampSoiledApiResponse.md)
 
 ### Authorization
 

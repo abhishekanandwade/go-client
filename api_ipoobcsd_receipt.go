@@ -24,7 +24,7 @@ import (
 // IPOOBCSDReceiptAPIService IPOOBCSDReceiptAPI service
 type IPOOBCSDReceiptAPIService service
 
-type ApiIposObCsdReceiptsObTransactionIdApprovePostRequest struct {
+type ApiIposObCsdReceiptsObTransactionIdApprovePutRequest struct {
 	ctx context.Context
 	ApiService *IPOOBCSDReceiptAPIService
 	obTransactionId string
@@ -32,26 +32,26 @@ type ApiIposObCsdReceiptsObTransactionIdApprovePostRequest struct {
 }
 
 // Approver Remarks
-func (r ApiIposObCsdReceiptsObTransactionIdApprovePostRequest) Body(body HandlerUpdateIPOsOBCSDReceiptsApproveRequest) ApiIposObCsdReceiptsObTransactionIdApprovePostRequest {
+func (r ApiIposObCsdReceiptsObTransactionIdApprovePutRequest) Body(body HandlerUpdateIPOsOBCSDReceiptsApproveRequest) ApiIposObCsdReceiptsObTransactionIdApprovePutRequest {
 	r.body = &body
 	return r
 }
 
-func (r ApiIposObCsdReceiptsObTransactionIdApprovePostRequest) Execute() (*ResponseIPOsOBReceiptsApiResponse, *http.Response, error) {
-	return r.ApiService.IposObCsdReceiptsObTransactionIdApprovePostExecute(r)
+func (r ApiIposObCsdReceiptsObTransactionIdApprovePutRequest) Execute() (*ResponseIPOsOBReceiptsApiResponse, *http.Response, error) {
+	return r.ApiService.IposObCsdReceiptsObTransactionIdApprovePutExecute(r)
 }
 
 /*
-IposObCsdReceiptsObTransactionIdApprovePost Approve IPO Transaction Request
+IposObCsdReceiptsObTransactionIdApprovePut Approve IPO Transaction Request
 
 Approving the IPO transaction request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param obTransactionId Transaction ID
- @return ApiIposObCsdReceiptsObTransactionIdApprovePostRequest
+ @return ApiIposObCsdReceiptsObTransactionIdApprovePutRequest
 */
-func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePost(ctx context.Context, obTransactionId string) ApiIposObCsdReceiptsObTransactionIdApprovePostRequest {
-	return ApiIposObCsdReceiptsObTransactionIdApprovePostRequest{
+func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePut(ctx context.Context, obTransactionId string) ApiIposObCsdReceiptsObTransactionIdApprovePutRequest {
+	return ApiIposObCsdReceiptsObTransactionIdApprovePutRequest{
 		ApiService: a,
 		ctx: ctx,
 		obTransactionId: obTransactionId,
@@ -60,15 +60,15 @@ func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePost(
 
 // Execute executes the request
 //  @return ResponseIPOsOBReceiptsApiResponse
-func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePostExecute(r ApiIposObCsdReceiptsObTransactionIdApprovePostRequest) (*ResponseIPOsOBReceiptsApiResponse, *http.Response, error) {
+func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePutExecute(r ApiIposObCsdReceiptsObTransactionIdApprovePutRequest) (*ResponseIPOsOBReceiptsApiResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *ResponseIPOsOBReceiptsApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPOOBCSDReceiptAPIService.IposObCsdReceiptsObTransactionIdApprovePost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPOOBCSDReceiptAPIService.IposObCsdReceiptsObTransactionIdApprovePut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -122,7 +122,7 @@ func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePostE
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -133,7 +133,7 @@ func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePostE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -144,7 +144,7 @@ func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePostE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +155,7 @@ func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePostE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -166,7 +166,7 @@ func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePostE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -177,7 +177,225 @@ func (a *IPOOBCSDReceiptAPIService) IposObCsdReceiptsObTransactionIdApprovePostE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiOfficesOfficeIdIposObCsdReceiptsGetRequest struct {
+	ctx context.Context
+	ApiService *IPOOBCSDReceiptAPIService
+	officeId int32
+	isApproval *bool
+	fromDate *string
+	toDate *string
+	skip *int32
+	limit *int32
+}
+
+// Is Approval
+func (r ApiOfficesOfficeIdIposObCsdReceiptsGetRequest) IsApproval(isApproval bool) ApiOfficesOfficeIdIposObCsdReceiptsGetRequest {
+	r.isApproval = &isApproval
+	return r
+}
+
+// From Date
+func (r ApiOfficesOfficeIdIposObCsdReceiptsGetRequest) FromDate(fromDate string) ApiOfficesOfficeIdIposObCsdReceiptsGetRequest {
+	r.fromDate = &fromDate
+	return r
+}
+
+// To Date
+func (r ApiOfficesOfficeIdIposObCsdReceiptsGetRequest) ToDate(toDate string) ApiOfficesOfficeIdIposObCsdReceiptsGetRequest {
+	r.toDate = &toDate
+	return r
+}
+
+// Skip
+func (r ApiOfficesOfficeIdIposObCsdReceiptsGetRequest) Skip(skip int32) ApiOfficesOfficeIdIposObCsdReceiptsGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiOfficesOfficeIdIposObCsdReceiptsGetRequest) Limit(limit int32) ApiOfficesOfficeIdIposObCsdReceiptsGetRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiOfficesOfficeIdIposObCsdReceiptsGetRequest) Execute() (*ResponseListIPOOBApprovalPdgApiResponse, *http.Response, error) {
+	return r.ApiService.OfficesOfficeIdIposObCsdReceiptsGetExecute(r)
+}
+
+/*
+OfficesOfficeIdIposObCsdReceiptsGet Get All Pending IPO Transaction Request
+
+Retrieve list of all pending IPO transactions.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param officeId Office ID
+ @return ApiOfficesOfficeIdIposObCsdReceiptsGetRequest
+*/
+func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsGet(ctx context.Context, officeId int32) ApiOfficesOfficeIdIposObCsdReceiptsGetRequest {
+	return ApiOfficesOfficeIdIposObCsdReceiptsGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		officeId: officeId,
+	}
+}
+
+// Execute executes the request
+//  @return ResponseListIPOOBApprovalPdgApiResponse
+func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsGetExecute(r ApiOfficesOfficeIdIposObCsdReceiptsGetRequest) (*ResponseListIPOOBApprovalPdgApiResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ResponseListIPOOBApprovalPdgApiResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPOOBCSDReceiptAPIService.OfficesOfficeIdIposObCsdReceiptsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/offices/{office-id}/ipos-ob-csd-receipts"
+	localVarPath = strings.Replace(localVarPath, "{"+"office-id"+"}", url.PathEscape(parameterValueToString(r.officeId, "officeId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.isApproval != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is-approval", r.isApproval, "", "")
+	}
+	if r.fromDate != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
+	}
+	if r.toDate != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
+	}
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApierrorsAPIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -205,37 +423,23 @@ type ApiOfficesOfficeIdIposObCsdReceiptsPostRequest struct {
 	ctx context.Context
 	ApiService *IPOOBCSDReceiptAPIService
 	officeId int32
-	isApproval *bool
-	fromDate *string
-	toDate *string
+	body *HandlerCreateOfficesIPOsOBReceiptsRequest
 }
 
-// Is Approval
-func (r ApiOfficesOfficeIdIposObCsdReceiptsPostRequest) IsApproval(isApproval bool) ApiOfficesOfficeIdIposObCsdReceiptsPostRequest {
-	r.isApproval = &isApproval
+// IPO Details
+func (r ApiOfficesOfficeIdIposObCsdReceiptsPostRequest) Body(body HandlerCreateOfficesIPOsOBReceiptsRequest) ApiOfficesOfficeIdIposObCsdReceiptsPostRequest {
+	r.body = &body
 	return r
 }
 
-// From Date
-func (r ApiOfficesOfficeIdIposObCsdReceiptsPostRequest) FromDate(fromDate string) ApiOfficesOfficeIdIposObCsdReceiptsPostRequest {
-	r.fromDate = &fromDate
-	return r
-}
-
-// To Date
-func (r ApiOfficesOfficeIdIposObCsdReceiptsPostRequest) ToDate(toDate string) ApiOfficesOfficeIdIposObCsdReceiptsPostRequest {
-	r.toDate = &toDate
-	return r
-}
-
-func (r ApiOfficesOfficeIdIposObCsdReceiptsPostRequest) Execute() (*ResponseListIPOOBApprovalPdgApiResponse, *http.Response, error) {
+func (r ApiOfficesOfficeIdIposObCsdReceiptsPostRequest) Execute() (*ResponseCreateIPOsOBReceiptsApiResponse, *http.Response, error) {
 	return r.ApiService.OfficesOfficeIdIposObCsdReceiptsPostExecute(r)
 }
 
 /*
-OfficesOfficeIdIposObCsdReceiptsPost Get All Pending IPO Transaction Request
+OfficesOfficeIdIposObCsdReceiptsPost Create a New IPO OB/ CSD Receipt Transaction Request
 
-Retrieve list of all pending IPO transactions.
+Create a new IPO OB/ CSD Receipt transaction
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param officeId Office ID
@@ -250,13 +454,13 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPost(ctx con
 }
 
 // Execute executes the request
-//  @return ResponseListIPOOBApprovalPdgApiResponse
-func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(r ApiOfficesOfficeIdIposObCsdReceiptsPostRequest) (*ResponseListIPOOBApprovalPdgApiResponse, *http.Response, error) {
+//  @return ResponseCreateIPOsOBReceiptsApiResponse
+func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(r ApiOfficesOfficeIdIposObCsdReceiptsPostRequest) (*ResponseCreateIPOsOBReceiptsApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ResponseListIPOOBApprovalPdgApiResponse
+		localVarReturnValue  *ResponseCreateIPOsOBReceiptsApiResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPOOBCSDReceiptAPIService.OfficesOfficeIdIposObCsdReceiptsPost")
@@ -270,16 +474,10 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
 
-	if r.isApproval != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is-approval", r.isApproval, "form", "")
-	}
-	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
-	}
-	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -297,6 +495,8 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -320,7 +520,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -331,7 +531,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -342,7 +542,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -353,7 +553,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -364,7 +564,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -375,7 +575,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -399,27 +599,41 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsPostExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiOfficesOfficeIdIposObCsdReceiptsStockPostRequest struct {
+type ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest struct {
 	ctx context.Context
 	ApiService *IPOOBCSDReceiptAPIService
 	officeId int32
+	skip *int32
+	limit *int32
 }
 
-func (r ApiOfficesOfficeIdIposObCsdReceiptsStockPostRequest) Execute() (*ResponseListOfficeIPOsObcsdReceiptsStockApiResponse, *http.Response, error) {
-	return r.ApiService.OfficesOfficeIdIposObCsdReceiptsStockPostExecute(r)
+// Skip
+func (r ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest) Skip(skip int32) ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest) Limit(limit int32) ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest) Execute() (*ResponseListOfficeIPOsObcsdReceiptsStockApiResponse, *http.Response, error) {
+	return r.ApiService.OfficesOfficeIdIposObCsdReceiptsStockGetExecute(r)
 }
 
 /*
-OfficesOfficeIdIposObCsdReceiptsStockPost Get IPO Stock Of Office
+OfficesOfficeIdIposObCsdReceiptsStockGet Get IPO Stock Of Office
 
 Retrieve list of IPO stock of requested office.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param officeId Office ID
- @return ApiOfficesOfficeIdIposObCsdReceiptsStockPostRequest
+ @return ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest
 */
-func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPost(ctx context.Context, officeId int32) ApiOfficesOfficeIdIposObCsdReceiptsStockPostRequest {
-	return ApiOfficesOfficeIdIposObCsdReceiptsStockPostRequest{
+func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockGet(ctx context.Context, officeId int32) ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest {
+	return ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest{
 		ApiService: a,
 		ctx: ctx,
 		officeId: officeId,
@@ -428,15 +642,15 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPost(ct
 
 // Execute executes the request
 //  @return ResponseListOfficeIPOsObcsdReceiptsStockApiResponse
-func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPostExecute(r ApiOfficesOfficeIdIposObCsdReceiptsStockPostRequest) (*ResponseListOfficeIPOsObcsdReceiptsStockApiResponse, *http.Response, error) {
+func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockGetExecute(r ApiOfficesOfficeIdIposObCsdReceiptsStockGetRequest) (*ResponseListOfficeIPOsObcsdReceiptsStockApiResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *ResponseListOfficeIPOsObcsdReceiptsStockApiResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPOOBCSDReceiptAPIService.OfficesOfficeIdIposObCsdReceiptsStockPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPOOBCSDReceiptAPIService.OfficesOfficeIdIposObCsdReceiptsStockGet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -448,6 +662,12 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPostExe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -488,7 +708,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPostExe
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -499,7 +719,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPostExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -510,7 +730,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPostExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -521,7 +741,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPostExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -532,7 +752,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPostExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -543,7 +763,7 @@ func (a *IPOOBCSDReceiptAPIService) OfficesOfficeIdIposObCsdReceiptsStockPostExe
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

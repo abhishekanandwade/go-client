@@ -32,6 +32,8 @@ type ApiOfficesOfficeIdChequesGetRequest struct {
 	fromDate *string
 	toDate *string
 	reportDate *string
+	skip *int32
+	limit *int32
 }
 
 // Type
@@ -55,6 +57,18 @@ func (r ApiOfficesOfficeIdChequesGetRequest) ToDate(toDate string) ApiOfficesOff
 // Report Date
 func (r ApiOfficesOfficeIdChequesGetRequest) ReportDate(reportDate string) ApiOfficesOfficeIdChequesGetRequest {
 	r.reportDate = &reportDate
+	return r
+}
+
+// Skip
+func (r ApiOfficesOfficeIdChequesGetRequest) Skip(skip int32) ApiOfficesOfficeIdChequesGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiOfficesOfficeIdChequesGetRequest) Limit(limit int32) ApiOfficesOfficeIdChequesGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -105,15 +119,21 @@ func (a *ChequesForDisposalAPIService) OfficesOfficeIdChequesGetExecute(r ApiOff
 	}
 
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
 	}
 	if r.reportDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "report-date", r.reportDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "report-date", r.reportDate, "", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "", "")
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -154,7 +174,7 @@ func (a *ChequesForDisposalAPIService) OfficesOfficeIdChequesGetExecute(r ApiOff
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -165,7 +185,7 @@ func (a *ChequesForDisposalAPIService) OfficesOfficeIdChequesGetExecute(r ApiOff
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -176,7 +196,7 @@ func (a *ChequesForDisposalAPIService) OfficesOfficeIdChequesGetExecute(r ApiOff
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -187,7 +207,7 @@ func (a *ChequesForDisposalAPIService) OfficesOfficeIdChequesGetExecute(r ApiOff
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -198,7 +218,7 @@ func (a *ChequesForDisposalAPIService) OfficesOfficeIdChequesGetExecute(r ApiOff
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -209,7 +229,7 @@ func (a *ChequesForDisposalAPIService) OfficesOfficeIdChequesGetExecute(r ApiOff
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

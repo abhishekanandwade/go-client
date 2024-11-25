@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## TransactionsPendingGet
 
-> ResponseListTransactionPendingApiResponse TransactionsPendingGet(ctx).OfficeId(officeId).Execute()
+> ResponseListTransactionPendingApiResponse TransactionsPendingGet(ctx).OfficeId(officeId).Skip(skip).Limit(limit).Execute()
 
 Get Pending Transactions
 
@@ -30,10 +30,12 @@ import (
 
 func main() {
 	officeId := "officeId_example" // string | Office ID
+	skip := int32(56) // int32 | Skip (optional)
+	limit := int32(56) // int32 | Limit (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ReportPdgTransactionsAPI.TransactionsPendingGet(context.Background()).OfficeId(officeId).Execute()
+	resp, r, err := apiClient.ReportPdgTransactionsAPI.TransactionsPendingGet(context.Background()).OfficeId(officeId).Skip(skip).Limit(limit).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReportPdgTransactionsAPI.TransactionsPendingGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,6 +57,8 @@ Other parameters are passed through a pointer to a apiTransactionsPendingGetRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **officeId** | **string** | Office ID | 
+ **skip** | **int32** | Skip | 
+ **limit** | **int32** | Limit | 
 
 ### Return type
 

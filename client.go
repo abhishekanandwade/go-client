@@ -92,7 +92,13 @@ type APIClient struct {
 
 	IPOOBCSDReceiptAPI *IPOOBCSDReceiptAPIService
 
+	IPOSalesAPI *IPOSalesAPIService
+
 	IPOTransactionsAPI *IPOTransactionsAPIService
+
+	IPOsApproveSaleAPI *IPOsApproveSaleAPIService
+
+	IPOsSalesAPI *IPOsSalesAPIService
 
 	MiscTransactionsAPI *MiscTransactionsAPIService
 
@@ -118,6 +124,14 @@ type APIClient struct {
 
 	StampsWriteOffAPI *StampsWriteOffAPIService
 
+	TemporalBagOpenAPI *TemporalBagOpenAPIService
+
+	TemporalBagOpenGetAPI *TemporalBagOpenGetAPIService
+
+	TemporalDayBeginAPI *TemporalDayBeginAPIService
+
+	TemporalDayEndAPI *TemporalDayEndAPIService
+
 	ToolsCashBagAPI *ToolsCashBagAPIService
 
 	ToolsCheckDayEndAPI *ToolsCheckDayEndAPIService
@@ -127,6 +141,16 @@ type APIClient struct {
 	ToolsDayEndAPI *ToolsDayEndAPIService
 
 	ToolsStampsInventoryAPI *ToolsStampsInventoryAPIService
+
+	TransaactionsCreateBankAddlCreditAPI *TransaactionsCreateBankAddlCreditAPIService
+
+	TransactionsBankDrawlTransactionsCheckAPI *TransactionsBankDrawlTransactionsCheckAPIService
+
+	TransactionsListBankAdditionalCreditRequestsAPI *TransactionsListBankAdditionalCreditRequestsAPIService
+
+	TransactionsPdgChequeTransactionsForRemittanceAPI *TransactionsPdgChequeTransactionsForRemittanceAPIService
+
+	TransactionsUpdateBankAddlCreditRequestAPI *TransactionsUpdateBankAddlCreditRequestAPIService
 }
 
 type service struct {
@@ -166,7 +190,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CustomerTransactionsAPI = (*CustomerTransactionsAPIService)(&c.common)
 	c.IPOErrorTransactionsAPI = (*IPOErrorTransactionsAPIService)(&c.common)
 	c.IPOOBCSDReceiptAPI = (*IPOOBCSDReceiptAPIService)(&c.common)
+	c.IPOSalesAPI = (*IPOSalesAPIService)(&c.common)
 	c.IPOTransactionsAPI = (*IPOTransactionsAPIService)(&c.common)
+	c.IPOsApproveSaleAPI = (*IPOsApproveSaleAPIService)(&c.common)
+	c.IPOsSalesAPI = (*IPOsSalesAPIService)(&c.common)
 	c.MiscTransactionsAPI = (*MiscTransactionsAPIService)(&c.common)
 	c.ReportPdgTransactionsAPI = (*ReportPdgTransactionsAPIService)(&c.common)
 	c.ReportSpecialRemittanceAPI = (*ReportSpecialRemittanceAPIService)(&c.common)
@@ -179,11 +206,20 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.StampsOBCSDReceiptAPI = (*StampsOBCSDReceiptAPIService)(&c.common)
 	c.StampsTransactionsAPI = (*StampsTransactionsAPIService)(&c.common)
 	c.StampsWriteOffAPI = (*StampsWriteOffAPIService)(&c.common)
+	c.TemporalBagOpenAPI = (*TemporalBagOpenAPIService)(&c.common)
+	c.TemporalBagOpenGetAPI = (*TemporalBagOpenGetAPIService)(&c.common)
+	c.TemporalDayBeginAPI = (*TemporalDayBeginAPIService)(&c.common)
+	c.TemporalDayEndAPI = (*TemporalDayEndAPIService)(&c.common)
 	c.ToolsCashBagAPI = (*ToolsCashBagAPIService)(&c.common)
 	c.ToolsCheckDayEndAPI = (*ToolsCheckDayEndAPIService)(&c.common)
 	c.ToolsDayBeginAPI = (*ToolsDayBeginAPIService)(&c.common)
 	c.ToolsDayEndAPI = (*ToolsDayEndAPIService)(&c.common)
 	c.ToolsStampsInventoryAPI = (*ToolsStampsInventoryAPIService)(&c.common)
+	c.TransaactionsCreateBankAddlCreditAPI = (*TransaactionsCreateBankAddlCreditAPIService)(&c.common)
+	c.TransactionsBankDrawlTransactionsCheckAPI = (*TransactionsBankDrawlTransactionsCheckAPIService)(&c.common)
+	c.TransactionsListBankAdditionalCreditRequestsAPI = (*TransactionsListBankAdditionalCreditRequestsAPIService)(&c.common)
+	c.TransactionsPdgChequeTransactionsForRemittanceAPI = (*TransactionsPdgChequeTransactionsForRemittanceAPIService)(&c.common)
+	c.TransactionsUpdateBankAddlCreditRequestAPI = (*TransactionsUpdateBankAddlCreditRequestAPIService)(&c.common)
 
 	return c
 }

@@ -20,6 +20,7 @@ var _ MappedNullable = &ResponseStampsDenominationsResponse{}
 
 // ResponseStampsDenominationsResponse struct for ResponseStampsDenominationsResponse
 type ResponseStampsDenominationsResponse struct {
+	CategoryDesc *string `json:"category_desc,omitempty"`
 	CategoryId *string `json:"category_id,omitempty"`
 	DenominationDesc *string `json:"denomination_desc,omitempty"`
 	DenominationId *string `json:"denomination_id,omitempty"`
@@ -27,6 +28,7 @@ type ResponseStampsDenominationsResponse struct {
 	EnteredBy *string `json:"entered_by,omitempty"`
 	EntryDate *string `json:"entry_date,omitempty"`
 	OfficeId *int32 `json:"office_id,omitempty"`
+	ProductCategory *string `json:"product_category,omitempty"`
 	UpdateDate *string `json:"update_date,omitempty"`
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	ValidFrom *string `json:"valid_from,omitempty"`
@@ -48,6 +50,38 @@ func NewResponseStampsDenominationsResponse() *ResponseStampsDenominationsRespon
 func NewResponseStampsDenominationsResponseWithDefaults() *ResponseStampsDenominationsResponse {
 	this := ResponseStampsDenominationsResponse{}
 	return &this
+}
+
+// GetCategoryDesc returns the CategoryDesc field value if set, zero value otherwise.
+func (o *ResponseStampsDenominationsResponse) GetCategoryDesc() string {
+	if o == nil || IsNil(o.CategoryDesc) {
+		var ret string
+		return ret
+	}
+	return *o.CategoryDesc
+}
+
+// GetCategoryDescOk returns a tuple with the CategoryDesc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponseStampsDenominationsResponse) GetCategoryDescOk() (*string, bool) {
+	if o == nil || IsNil(o.CategoryDesc) {
+		return nil, false
+	}
+	return o.CategoryDesc, true
+}
+
+// HasCategoryDesc returns a boolean if a field has been set.
+func (o *ResponseStampsDenominationsResponse) HasCategoryDesc() bool {
+	if o != nil && !IsNil(o.CategoryDesc) {
+		return true
+	}
+
+	return false
+}
+
+// SetCategoryDesc gets a reference to the given string and assigns it to the CategoryDesc field.
+func (o *ResponseStampsDenominationsResponse) SetCategoryDesc(v string) {
+	o.CategoryDesc = &v
 }
 
 // GetCategoryId returns the CategoryId field value if set, zero value otherwise.
@@ -274,6 +308,38 @@ func (o *ResponseStampsDenominationsResponse) SetOfficeId(v int32) {
 	o.OfficeId = &v
 }
 
+// GetProductCategory returns the ProductCategory field value if set, zero value otherwise.
+func (o *ResponseStampsDenominationsResponse) GetProductCategory() string {
+	if o == nil || IsNil(o.ProductCategory) {
+		var ret string
+		return ret
+	}
+	return *o.ProductCategory
+}
+
+// GetProductCategoryOk returns a tuple with the ProductCategory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ResponseStampsDenominationsResponse) GetProductCategoryOk() (*string, bool) {
+	if o == nil || IsNil(o.ProductCategory) {
+		return nil, false
+	}
+	return o.ProductCategory, true
+}
+
+// HasProductCategory returns a boolean if a field has been set.
+func (o *ResponseStampsDenominationsResponse) HasProductCategory() bool {
+	if o != nil && !IsNil(o.ProductCategory) {
+		return true
+	}
+
+	return false
+}
+
+// SetProductCategory gets a reference to the given string and assigns it to the ProductCategory field.
+func (o *ResponseStampsDenominationsResponse) SetProductCategory(v string) {
+	o.ProductCategory = &v
+}
+
 // GetUpdateDate returns the UpdateDate field value if set, zero value otherwise.
 func (o *ResponseStampsDenominationsResponse) GetUpdateDate() string {
 	if o == nil || IsNil(o.UpdateDate) {
@@ -412,6 +478,9 @@ func (o ResponseStampsDenominationsResponse) MarshalJSON() ([]byte, error) {
 
 func (o ResponseStampsDenominationsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CategoryDesc) {
+		toSerialize["category_desc"] = o.CategoryDesc
+	}
 	if !IsNil(o.CategoryId) {
 		toSerialize["category_id"] = o.CategoryId
 	}
@@ -432,6 +501,9 @@ func (o ResponseStampsDenominationsResponse) ToMap() (map[string]interface{}, er
 	}
 	if !IsNil(o.OfficeId) {
 		toSerialize["office_id"] = o.OfficeId
+	}
+	if !IsNil(o.ProductCategory) {
+		toSerialize["product_category"] = o.ProductCategory
 	}
 	if !IsNil(o.UpdateDate) {
 		toSerialize["update_date"] = o.UpdateDate

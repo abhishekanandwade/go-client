@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BankCreditLimit** | Pointer to **float32** |  | [optional] 
 **BankId** | Pointer to **string** |  | [optional] 
 **CashOfficeId** | Pointer to **int32** |  | [optional] 
 **CashofficeName** | Pointer to **string** |  | [optional] 
@@ -36,6 +37,31 @@ will change when the set of required properties is changed
 NewHandlerCreateOfficesRequestWithDefaults instantiates a new HandlerCreateOfficesRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBankCreditLimit
+
+`func (o *HandlerCreateOfficesRequest) GetBankCreditLimit() float32`
+
+GetBankCreditLimit returns the BankCreditLimit field if non-nil, zero value otherwise.
+
+### GetBankCreditLimitOk
+
+`func (o *HandlerCreateOfficesRequest) GetBankCreditLimitOk() (*float32, bool)`
+
+GetBankCreditLimitOk returns a tuple with the BankCreditLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBankCreditLimit
+
+`func (o *HandlerCreateOfficesRequest) SetBankCreditLimit(v float32)`
+
+SetBankCreditLimit sets BankCreditLimit field to given value.
+
+### HasBankCreditLimit
+
+`func (o *HandlerCreateOfficesRequest) HasBankCreditLimit() bool`
+
+HasBankCreditLimit returns a boolean if a field has been set.
 
 ### GetBankId
 

@@ -31,6 +31,8 @@ type ApiStampBulkSalesGetRequest struct {
 	fromDate *string
 	toDate *string
 	isPdg *bool
+	skip *int32
+	limit *int32
 }
 
 // Office ID
@@ -54,6 +56,18 @@ func (r ApiStampBulkSalesGetRequest) ToDate(toDate string) ApiStampBulkSalesGetR
 // Is PDG
 func (r ApiStampBulkSalesGetRequest) IsPdg(isPdg bool) ApiStampBulkSalesGetRequest {
 	r.isPdg = &isPdg
+	return r
+}
+
+// Skip
+func (r ApiStampBulkSalesGetRequest) Skip(skip int32) ApiStampBulkSalesGetRequest {
+	r.skip = &skip
+	return r
+}
+
+// Limit
+func (r ApiStampBulkSalesGetRequest) Limit(limit int32) ApiStampBulkSalesGetRequest {
+	r.limit = &limit
 	return r
 }
 
@@ -100,15 +114,21 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesGetExecute(r ApiStampBulkSales
 		return localVarReturnValue, nil, reportError("officeId is required and must be specified")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "office-id", r.officeId, "", "")
 	if r.fromDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from-date", r.fromDate, "", "")
 	}
 	if r.toDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "to-date", r.toDate, "", "")
 	}
 	if r.isPdg != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "is-pdg", r.isPdg, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "is-pdg", r.isPdg, "", "")
+	}
+	if r.skip != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip", r.skip, "", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -150,7 +170,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesGetExecute(r ApiStampBulkSales
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -161,7 +181,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesGetExecute(r ApiStampBulkSales
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -172,7 +192,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesGetExecute(r ApiStampBulkSales
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -183,7 +203,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesGetExecute(r ApiStampBulkSales
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -194,7 +214,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesGetExecute(r ApiStampBulkSales
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -205,7 +225,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesGetExecute(r ApiStampBulkSales
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -326,7 +346,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesPostExecute(r ApiStampBulkSale
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -337,7 +357,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesPostExecute(r ApiStampBulkSale
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +368,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesPostExecute(r ApiStampBulkSale
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -359,7 +379,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesPostExecute(r ApiStampBulkSale
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -370,7 +390,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesPostExecute(r ApiStampBulkSale
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -381,7 +401,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesPostExecute(r ApiStampBulkSale
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -503,7 +523,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdApprovePutExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -514,7 +534,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdApprovePutExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -525,7 +545,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdApprovePutExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -536,7 +556,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdApprovePutExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -547,7 +567,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdApprovePutExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -558,7 +578,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdApprovePutExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -588,7 +608,7 @@ type ApiStampBulkSalesTransactionIdGetRequest struct {
 	transactionId string
 }
 
-func (r ApiStampBulkSalesTransactionIdGetRequest) Execute() (*HandlerStampBulkSaleResponse, *http.Response, error) {
+func (r ApiStampBulkSalesTransactionIdGetRequest) Execute() (*ResponseStampBulkSalesApiResponse, *http.Response, error) {
 	return r.ApiService.StampBulkSalesTransactionIdGetExecute(r)
 }
 
@@ -610,13 +630,13 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdGet(ctx context.C
 }
 
 // Execute executes the request
-//  @return HandlerStampBulkSaleResponse
-func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdGetExecute(r ApiStampBulkSalesTransactionIdGetRequest) (*HandlerStampBulkSaleResponse, *http.Response, error) {
+//  @return ResponseStampBulkSalesApiResponse
+func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdGetExecute(r ApiStampBulkSalesTransactionIdGetRequest) (*ResponseStampBulkSalesApiResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *HandlerStampBulkSaleResponse
+		localVarReturnValue  *ResponseStampBulkSalesApiResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StampsBulkSalesAPIService.StampBulkSalesTransactionIdGet")
@@ -671,7 +691,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdGetExecute(r ApiS
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -682,7 +702,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdGetExecute(r ApiS
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -693,7 +713,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdGetExecute(r ApiS
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -704,7 +724,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdGetExecute(r ApiS
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -715,7 +735,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdGetExecute(r ApiS
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -726,7 +746,7 @@ func (a *StampsBulkSalesAPIService) StampBulkSalesTransactionIdGetExecute(r ApiS
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -28,12 +28,12 @@ type ApiOfficesOfficeIdClosingBalancesTransferPutRequest struct {
 	ctx context.Context
 	ApiService *ClosingBalancesTransferAPIService
 	officeId int32
-	type_ *string
+	body *HandlerUpdateClosingBalancesTransferRequest
 }
 
 // Transfer closing balances from one employee to another
-func (r ApiOfficesOfficeIdClosingBalancesTransferPutRequest) Type_(type_ string) ApiOfficesOfficeIdClosingBalancesTransferPutRequest {
-	r.type_ = &type_
+func (r ApiOfficesOfficeIdClosingBalancesTransferPutRequest) Body(body HandlerUpdateClosingBalancesTransferRequest) ApiOfficesOfficeIdClosingBalancesTransferPutRequest {
+	r.body = &body
 	return r
 }
 
@@ -79,8 +79,8 @@ func (a *ClosingBalancesTransferAPIService) OfficesOfficeIdClosingBalancesTransf
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.type_ == nil {
-		return localVarReturnValue, nil, reportError("type_ is required and must be specified")
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -101,7 +101,7 @@ func (a *ClosingBalancesTransferAPIService) OfficesOfficeIdClosingBalancesTransf
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.type_
+	localVarPostBody = r.body
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -125,7 +125,7 @@ func (a *ClosingBalancesTransferAPIService) OfficesOfficeIdClosingBalancesTransf
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -136,7 +136,7 @@ func (a *ClosingBalancesTransferAPIService) OfficesOfficeIdClosingBalancesTransf
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -147,7 +147,7 @@ func (a *ClosingBalancesTransferAPIService) OfficesOfficeIdClosingBalancesTransf
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -158,7 +158,7 @@ func (a *ClosingBalancesTransferAPIService) OfficesOfficeIdClosingBalancesTransf
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *ClosingBalancesTransferAPIService) OfficesOfficeIdClosingBalancesTransf
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -180,7 +180,7 @@ func (a *ClosingBalancesTransferAPIService) OfficesOfficeIdClosingBalancesTransf
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
-			var v HandlerErrorValidResponse
+			var v ApierrorsAPIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
